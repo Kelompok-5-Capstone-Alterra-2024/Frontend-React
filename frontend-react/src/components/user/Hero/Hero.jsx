@@ -1,6 +1,6 @@
 import ellipse3 from '../../../assets/images/ellipse3.svg';
 import ellipse4 from '../../../assets/images/ellipse4.svg';
-import hero from '../../../assets/images/hero.png';
+import mobile from '../../../assets/images/mobile.png';
 import appstore from '../../../assets/images/appstore.png';
 import playstore from '../../../assets/images/playstore.png';
 
@@ -39,8 +39,8 @@ function Hero() {
             <img src={playstore} alt="Play Store" />
           </div>
         </div>
-        <div className="md:w-1/2 flex justify-center items-center mt-10 md:mt-0">
-          <img src={hero} alt="hero section" />
+        <div className="md:w-1/2 flex justify-center items-center mb-40 mt-10 md:mt-0">
+          <img src={mobile} alt="hero section" />
         </div>
       </div>
       <img
