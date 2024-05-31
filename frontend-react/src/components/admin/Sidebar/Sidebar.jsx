@@ -99,7 +99,7 @@ function Sidebar() {
             </div>
           </div>
         </div>
-        <div className="p-[20px] top-[500px] absolute flex-col justify-start items-start gap-4 inline-flex">
+        <div className="p-[20px] top-[450px] bg-white absolute flex-col justify-start items-start gap-4 inline-flex">
           <div className="w-[260px] h-[0px] justify-center items-center gap-4 inline-flex">
             <div className="grow shrink basis-0 h-[0px] border border-blue-300"></div>
           </div>
