@@ -20,15 +20,15 @@ function Navbar() {
           <img className="h-8" src={logo} alt="Logo" />
         </Link>
         <div className="flex items-center gap-5">  
-          <div className={`sm:flex items-center gap-5 ${isMenuOpen ? 'block' : 'hidden'}`}>
+          <div className="hidden sm:flex items-center gap-20">
             <Link to="/chat">
-              <img className="h-7 mb-1" src={chat} alt="Chat" />
+              <img className="h-7" src={chat} alt="Chat" />
             </Link>
             <Link to="/message">
-              <img className="h-7 mb-1" src={message} alt="Message" />
+              <img className="h-7" src={message} alt="Message" />
             </Link>
             <Link to="/notification">
-              <img className="h-7 mb-1" src={notification} alt="Notification" />
+              <img className="h-7" src={notification} alt="Notification" />
             </Link>
             <Link to="/">
               <img className="h-9" src={admin} alt="Admin" />
@@ -40,6 +40,20 @@ function Navbar() {
             </svg>
           </button>
         </div>
+      </div>
+      <div className={`sm:hidden flex justify-center bg-white py-4 gap-5 ${isMenuOpen ? 'flex' : 'hidden'}`}>
+        <Link to="/chat">
+          <img className="h-7" src={chat} alt="Chat" />
+        </Link>
+        <Link to="/message">
+          <img className="h-7" src={message} alt="Message" />
+        </Link>
+        <Link to="/notification">
+          <img className="h-7" src={notification} alt="Notification" />
+        </Link>
+        <Link to="/">
+          <img className="h-9" src={admin} alt="Admin" />
+        </Link>
       </div>
       <hr />
     </div>
