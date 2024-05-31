@@ -16,21 +16,21 @@ function Navbar() {
   return (
     <div>
       <div className="w-full h-auto py-5 px-5 bg-white shadow justify-between items-center flex">
-        <Link to="/">
+        <Link to="">
           <img className="h-8" src={logo} alt="Logo" />
         </Link>
         <div className="flex items-center gap-5">  
           <div className="hidden sm:flex items-center gap-20">
-            <Link to="/chat">
+            <Link to="chatbot">
               <img className="h-7" src={chat} alt="Chat" />
             </Link>
-            <Link to="/message">
+            <Link to="">
               <img className="h-7" src={message} alt="Message" />
             </Link>
-            <Link to="/notification">
+            <Link to="notification">
               <img className="h-7" src={notification} alt="Notification" />
             </Link>
-            <Link to="/">
+            <Link to="">
               <img className="h-9" src={admin} alt="Admin" />
             </Link>
           </div>
@@ -42,16 +42,16 @@ function Navbar() {
         </div>
       </div>
       <div className={`sm:hidden flex justify-center bg-white py-4 gap-5 ${isMenuOpen ? 'flex' : 'hidden'}`}>
-        <Link to="/chat">
+        <Link to="chatbot">
           <img className="h-7" src={chat} alt="Chat" />
         </Link>
-        <Link to="/message">
+        <Link to="">
           <img className="h-7" src={message} alt="Message" />
         </Link>
-        <Link to="/notification">
+        <Link to="notification">
           <img className="h-7" src={notification} alt="Notification" />
         </Link>
-        <Link to="/">
+        <Link to="">
           <img className="h-9" src={admin} alt="Admin" />
         </Link>
       </div>

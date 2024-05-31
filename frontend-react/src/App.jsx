@@ -13,6 +13,8 @@ import ManageUser from "./pages/admin/ManageUser/ManageUser"
 import Donasi from "./pages/admin/ManageContent/Donasi/Donasi"
 import Relawan from "./pages/admin/ManageContent/Relawan/Relawan"
 import Artikel from "./pages/admin/ManageContent/Artikel/Artikel"
+import Chatbot from "./pages/admin/Chatbot/Chatbot"
+import Notification from "./pages/admin/Notification/Notification"
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
           <Route path="transaksi" element={<Transaksi />} />
           <Route path="tentang-kami" element={<TentangKami />} />
           <Route path="logout" element={<Logout />} />
+          <Route path="chatbot" element={<Chatbot />} />
+          <Route path="notification" element={<Notification />} />
         </Route>
         <Route path="admin/login" element={<Login />} />
 
