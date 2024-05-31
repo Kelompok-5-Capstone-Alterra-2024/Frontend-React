@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import home from "../../../assets/images/home.png"
 import admin from "../../../assets/images/admin.png"
 import organization from "../../../assets/images/UsersThree.png"
@@ -10,14 +10,30 @@ import user from "../../../assets/images/User.png"
 import up from "../../../assets/images/CaretUp.png"
 import down from "../../../assets/images/CaretDown.png"
 import manage from "../../../assets/images/HandCoins.png"
+import Modal from '../../ui/Modal/Modal';
 
 function Sidebar() {
     const [isContentOpen, setIsContentOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const navigate = useNavigate();
+    const [showModal, setShowModal] = useState(false);
 
     const toggleOpen = () => {
       setIsContentOpen(!isContentOpen);
       setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    const handleLogout = () => {
+      localStorage.setItem("isAuthenticated", "false");
+      navigate("login");
+    };
+  
+    const handleCloseModal = () => {
+      setShowModal(false);
+    };
+  
+    const handleShowModal = () => {
+      setShowModal(true);
     };
 
     return (
@@ -107,13 +123,24 @@ function Sidebar() {
           <img className="w-5 h-5 relative ml-5" src={info} />
           <Link to="tentang-kami">
             <div className="text-stone-400 text-base font-normal font-['Roboto'] leading-tight">Tentang Kami</div>
-        </Link>
+          </Link>
           </div>
           <div className="h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start">
           <img className="w-5 h-5 relative ml-5" src={logout} />
-          <Link to="logout">
+          <button onClick={handleShowModal}>
             <div className="text-stone-400 text-base font-normal font-['Roboto'] leading-tight">Logout</div>
-            </Link>
+          </button>
+          <Modal show={showModal} onClose={handleCloseModal} backdrop={true}>
+            <h2 className="text-xl font-semibold mb-4">Apakah anda yakin ingin logout?</h2>
+            <div className="flex justify-evenly mt-4">
+            <button onClick={handleCloseModal} className="mr-4">
+            Batal
+            </button>
+            <button onClick={handleLogout}>
+            Logout
+            </button>
+            </div>
+          </Modal>
           </div>
         </div>
       </div>
