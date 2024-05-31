@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import logo from "../../../assets/images/logo.png"
 import admin from "../../../assets/images/admin.png"
 import chat from "../../../assets/images/icon-chat.png"
-import message from "../../../assets/images/icon-message.png"
 import notification from "../../../assets/images/icon-notification.png"
 
 function Navbar() {
@@ -24,9 +23,6 @@ function Navbar() {
             <Link to="chatbot">
               <img className="h-7" src={chat} alt="Chat" />
             </Link>
-            <Link to="">
-              <img className="h-7" src={message} alt="Message" />
-            </Link>
             <Link to="notification">
               <img className="h-7" src={notification} alt="Notification" />
             </Link>
@@ -44,9 +40,6 @@ function Navbar() {
       <div className={`sm:hidden flex justify-center bg-white py-4 gap-5 ${isMenuOpen ? 'flex' : 'hidden'}`}>
         <Link to="chatbot">
           <img className="h-7" src={chat} alt="Chat" />
-        </Link>
-        <Link to="">
-          <img className="h-7" src={message} alt="Message" />
         </Link>
         <Link to="notification">
           <img className="h-7" src={notification} alt="Notification" />
