@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import home from "../../../assets/images/home.png"
+import admin from "../../../assets/images/admin.png"
 import organization from "../../../assets/images/UsersThree.png"
 import logout from "../../../assets/images/SignOut.png"
 import info from "../../../assets/images/Info.png"
@@ -22,8 +23,15 @@ function Sidebar() {
     return (
       <div className="w-[300px] relative bg-white">
         <div className="p-5 flex items-center">
-          <div className="border border-sky-500"></div>
-          <img className="h-16" src="https://via.placeholder.com/250x55" />
+          <div className="w-[260px] h-[60px] p-2 bg-neutral-100 rounded-lg justify-start items-center gap-2.5 inline-flex">
+              <img className="w-10 h-10 relative rounded-[31px]" src={admin} />
+                <div className="h-[34px] justify-start items-center gap-[100px] flex">
+                    <div className="flex-col justify-start items-start inline-flex">
+                        <div className="self-stretch text-teal-900 text-xs font-normal leading-tight">Cornelia</div>
+                        <div className="self-stretch text-teal-900 text-[10px] font-normal leading-[14px]">Oniel@gmail.com</div>
+                    </div>
+                </div>
+          </div>
         </div>
         <div className="p-2">
           <div className="flex flex-col gap-2">
@@ -51,21 +59,21 @@ function Sidebar() {
                 <div className="h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start">
                   <div className="w-[21px] h-[21px] relative" />
                   <Link to="manage-content/donasi">
-                  <div className="text-stone-400 text-base font-normal font-['Roboto'] leading-tight">Donasi</div>
+                  <div className="text-stone-400 text-base font-normal font-['Roboto'] leading-tight">• Donasi</div>
                   </Link>
                   <div className="w-5 h-5 relative" />
                 </div>
                 <div className="h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start">
                   <div className="w-[21px] h-[21px] relative" />
                   <Link to="manage-content/relawan">
-                  <div className="text-stone-400 text-base font-normal font-['Roboto'] leading-tight">Relawan</div>
+                  <div className="text-stone-400 text-base font-normal font-['Roboto'] leading-tight">• Relawan</div>
                   </Link>
                   <div className="w-5 h-5 relative" />
                 </div>
                 <div className="h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start">
                   <div className="w-[21px] h-[21px] relative" />
                   <Link to="manage-content/artikel">
-                  <div className="text-stone-400 text-base font-normal font-['Roboto'] leading-tight">Artikel</div>
+                  <div className="text-stone-400 text-base font-normal font-['Roboto'] leading-tight">• Artikel</div>
                   </Link>
                   <div className="w-5 h-5 relative" />
                 </div>
@@ -91,8 +99,11 @@ function Sidebar() {
             </div>
           </div>
         </div>
-        <div className="p-[20px]">
-          <div className="h-[41px] mb-[15px] bg-white rounded-[10px] flex items-center gap-5 justify-start">
+        <div className="p-[20px] top-[500px] absolute flex-col justify-start items-start gap-4 inline-flex">
+          <div className="w-[260px] h-[0px] justify-center items-center gap-4 inline-flex">
+            <div className="grow shrink basis-0 h-[0px] border border-blue-300"></div>
+          </div>
+          <div className="h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start">
           <img className="w-5 h-5 relative ml-5" src={info} />
           <Link to="tentang-kami">
             <div className="text-stone-400 text-base font-normal font-['Roboto'] leading-tight">Tentang Kami</div>
