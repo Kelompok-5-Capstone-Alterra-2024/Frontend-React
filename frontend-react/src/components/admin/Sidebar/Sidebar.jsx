@@ -131,13 +131,17 @@ function Sidebar() {
             <div className="text-stone-400 text-base font-normal font-['Roboto'] leading-tight">Logout</div>
           </button>
           <Modal show={showModal} onClose={handleCloseModal} backdrop={true}>
-            <h2 className="text-xl font-semibold mb-4">Apakah anda yakin ingin logout?</h2>
+            <h2 className="text-xl font-semibold mb-4 text-center text-black">Apakah Anda Yakin ingin Keluar?</h2>
+            <p className="text-md mb-7 text-center text-black">Anda akan kehilangan semua perubahan <br/> 
+            yang belum anda simpan</p>
             <div className="flex justify-evenly mt-4">
-            <button onClick={handleCloseModal} className="mr-4">
+            <button onClick={handleCloseModal} 
+            className="bg-gray-200 text-black py-2 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400">
             Batal
             </button>
-            <button onClick={handleLogout}>
-            Logout
+            <button onClick={handleLogout} 
+            className="bg-red-500 text-white py-2 px-5 rounded-md focus:outline-none focus:ring-2 focus:ring-red-600">
+            Keluar
             </button>
             </div>
           </Modal>
