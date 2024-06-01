@@ -3,7 +3,7 @@ import search from '../../../../assets/images/search.png';
 import edit from '../../../../assets/images/PencilSimple.svg';
 import trash from '../../../../assets/images/Trash.svg';
 
-function Donasi() {
+function Artikel() {
   return (
     <div className="min-h-screen bg-neutral-50 flex flex-col p-5">
       <div className="w-full flex gap-20 items-center mb-6">
@@ -193,4 +193,4 @@ function Donasi() {
   )
 }
 
-export default Donasi
+export default Artikel
