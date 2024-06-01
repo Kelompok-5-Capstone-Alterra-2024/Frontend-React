@@ -1,6 +1,9 @@
+import PaginationRiwayatTransaksi from "./PaginationRiwayatTransaksi";
+import TableRiwayatTransaksi from "./TableRiwayatTransaksi";
+
 const RiwayatTransaksi = () => {
     return (
-      <div className="p-4 shadow-lg rounded-lg">
+      <div className="p-6 shadow-lg rounded-lg">
         <div className="flex flex-wrap justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold text-black">Riwayat Transaksi</h1>
@@ -19,6 +22,8 @@ const RiwayatTransaksi = () => {
             </label>
           </div>
         </div>
+        <TableRiwayatTransaksi/>
+        <PaginationRiwayatTransaksi/>
       </div>
     );
   };
