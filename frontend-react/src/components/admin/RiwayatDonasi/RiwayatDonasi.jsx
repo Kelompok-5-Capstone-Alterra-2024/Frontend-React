@@ -1,6 +1,9 @@
+import PaginationRiwayatDonasi from "./PaginationRiwayatDonasi";
+import TableRiwayatDonasi from "./TableRiwayatDonasi";
+
 const RiwayatDonasi = () => {
   return (
-    <div className="p-4 shadow-lg rounded-lg">
+    <div className="p-6 shadow-lg rounded-lg">
       <div className="flex flex-wrap justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold text-black">Riwayat Donasi</h1>
@@ -19,6 +22,8 @@ const RiwayatDonasi = () => {
           </label>
         </div>
       </div>
+      <TableRiwayatDonasi/>
+      <PaginationRiwayatDonasi/>
     </div>
   );
 };

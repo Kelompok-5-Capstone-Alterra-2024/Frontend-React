@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import unduhDetail from "../../../assets/images/unduh-detail.png";
 import RiwayatTransaksi from "../../../components/admin/RiwayatTransaksi/RiwayatTransaksi";
-import hand from "../../../assets/images/HandHeart.png"
-import money from "../../../assets/images/Money_fill.png"
-import wallet from "../../../assets/images/Wallet.png"
+import RiwayatDonasi from "../../../components/admin/RiwayatDonasi/RiwayatDonasi"; // Import RiwayatDonasi component
+import hand from "../../../assets/images/HandHeart.png";
+import money from "../../../assets/images/Money_fill.png";
+import wallet from "../../../assets/images/Wallet.png";
 
 function Transaksi() {
+  const [selectedTab, setSelectedTab] = useState('transaksi'); // State to manage selected tab
+
   return (
     <div className="bg-neutral-50 min-h-screen p-4">
       {/* card */}
@@ -60,14 +64,28 @@ function Transaksi() {
         {/* Bagian kiri */}
         <div className="left">
           <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200">
-          <ul className="flex">
-          <li>
-            <a href="" className="inline-block pt-5 pb-2 px-10 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300">Riwayat Donasi</a>
-          </li>
-          <li>
-            <a href="" className="inline-block pt-5 pb-2 px-10 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active" aria-current="page">Riwayat Transaksi</a>
-          </li>
-          </ul>
+            <ul className="flex">
+              <li>
+                <button
+                  className={`inline-block pt-5 pb-2 px-10 border-b-2 rounded-t-lg ${
+                    selectedTab === 'donasi' ? 'text-blue-600 border-blue-600' : 'border-transparent hover:text-gray-600 hover:border-gray-300'
+                  }`}
+                  onClick={() => setSelectedTab('donasi')}
+                >
+                  Riwayat Donasi
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`inline-block pt-5 pb-2 px-10 border-b-2 rounded-t-lg ${
+                    selectedTab === 'transaksi' ? 'text-blue-600 border-blue-600' : 'border-transparent hover:text-gray-600 hover:border-gray-300'
+                  }`}
+                  onClick={() => setSelectedTab('transaksi')}
+                >
+                  Riwayat Transaksi
+                </button>
+              </li>
+            </ul>
           </div>
         </div>
         {/* Bagian kanan */}
@@ -79,10 +97,11 @@ function Transaksi() {
       </div>
       {/* Table */}
       <div>
-        <RiwayatTransaksi/>
+        {selectedTab === 'transaksi' ? <RiwayatTransaksi /> : <RiwayatDonasi />}
       </div>
     </div>
   );
 }
 
 export default Transaksi;
+
