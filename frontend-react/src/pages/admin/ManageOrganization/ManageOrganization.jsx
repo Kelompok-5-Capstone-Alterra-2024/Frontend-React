@@ -1,6 +1,8 @@
 function ManageOrganization() {
   return (
-    <div>ManageOrganization</div>
+    <div className="bg-neutral-50 min-h-screen">
+      <h1 className="text-center text-gray-600 text-xl p-5">Manage Organization</h1>
+    </div>
   )
 }
 
