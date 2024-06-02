@@ -45,6 +45,10 @@ export default {
           3: "#FAFAFC",
           4: "#FDFDFF",
         },
+        "sidebar": {
+          1: "#03AFF1",
+          2: "#E6F7FE",
+        },
       }
     },
   },
