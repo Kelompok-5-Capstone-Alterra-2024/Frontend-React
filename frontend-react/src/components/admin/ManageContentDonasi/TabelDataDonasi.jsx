@@ -94,7 +94,7 @@ const TabelDataDonasi = () => {
           </tbody>
         </table>
       </div>
-    );
-  };
+    )
+  }
   
-  export default TabelDataDonasi;
+  export default TabelDataDonasi

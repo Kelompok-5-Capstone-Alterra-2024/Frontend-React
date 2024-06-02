@@ -74,4 +74,4 @@ function PaginationDataDonasi() {
     )
   }
   
-  export default PaginationDataDonasi;
+  export default PaginationDataDonasi
