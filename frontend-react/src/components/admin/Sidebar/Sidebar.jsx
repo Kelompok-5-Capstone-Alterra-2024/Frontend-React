@@ -56,7 +56,7 @@ function Sidebar() {
             </div>
             <div className="p-2">
                 <div className="flex flex-col gap-2">
-                    <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === '' ? 'bg-sky-400' : ''}`} onClick={() => handleItemClick('')}>
+                    <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === '' ? 'bg-sidebar-1' : ''}`} onClick={() => handleItemClick('')}>
                         <img className="w-5 h-5 relative ml-5" src={home} />
                         <Link to="manage-user">
                             <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === '' ? 'text-white' : 'text-stone-400'}`}>
@@ -64,7 +64,7 @@ function Sidebar() {
                             </div>
                         </Link>
                     </div>
-                    <div className={`pt-3 py-2 rounded-md flex items-center gap-5 justify-between ${isContentOpen ? 'bg-sky-400' : 'bg-white'}`} onClick={toggleOpen}>
+                    <div className={`pt-3 py-2 rounded-md flex items-center gap-5 justify-between ${isContentOpen ? 'bg-sidebar-1' : 'bg-white'}`} onClick={toggleOpen}>
                         <div className="flex items-center gap-5">
                             <img className="w-5 h-5 relative ml-5" src={manage} />
                             <Link to="#">
@@ -79,28 +79,28 @@ function Sidebar() {
                     </div>
                     {isContentOpen && (
                         <div className="flex flex-col gap-1.5">
-                            <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === 'manage-content/donasi' ? 'bg-sky-300' : ''}`} onClick={() => handleItemClick('manage-content/donasi')}>
+                            <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === 'manage-content/donasi' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/donasi')}>
                                 <div className="w-[21px] h-[21px] relative" />
                                 <Link to="manage-content/donasi">
-                                    <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/donasi' ? 'text-white' : 'text-stone-400'}`}>
+                                    <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/donasi' ? 'text-blue-500' : 'text-stone-400'}`}>
                                         • Donasi
                                     </div>
                                 </Link>
                                 <div className="w-5 h-5 relative" />
                             </div>
-                            <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === 'manage-content/relawan' ? 'bg-sky-300' : ''}`} onClick={() => handleItemClick('manage-content/relawan')}>
+                            <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === 'manage-content/relawan' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/relawan')}>
                                 <div className="w-[21px] h-[21px] relative" />
                                 <Link to="manage-content/relawan">
-                                    <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/relawan' ? 'text-white' : 'text-stone-400'}`}>
+                                    <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/relawan' ? 'text-blue-500' : 'text-stone-400'}`}>
                                         • Relawan
                                     </div>
                                 </Link>
                                 <div className="w-5 h-5 relative" />
                             </div>
-                            <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === 'manage-content/artikel' ? 'bg-sky-300' : ''}`} onClick={() => handleItemClick('manage-content/artikel')}>
+                            <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === 'manage-content/artikel' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/artikel')}>
                                 <div className="w-[21px] h-[21px] relative" />
                                 <Link to="manage-content/artikel">
-                                    <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/artikel' ? 'text-white' : 'text-stone-400'}`}>
+                                    <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/artikel' ? 'text-blue-500' : 'text-stone-400'}`}>
                                         • Artikel
                                     </div>
                                 </Link>
@@ -108,7 +108,7 @@ function Sidebar() {
                             </div>
                         </div>
                     )}
-                    <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === 'manage-user' ? 'bg-sky-400' : ''}`} onClick={() => handleItemClick('manage-user')}>
+                    <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === 'manage-user' ? 'bg-sidebar-1' : ''}`} onClick={() => handleItemClick('manage-user')}>
                         <img className="w-5 h-5 relative ml-5" src={user} />
                         <Link to="manage-user">
                             <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-user' ? 'text-white' : 'text-stone-400'}`}>
@@ -116,7 +116,7 @@ function Sidebar() {
                             </div>
                         </Link>
                     </div>
-                    <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === 'manage-organization' ? 'bg-sky-400' : ''}`} onClick={() => handleItemClick('manage-organization')}>
+                    <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === 'manage-organization' ? 'bg-sidebar-1' : ''}`} onClick={() => handleItemClick('manage-organization')}>
                         <img className="w-5 h-5 relative ml-5" src={organization} />
                         <Link to="manage-organization">
                             <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-organization' ? 'text-white' : 'text-stone-400'}`}>
@@ -124,7 +124,7 @@ function Sidebar() {
                             </div>
                         </Link>
                     </div>
-                    <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === 'transaksi' ? 'bg-sky-400' : ''}`} onClick={() => handleItemClick('transaksi')}>
+                    <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 justify-start ${activeItem === 'transaksi' ? 'bg-sidebar-1' : ''}`} onClick={() => handleItemClick('transaksi')}>
                         <img className="w-5 h-5 relative ml-5" src={transaksi} />
                         <Link to="transaksi">
                             <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'transaksi' ? 'text-white' : 'text-stone-400'}`}>
