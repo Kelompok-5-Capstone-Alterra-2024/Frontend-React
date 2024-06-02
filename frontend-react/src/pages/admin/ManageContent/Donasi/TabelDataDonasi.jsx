@@ -30,7 +30,7 @@ const TabelDataDonasi = () => {
     ];
   
     return (
-      <div className="overflow-x-auto shadow-md mt-5">
+      <div className="relative overflow-x-auto shadow-md mt-5">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500">
           <thead className="text-xs text-white uppercase bg-primary-main">
             <tr>
