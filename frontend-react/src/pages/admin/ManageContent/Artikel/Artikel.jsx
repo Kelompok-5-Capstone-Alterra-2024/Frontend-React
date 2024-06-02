@@ -1,14 +1,27 @@
+import { useState } from 'react';
+import AddArtikel from '../../../../components/admin/ManageContentArtikel/TambahContentArtikel.jsx'
 import up from '../../../../assets/images/arrowUpBlue.svg';
 import search from '../../../../assets/images/search.png';
 import edit from '../../../../assets/images/PencilSimple.svg';
 import trash from '../../../../assets/images/Trash.svg';
 
 function Artikel() {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <div className="min-h-screen bg-neutral-50 flex flex-col p-5">
       <div className="w-full flex gap-20 items-center mb-6">
         <div className="text-black text-2xl font-semibold font-['Roboto']">Manage Content Artikel</div>
-          <button className="px-4 py-2 bg-sky-500 text-gray-50 text-sm font-semibold rounded-lg">Tambah Content Artikel</button>
+          <button className="px-4 py-2 bg-sky-500 text-gray-50 text-sm font-semibold rounded-lg" onClick={openModal}>Tambah Content Artikel</button>
+          <AddArtikel isOpen={isModalOpen} onClose={closeModal} />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-white p-5 rounded-lg border border-gray-200 flex flex-col">
@@ -61,7 +74,7 @@ function Artikel() {
                     </div>
                   </div>
                 </div>
-                <div className="relative overflow-x-auto border-b-8 mb-3">
+                <div className="overflow-x-auto border-b-8 mb-3">
                   <table className="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead className="uppercase bg-sky-500 text-white">
                       <tr>
