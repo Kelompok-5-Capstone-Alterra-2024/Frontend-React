@@ -45,4 +45,4 @@ function AddArtikel({ isOpen, onClose }) {
     )
 }
 
-export default AddArtikel;
+export default AddArtikel

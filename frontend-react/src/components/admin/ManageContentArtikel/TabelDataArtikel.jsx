@@ -67,7 +67,7 @@ const TabelDataArtikel = () => {
           </tbody>
         </table>
       </div>
-    );
-  };
+    )
+  }
   
-  export default TabelDataArtikel;
+  export default TabelDataArtikel

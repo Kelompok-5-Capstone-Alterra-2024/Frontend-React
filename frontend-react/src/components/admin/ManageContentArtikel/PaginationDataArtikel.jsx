@@ -74,4 +74,4 @@ function PaginationDataArtikel() {
     )
   }
   
-  export default PaginationDataArtikel;
+  export default PaginationDataArtikel
