@@ -3,15 +3,15 @@ function AddDonasi({ isOpen, onClose }) {
 
     return (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
-            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
-                <h2 className="text-zinc-900 text-xl font-bold mb-6 text-center">Tambah konten Donasi</h2>
+            <div className="bg-white p-8 rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-2/3 lg:w-2/5 max-h-screen overflow-y-auto">
+                <h2 className="text-zinc-900 text-xl font-bold mb-6 text-center">Tambah konten Artikel</h2>
                 <form>
-                    <div className="mb-4">
-                        <div className="flex items-center">
-                            <label htmlFor="multiple_files" className="text-md w-28 text-white bg-sky-500 border border-gray-300 rounded-s-lg cursor-pointer p-2 text-center">
+                    <div className="mb-6">
+                        <div className="flex flex-col sm:flex-row items-center">
+                            <label htmlFor="multiple_files" className="text-md w-full sm:w-28 text-white bg-sky-500 border border-gray-300 rounded-t-lg sm:rounded-e-none sm:rounded-l-lg cursor-pointer p-2 text-center">
                                 Pilih File
                             </label>
-                            <span className="p-2 text-gray-500 border border-gray-300 w-full rounded-e-lg" id="file_name">Tidak ada file yang dipilih</span>
+                            <span className="p-2 text-gray-500 border border-gray-300 w-full rounded-b-lg sm:rounded-b-none sm:rounded-r-lg sm:w-auto sm:mt-0 sm:flex-1" id="file_name">Tidak ada file yang dipilih</span>
                             <input
                                 className="hidden"
                                 id="multiple_files"
@@ -20,7 +20,7 @@ function AddDonasi({ isOpen, onClose }) {
                             />
                         </div>
                     </div>
-                    <div className="mb-4">
+                    <div className="mb-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="flex flex-col">
                                 <label htmlFor="judul" className="block text-gray-700 text-sm font-normal">Judul</label>
@@ -116,7 +116,7 @@ function AddDonasi({ isOpen, onClose }) {
                 </form>
             </div>
         </div>
-    );
+    )
 }
 
-export default AddDonasi;
+export default AddDonasi
