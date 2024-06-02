@@ -109,8 +109,8 @@ function AddDonasi({ isOpen, onClose }) {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-between">
-                        <button type="button" className="bg-gray-100 rounded-lg border border-gray-100 text-gray-800 justify-center items-center gap-2 inline-flex px-4 py-2 mr-2" onClick={onClose}>Batal</button>
+                    <div className="flex flex-col sm:flex-row">
+                        <button type="button" className="bg-gray-100 rounded-lg border border-gray-100 text-gray-800 justify-center items-center gap-2 inline-flex px-4 py-2 mb-2 sm:mb-0 sm:mr-2" onClick={onClose}>Batal</button>
                         <button type="submit" className="bg-sky-500 rounded-lg justify-center items-center gap-2 inline-flex text-white w-full px-4 py-2">Tambah</button>
                     </div>
                 </form>
