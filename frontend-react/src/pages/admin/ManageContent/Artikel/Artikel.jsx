@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import AddArtikel from '../../../../components/admin/ManageContentArtikel/TambahContentArtikel.jsx'
+import TabelDataArtikel from "../../../../components/admin/ManageContentArtikel/TabelDataArtikel";
+import PaginationDataArtikel from "../../../../components/admin/ManageContentArtikel/PaginationDataArtikel";
 import up from '../../../../assets/images/arrowUpBlue.svg';
-import search from '../../../../assets/images/search.png';
-import edit from '../../../../assets/images/PencilSimple.svg';
-import trash from '../../../../assets/images/Trash.svg';
 
 function Artikel() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -24,185 +23,58 @@ function Artikel() {
           <AddArtikel isOpen={isModalOpen} onClose={closeModal} />
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="bg-white p-5 rounded-lg border border-gray-200 flex flex-col">
-            <p className="text-zinc-500 text-xs pb-1">Jumlah Content Artikel</p>
-              <div className="flex justify-between items-center w-full">
-                <p className="text-zinc-900 text-xl font-semibold">130 Content</p>
-                  <div className="flex items-center gap-0">
-                    <p className="text-sky-500 text-sm">+ 12%</p>
-                    <img className="w-2 ml-1" src={up} alt="Arrow Up" />
-                  </div>
-                </div>
-              </div>
-              <div className="bg-white p-5 rounded-lg border border-gray-200 flex flex-col">
-                <p className="text-zinc-500 text-xs pb-1">Total User Mambaca</p>
-                  <div className="flex justify-between items-center w-full">
-                    <p className="text-zinc-900 text-xl font-semibold">1.390</p>
-                      <div className="flex items-center gap-0">
-                        <p className="text-sky-500 text-sm">+ 12%</p>
-                        <img className="w-2 ml-1" src={up} alt="Arrow Up" />
-                      </div>
-                    </div>
-                  </div>
-                <div className="bg-white p-5 rounded-lg border border-gray-200 flex flex-col">
-                  <p className="text-zinc-500 text-xs">Total User menyimpan</p>
-                    <div className="flex justify-between items-center w-full">
-                    <p className="text-zinc-900 text-xl font-semibold">1.590</p>
-                    <div className="flex items-center gap-0">
-                      <p className="text-sky-500 text-sm">+ 12%</p>
-                      <img className="w-2 ml-1" src={up} alt="Arrow Up" />
-                    </div>
-                  </div>
-                </div>
-                </div>
-                <div className="grid pt-5">
-                <div className="bg-white border border-gray-200 rounded-lg p-8">
-                <div className="w-full h-auto md:h-[102px] px-6 py-4 flex flex-col md:flex-row justify-between items-center">
-                  <div className="flex-col justify-start items-start gap-2">
-                    <div className="text-black text-2xl md:text-[32px] font-bold leading-10 pb-2">Artikel</div>
-                    <div className="text-zinc-900/opacity-40 text-base font-normal">Custom data artikel</div>
-                  </div>
-                  <div className="w-full md:w-96 flex-col justify-start items-start gap-2 mt-4 md:mt-0">
-                    <div className="w-full bg-gray-50 rounded-lg border border-gray-300 flex justify-start items-center gap-2.5">
-                      <div className="w-4 h-4 relative" />
-                      <img src={search} alt="search" />
-                      <input
-                        type="text"
-                        className="w-full bg-transparent border-none text-gray-500 text-sm font-normal leading-[17.50px] focus:outline-none"
-                        placeholder="Search"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="overflow-x-auto border-b-8 mb-3">
-                  <table className="w-full text-sm text-left rtl:text-right text-gray-500">
-                    <thead className="uppercase bg-sky-500 text-white">
-                      <tr>
-                        <th scope="col" className="px-6 py-3">
-                          NO
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          <div className="flex items-center">
-                            Judul
-                            <a href="#">
-                              <svg
-                                className="w-3 h-3 ms-1.5"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z" />
-                              </svg>
-                            </a>
-                          </div>
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Teks AArtikel
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          User Menyimpan
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Jumlah Pembaca
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                          Aksi
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <th
-                          scope="row"
-                          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                        >
-                          1
-                        </th>
-                        <td className="px-6 py-4">Membantu Isu Pendidikan</td>
-                        <td className="px-6 py-4">Pendidikan menjadi fondasi utama</td>
-                        <td className="px-6 py-4">720</td>
-                        <td className="px-6 py-4">1350</td>
-                        <td className="px-6 py-4 text-right flex">
-                          <img className="pe-3" src={edit} alt="edit" />
-                          <img src={trash} alt="hapus" />
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div className="flex justify-between">
-                  <div>
-                    <span className="text-gray-500 text-md font-normal leading-[21px]">Showing </span>
-                    <span className="text-gray-900 text-md font-semibold leading-[21px]">1-10</span>
-                    <span className="text-gray-500 text-md font-normal leading-[21px]"> of </span>
-                    <span className="text-gray-900 text-md font-semibold leading-[21px]">1000</span>
-                  </div>
-                  <nav aria-label="Page navigation example">
-                    <ul className="inline-flex -space-x-px text-sm">
-                      <li>
-                        <a
-                          href="#"
-                          className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          Previous
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          1
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          2
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          aria-current="page"
-                          className="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-                        >
-                          3
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          4
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          5
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                        >
-                          Next
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>    
+        {[
+          {
+            label: 'Jumlah Content Artikel',
+            value: '130 Content',
+            grade: '12',
+          },
+          {
+            label: 'Total User Membaca',
+            value: '1.390',
+            grade: '12',
+          },
+          {
+            label: 'Total User Menyimpan',
+            value: '2000',
+            grade: '12',
+          },
+        ].map((item, index) => (
+          <div key={index} className="bg-white p-5 rounded-lg border border-gray-200 flex flex-col">
+            <p className="text-zinc-500 text-xs pb-1">{item.label}</p>
+            <div className="flex justify-between items-center w-full">
+              <p className="text-zinc-900 text-xl font-semibold">{item.value}</p>
+              <div className="flex items-center gap-0">
+                <p className="text-sky-500 text-sm">+ {item.grade} %</p>
+                <img className="w-2 ml-1" src={up} alt="Arrow Up" />
               </div>
             </div>
           </div>
+        ))}
+      </div>
+      <div className="p-6 shadow-lg bg-white mt-4 rounded-lg">
+        <div className="flex flex-wrap justify-between items-center">
+          <div>
+            <h1 className="text-2xl font-bold text-black">Artikel</h1>
+            <p className="text-gray-500 pt-2">Custom Data Artikel</p>
+          </div>
+          <div className="mt-4">
+            <label className="input input-bordered flex items-center gap-2 bg-white border border-gray-300 rounded-lg shadow-sm focus-within:ring-2 focus-within:ring-indigo-500">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70">
+                <path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" />
+              </svg>
+              <input
+                type="text"
+                className="grow border-0 focus:outline-none focus:ring-0 lg:w-96"
+                placeholder="Search"
+              />
+            </label>
+          </div>
+        </div>
+        <TabelDataArtikel/>
+        <PaginationDataArtikel/>
+      </div>
+    </div>
   )
 }
 
