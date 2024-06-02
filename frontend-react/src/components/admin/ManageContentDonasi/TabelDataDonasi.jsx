@@ -1,5 +1,5 @@
-import edit from '../../../../assets/images/PencilSimple.svg';
-import trash from '../../../../assets/images/Trash.svg';
+import edit from '../../../assets/images/PencilSimple.svg';
+import trash from '../../../assets/images/Trash.svg'
 
 const TabelDataDonasi = () => {
     const data = [
