@@ -14,7 +14,7 @@ function Chatbot() {
     e.preventDefault();
 
     // Pesan awal yang akan dikirimkan ke CineBot
-    const promptAwal = 'jika kamu ditanya kamu siapa?, maka kamu harus menjawab saya adalah bot peduli pintar';
+    const promptAwal = 'kamu adalah bot peduli pintar';
 
     // Struktur body request untuk mengirim pertanyaan ke OpenAI API
     const APIBody = {
@@ -23,7 +23,7 @@ function Chatbot() {
         {
           role: 'user',
           content: `${promptAwal} 
-          + kamu adalah bot yang memberikan jawaban berupa rekomendasi artikel kepada user sesuai pertanyaan dari mereka
+          + kamu adalah bot peduli pintar yang memberikan rekomendasi artikel kepada user sesuai pertanyaan dari mereka
           + pertanyaan dari user${prompt}`
         }
       ]
