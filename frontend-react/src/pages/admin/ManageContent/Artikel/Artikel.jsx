@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import AddArtikel from '../../../../components/admin/ManageContentArtikel/TambahContentArtikel.jsx'
+import AddArtikel from "../../../../components/admin/ManageContentArtikel/TambahContentArtikel";
 import TabelDataArtikel from "../../../../components/admin/ManageContentArtikel/TabelDataArtikel";
 import PaginationDataArtikel from "../../../../components/admin/ManageContentArtikel/PaginationDataArtikel";
 import up from '../../../../assets/images/arrowUpBlue.svg';
@@ -17,7 +17,7 @@ function Artikel() {
 
   return (
     <div className="min-h-screen bg-neutral-50 flex flex-col p-4">
-      <div className="w-full flex space-x-4 items-center mb-6">
+      <div className="w-full flex gap-4 items-center mb-6">
         <div className="text-black text-2xl font-semibold font-['Roboto']">Manage Content Artikel</div>
           <button className="px-4 py-2 bg-sky-500 text-gray-50 text-sm font-semibold rounded-lg" onClick={openModal}>Tambah Content Artikel</button>
           <AddArtikel isOpen={isModalOpen} onClose={closeModal} />
