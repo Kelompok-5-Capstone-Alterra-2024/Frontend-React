@@ -1,8 +1,8 @@
 function PaginationRiwayatDonasi() {
     return (
-      <div className="pt-5">
-          <div className="flex justify-between">
-              <div>
+      <div className="pt-5 w-full sm:w-auto overflow-x-auto">
+          <div className="flex flex-wrap justify-between">
+              <div className="pb-5">
                   <span className="text-gray-500 text-md font-normal leading-[21px]">Showing </span>
                   <span className="text-gray-900 text-md font-semibold leading-[21px]">1-10</span>
                   <span className="text-gray-500 text-md font-normal leading-[21px]"> of </span>
