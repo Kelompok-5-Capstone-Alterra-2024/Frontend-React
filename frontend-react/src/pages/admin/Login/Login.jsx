@@ -1,13 +1,19 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../../assets/images/logo.png';
 import backgroundImage from '../../../assets/images/background-login.png';
 import user from '../../../assets/images/user.svg';
 import passwordIcon from '../../../assets/images/password.svg';
 import visible from '../../../assets/images/visible.png';
+import invalid from '../../../assets/images/WarningCircle.png';
 
 function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [passwordType, setPasswordType] = useState('password');
   const [passwordIconSrc, setPasswordIconSrc] = useState(passwordIcon);
+  const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     if (passwordType === 'password') {
@@ -19,19 +25,36 @@ function Login() {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (username === 'admin' && password === '12345678') {
+      navigate('/admin');
+    } else {
+      setShowAlert(true);
+    }
+  };
+
   return (
     <div 
       className="min-h-screen flex justify-center items-center bg-cover bg-center"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="bg-cyan-50 rounded-2xl shadow-md shadow-gray-500 p-8 md:p-10 lg:p-20 flex flex-col items-center px-5">
+      <div className="bg-cyan-50 rounded-2xl shadow-md shadow-gray-500 p-8 md:p-10 lg:p-10 flex flex-col items-center px-5">
         <img className="w-80 mb-8" src={logo} alt="Logo" />
-        <form className="flex-col justify-start items-start gap-9 flex">
+        {showAlert && (
+          <div className="w-full mb-4 p-3 bg-red-100 text-black border border-red-300 rounded-lg flex items-center">
+            <img src={invalid} alt="Warning Circle" className="w-6 h-6 mr-2" />
+            INVALID USERNAME OR PASSWORD
+          </div>
+        )}
+        <form onSubmit={handleSubmit} className="flex-col justify-start items-start gap-9 flex">
           <div className="flex-col justify-center items-center gap-5 flex">
             <div className="relative w-full">
               <input
                 type="text"
                 placeholder="USERNAME"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
                 className="w-full h-14 bg-gray-50 border border-cyan-500 rounded-lg pl-12 pr-4 py-2 placeholder-gray-800 focus:outline-none"
                 style={{
@@ -46,6 +69,8 @@ function Login() {
               <input
                 type={passwordType}
                 placeholder="PASSWORD"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
                 className="w-full h-14 bg-gray-50 border border-cyan-500 rounded-lg pl-12 pr-4 py-2 placeholder-gray-800 focus:outline-none"
               />
