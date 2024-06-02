@@ -5,7 +5,6 @@ import AdminLayout from "./Layout/AdminLayout"
 import Dashboard from "./pages/admin/Dashboard/Dashboard"
 import Login from "./pages/admin/Login/Login"
 import NotFound from "./pages/NotFound/NotFound"
-import TentangKami from "./pages/admin/TentangKami/TentangKami"
 import Transaksi from "./pages/admin/Transaksi/Transaksi"
 import ManageOrganization from "./pages/admin/ManageOrganization/ManageOrganization"
 import ManageUser from "./pages/admin/ManageUser/ManageUser"
@@ -33,7 +32,6 @@ function App() {
           <Route path="manage-user" element={<ManageUser />} />
           <Route path="manage-organization" element={<ManageOrganization />} />
           <Route path="transaksi" element={<Transaksi />} />
-          <Route path="tentang-kami" element={<TentangKami />} />
           <Route path="chatbot" element={<Chatbot />} />
           <Route path="notification" element={<Notification />} />
         </Route>
