@@ -39,7 +39,7 @@ function Login() {
       className="min-h-screen flex justify-center items-center bg-cover bg-center"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="bg-cyan-50 rounded-2xl shadow-md shadow-gray-500 p-8 md:p-10 lg:p-10 flex flex-col items-center px-5">
+      <div className="bg-cyan-50 rounded-2xl shadow-md shadow-gray-500 p-10 md:p-10 lg:p-10 flex flex-col items-center px-5">
         <img className="w-80 mb-8" src={logo} alt="Logo" />
         {showAlert && (
           <div className="w-full mb-4 p-3 bg-red-100 text-black border border-red-300 rounded-lg flex items-center">
@@ -47,8 +47,8 @@ function Login() {
             INVALID USERNAME OR PASSWORD
           </div>
         )}
-        <form onSubmit={handleSubmit} className="flex-col justify-start items-start gap-9 flex">
-          <div className="flex-col justify-center items-center gap-5 flex">
+        <form onSubmit={handleSubmit} className="flex-col justify-start items-start gap-9 w-full">
+          <div className="flex-col justify-center items-center gap-5 flex w-full">
             <div className="relative w-full">
               <input
                 type="text"
@@ -85,7 +85,7 @@ function Login() {
           <div className="w-full">
             <button
               type="submit"
-              className="w-full bg-sky-500 text-gray-50 text-sm font-normal font-['Roboto'] leading-tight rounded-full py-3.5 hover:bg-sky-600 transition duration-300"
+              className="w-full mt-8 bg-sky-500 text-gray-50 text-sm font-normal font-['Roboto'] leading-tight rounded-full py-3.5 hover:bg-sky-600 transition duration-300"
             >
               LOGIN
             </button>
