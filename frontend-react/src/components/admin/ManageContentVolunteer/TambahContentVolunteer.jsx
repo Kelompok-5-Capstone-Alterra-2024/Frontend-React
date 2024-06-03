@@ -4,7 +4,7 @@ function AddVolunteer({ isOpen, onClose }) {
     return (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
             <div className="bg-white p-8 rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-2/3 lg:w-2/5 max-h-screen overflow-y-auto">
-                <h2 className="text-zinc-900 text-xl font-bold mb-6 text-center">Tambah konten Artikel</h2>
+                <h2 className="text-zinc-900 text-xl font-bold mb-6 text-center">Tambah konten Volunteer</h2>
                 <form>
                     <div className="mb-6">
                         <div className="flex flex-col sm:flex-row items-center">
