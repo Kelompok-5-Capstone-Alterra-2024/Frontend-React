@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function AddArtikel({ isOpen, onClose }) {
     if (!isOpen) return null;
 
@@ -44,5 +46,10 @@ function AddArtikel({ isOpen, onClose }) {
         </div>
     )
 }
+
+AddArtikel.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+};
 
 export default AddArtikel

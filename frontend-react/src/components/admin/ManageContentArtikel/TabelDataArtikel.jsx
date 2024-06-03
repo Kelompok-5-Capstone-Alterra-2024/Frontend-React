@@ -5,24 +5,24 @@ const TabelDataArtikel = () => {
     const data = [
       {
         no: 1,
-        judul: "Bantu Banjir Demak Kemballi Pulih",
-        desc: "aaaaaaa",
-        save: "2222",
-        pembaca: "123455",
+        judul: "Membantu Isu Pendidikan",
+        desc: "Pendidikan menjadi fondasi utama",
+        save: "720",
+        pembaca: "1.350",
       },
       {
         no: 2,
-        judul: "Bantu Banjir Demak Kemballi Pulih",
-        desc: "bbbbbbbbb",
-        save: "123",
-        pembaca: "1335",
+        judul: "Membantu Isu Pendidikan",
+        desc: "Pendidikan menjadi fondasi utama",
+        save: "720",
+        pembaca: "1.350",
       },
       {
         no: 1,
-        judul: "Bantu Banjir Demak Kemballi Pulih",
-        desc: "cccccccc",
-        save: "122",
-        pembaca: "11111",
+        judul: "Membantu Isu Pendidikan",
+        desc: "Pendidikan menjadi fondasi utama",
+        save: "720",
+        pembaca: "1.350",
       },
     ];
   
