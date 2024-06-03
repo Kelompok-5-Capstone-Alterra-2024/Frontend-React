@@ -9,6 +9,7 @@ import Transaksi from "./pages/admin/Transaksi/Transaksi"
 import ManageOrganization from "./pages/admin/ManageOrganization/ManageOrganization"
 import ManageUser from "./pages/admin/ManageUser/ManageUser"
 import Donasi from "./pages/admin/ManageContent/Donasi/Donasi"
+import DetailDonasi from "./components/admin/ManageContentDonasi/DetailDonasi"
 import Relawan from "./pages/admin/ManageContent/Relawan/Relawan"
 import Artikel from "./pages/admin/ManageContent/Artikel/Artikel"
 import Chatbot from "./pages/admin/Chatbot/Chatbot"
@@ -27,6 +28,7 @@ function App() {
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="manage-content/donasi" element={<Donasi />} />
+          <Route path="manage-content/donasi/detail-donasi" element={<DetailDonasi/>} />
           <Route path="manage-content/relawan" element={<Relawan />} />
           <Route path="manage-content/artikel" element={<Artikel />} />
           <Route path="manage-user" element={<ManageUser />} />
