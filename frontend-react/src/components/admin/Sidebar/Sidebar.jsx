@@ -5,6 +5,7 @@ import admin from "../../../assets/images/admin.png";
 import organization from "../../../assets/images/UsersThree.png";
 import logout from "../../../assets/images/SignOut.png";
 import transaksi from "../../../assets/images/ArrowsLeftRight.png";
+import dataWarehouse from "../../../assets/images/dataWarehouse.png";
 import user from "../../../assets/images/User.png";
 import up from "../../../assets/images/CaretUp.png";
 import down from "../../../assets/images/CaretDown.png";
@@ -139,6 +140,14 @@ function Sidebar() {
                             <Link to="transaksi">
                                 <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'transaksi' ? 'text-white' : 'text-stone-400'}`}>
                                     Transaksi
+                                </div>
+                            </Link>
+                        </div>
+                        <div className="h-[41px] bg-white rounded-[10px] flex items-center gap-5">
+                            <img className="w-5 h-5 ml-5" src={dataWarehouse} />
+                            <Link to="https://lookerstudio.google.com" target='_blank'>
+                                <div className="text-base font-normal font-['Roboto'] leading-tight text-stone-400">
+                                    Data Warehouse
                                 </div>
                             </Link>
                         </div>
