@@ -100,10 +100,10 @@ function Sidebar() {
                                         </div>
                                     </Link>
                                 </div>
-                                <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-content/relawan' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/relawan')}>
+                                <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-content/volunteer' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/volunteer')}>
                                     <div className="w-[21px] h-[21px] ml-5" />
-                                    <Link to="manage-content/relawan">
-                                        <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/relawan' ? 'text-blue-500' : 'text-stone-400'}`}>
+                                    <Link to="manage-content/volunteer">
+                                        <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/volunteer' ? 'text-blue-500' : 'text-stone-400'}`}>
                                             • Volunteer
                                         </div>
                                     </Link>
