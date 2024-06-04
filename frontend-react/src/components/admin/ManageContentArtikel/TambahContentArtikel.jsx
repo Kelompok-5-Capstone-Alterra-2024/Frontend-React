@@ -25,13 +25,13 @@ function AddArtikel({ isOpen, onClose }) {
                     <div className="mb-6">
                         <div className="flex flex-col">
                             <label htmlFor="judul" className="block text-gray-700 text-sm font-normal">Judul</label>
-                            <input type="text" id="judul" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                            <input type="text" id="judul" placeholder="Type here" className="mt-1 h-11 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                         </div>
                         <div className="flex flex-col mb-6 mt-6">
                             <label htmlFor="tanggalSelesai" className="block text-gray-700 text-sm font-normal mb-1">Deskripsi</label>
                             <textarea
                                 id="message"
-                                rows={5}
+                                rows={6}
                                 className="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Type here"
                             />
