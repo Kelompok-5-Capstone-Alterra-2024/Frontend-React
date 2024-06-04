@@ -1,14 +1,11 @@
 import { useState } from 'react';
 import unduhDetail from "../../../assets/images/unduh-detail.png";
 import RiwayatTransaksi from "../../../components/admin/RiwayatTransaksi/RiwayatTransaksi";
-import RiwayatDonasi from "../../../components/admin/RiwayatDonasi/RiwayatDonasi"; // Import RiwayatDonasi component
+import RiwayatDonasi from "../../../components/admin/RiwayatDonasi/RiwayatDonasi"; 
 import up from '../../../assets/images/arrowUpGreen.png';
-// import hand from "../../../assets/images/HandHeart.png";
-// import money from "../../../assets/images/Money_fill.png";
-// import wallet from "../../../assets/images/Wallet.png";
 
 function Transaksi() {
-  const [selectedTab, setSelectedTab] = useState('transaksi'); // State to manage selected tab
+  const [selectedTab, setSelectedTab] = useState('transaksi'); 
 
   return (
     <div className="min-h-screen bg-neutral-50 flex flex-col p-4">
