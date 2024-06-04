@@ -10,7 +10,7 @@
       <div className="bg-neutral-50 min-h-screen p-4">
         <div className="shadow-xl rounded-xl p-5">
           {/* Profile User */}
-          <div className="w-full sm:w-auto overflow-x-auto">
+          <div className="w-full sm:w-auto overflow-x-auto p-1">
           <div className="w-[1006px] h-[263px] relative rounded-xl border border-gray-400">
             <div className="w-[674px] h-[0px] left-[332px] top-[131px] absolute border border-gray-400"></div>
             <div className="left-[672px] top-[41px] absolute flex-col justify-start items-start gap-2 inline-flex">
