@@ -104,7 +104,7 @@ function Sidebar() {
                                     <div className="w-[21px] h-[21px] ml-5" />
                                     <Link to="manage-content/relawan">
                                         <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/relawan' ? 'text-blue-500' : 'text-stone-400'}`}>
-                                            • Relawan
+                                            • Volunteer
                                         </div>
                                     </Link>
                                 </div>
