@@ -12,7 +12,9 @@ import DetailUser from "./components/admin/ManageUserComponents/DetailUser"
 import Donasi from "./pages/admin/ManageContent/Donasi/Donasi"
 import DetailDonasi from "./components/admin/ManageContentDonasi/DetailDonasi"
 import Relawan from "./pages/admin/ManageContent/Relawan/Relawan"
+import DetailVolunteer from "./components/admin/ManageContentVolunteer/DetailVolunteer"
 import Artikel from "./pages/admin/ManageContent/Artikel/Artikel"
+import DetailArtikel from "./components/admin/ManageContentArtikel/DetailArtikel"
 import Chatbot from "./pages/admin/Chatbot/Chatbot"
 import Notification from "./pages/admin/Notification/Notification"
 
@@ -30,7 +32,9 @@ function App() {
           <Route path="manage-content/donasi" element={<Donasi />} />
           <Route path="manage-content/donasi/detail-donasi" element={<DetailDonasi/>} />
           <Route path="manage-content/relawan" element={<Relawan />} />
+          <Route path="manage-content/relawan/detail-volunteer" element={<DetailVolunteer/>} />
           <Route path="manage-content/artikel" element={<Artikel />} />
+          <Route path="manage-content/artikel/detail-artikel" element={<DetailArtikel/>} />
           <Route path="manage-user" element={<ManageUser />} />
           <Route path="manage-user/detail-user" element={<DetailUser />} />
           <Route path="manage-organization" element={<ManageOrganization />} />
