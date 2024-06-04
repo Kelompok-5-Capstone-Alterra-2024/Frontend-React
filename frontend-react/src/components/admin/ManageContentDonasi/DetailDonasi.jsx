@@ -18,29 +18,40 @@ function DetailDonasi() {
     <div className="min-h-screen bg-neutral-50 flex flex-col p-4">
       <div className="text-zinc-600 text-base font-normal mb-4">Donasi / Detail Donasi</div>
         <div className="grid grid-cols-1 flex-col lg:grid-cols-2 gap-4">
-          <div className="bg-transparent">
-          <div className="p-1 bg-white rounded-lg shadow justify-start items-start gap-2">
-            <img className="w-full h-auto rounded" src={banjir} alt="Image" />
-            <h1 className="p-2 text-black text-2xl font-bold">Bantu Banjir Demak Kembali Pulih</h1>
-            <div className="p-2 items-center gap-4 inline-flex">
-              <div className="flex-col justify-start items-start gap-1">
-                <p className="text-zinc-700 font-normal">Donasi Terkumpul</p>
-                <div className="flex justify-start items-center gap-4">
-                  <p className="text-sky-500 font-bold">Rp 10.000.000</p>
-                  <p className="text-stone-400 font-medium">dari target</p>
-                  <p className="text-stone-900 font-bold">Rp 15.000.000</p>
+        <div className="bg-transparent">
+            {[
+              { 
+                image: banjir,
+                judul: 'Bantu Banjir Demak Kembali Pulih',
+                donasi: '10.000.000',
+                target: '15.000.000',
+                hari: '12',
+                deskripsi: 'Program ini mengajak seluruh lapisan masyarakat untuk berpartisipasi dalam memberikan bantuan berupa kebutuhan pokok, obat-obatan, pakaian, serta bantuan finansial guna mendukung pemulihan dan rehabilitasi wilayah.... '
+              },
+            ].map((item, index) => (
+              <div key={index} className="p-1 bg-white rounded-lg shadow justify-start items-start gap-2">
+                <img className="w-full h-auto rounded" src={item.image} alt="Image" />
+                <h1 className="p-2 text-black text-2xl font-bold">{item.judul}</h1>
+                <div className="p-2 items-center gap-4 inline-flex">
+                  <div className="flex-col justify-start items-start gap-1">
+                    <p className="text-zinc-700 font-normal">Donasi Terkumpul</p>
+                    <div className="flex justify-start items-center gap-4">
+                      <p className="text-sky-500 font-bold">Rp {item.donasi}</p>
+                      <p className="text-stone-400 font-medium">dari target</p>
+                      <p className="text-stone-900 font-bold">Rp {item.target}</p>
+                    </div>
+                  </div>
+                  <p className="text-black text-xs font-medium ms-8">{item.hari} hari lagi</p>
+                </div>
+                <div className="w-full p-2 bg-white rounded-lg shadow flex-col justify-start items-start gap-4 flex">
+                  <h1 className="text-cyan-600 text-sm font-bold">Deskripsi</h1>
+                  <div className="text-justify">
+                    <span className="text-black text-xs font-normal">{item.deskripsi}</span>
+                    <span className="text-cyan-600 text-xs font-normal">Read More</span>
+                  </div>
                 </div>
               </div>
-              <p className="text-black text-xs font-medium ms-8">20 hari lagi</p>
-            </div>
-            <div className="w-full p-2 bg-white rounded-lg shadow flex-col justify-start items-start gap-4 flex">
-              <h1 className="text-cyan-600 text-sm font-bold">Deskripsi</h1>
-              <div className="text-justify">
-                <span className="text-black text-xs font-normal">Program ini mengajak seluruh lapisan masyarakat untuk berpartisipasi dalam memberikan bantuan berupa kebutuhan pokok, obat-obatan, pakaian, serta bantuan finansial guna mendukung pemulihan dan rehabilitasi wilayah.... </span>
-                <span className="text-cyan-600 text-xs font-normal">Read More</span>
-              </div>
-            </div>
-          </div>
+            ))}
           <div className="flex justify-end w-full mt-4">
               <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold" onClick={openModal}>
                 Salurkan Dana
