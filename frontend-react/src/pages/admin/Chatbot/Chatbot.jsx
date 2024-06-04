@@ -66,7 +66,7 @@ function Chatbot() {
               alt={`${message.role} icon`}
               className="w-10 h-10 rounded-full"
             />
-            <div className={`ml-2 mr-2 p-2 rounded-lg ${message.role === 'user' ? 'bg-gray-300 text-right text-black' : 'bg-gray-300 text-left text-black'}`}>
+            <div className={`ml-2 mr-2 p-2 ${message.role === 'user' ? 'bg-gray-300 text-right text-black rounded-t-lg rounded-bl-lg' : 'bg-gray-300 text-left text-black rounded-t-lg rounded-br-lg'}`}>
               <p>{message.content}</p>
             </div>
           </div>
