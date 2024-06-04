@@ -11,7 +11,7 @@ import ManageUser from "./pages/admin/ManageUser/ManageUser"
 import DetailUser from "./components/admin/ManageUserComponents/DetailUser"
 import Donasi from "./pages/admin/ManageContent/Donasi/Donasi"
 import DetailDonasi from "./components/admin/ManageContentDonasi/DetailDonasi"
-import Relawan from "./pages/admin/ManageContent/Relawan/Relawan"
+import Volunteer from "./pages/admin/ManageContent/Volunteer/Volunteer"
 import DetailVolunteer from "./components/admin/ManageContentVolunteer/DetailVolunteer"
 import Artikel from "./pages/admin/ManageContent/Artikel/Artikel"
 import DetailArtikel from "./components/admin/ManageContentArtikel/DetailArtikel"
@@ -31,8 +31,8 @@ function App() {
           <Route index element={<Dashboard />} />
           <Route path="manage-content/donasi" element={<Donasi />} />
           <Route path="manage-content/donasi/detail-donasi" element={<DetailDonasi/>} />
-          <Route path="manage-content/relawan" element={<Relawan />} />
-          <Route path="manage-content/relawan/detail-volunteer" element={<DetailVolunteer/>} />
+          <Route path="manage-content/volunteer" element={<Volunteer />} />
+          <Route path="manage-content/volunteer/detail-volunteer" element={<DetailVolunteer/>} />
           <Route path="manage-content/artikel" element={<Artikel />} />
           <Route path="manage-content/artikel/detail-artikel" element={<DetailArtikel/>} />
           <Route path="manage-user" element={<ManageUser />} />
