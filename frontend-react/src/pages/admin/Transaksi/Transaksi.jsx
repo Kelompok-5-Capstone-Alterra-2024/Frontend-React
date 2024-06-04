@@ -2,59 +2,46 @@ import { useState } from 'react';
 import unduhDetail from "../../../assets/images/unduh-detail.png";
 import RiwayatTransaksi from "../../../components/admin/RiwayatTransaksi/RiwayatTransaksi";
 import RiwayatDonasi from "../../../components/admin/RiwayatDonasi/RiwayatDonasi"; // Import RiwayatDonasi component
-import hand from "../../../assets/images/HandHeart.png";
-import money from "../../../assets/images/Money_fill.png";
-import wallet from "../../../assets/images/Wallet.png";
+import up from '../../../assets/images/arrowUpGreen.png';
+// import hand from "../../../assets/images/HandHeart.png";
+// import money from "../../../assets/images/Money_fill.png";
+// import wallet from "../../../assets/images/Wallet.png";
 
 function Transaksi() {
   const [selectedTab, setSelectedTab] = useState('transaksi'); // State to manage selected tab
 
   return (
-    <div className="bg-neutral-50 min-h-screen p-4">
+    <div className="min-h-screen bg-neutral-50 flex flex-col p-4">
       {/* card */}
-      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <div className="w-full flex gap-4 items-center mb-6">
+        <div className="text-black text-2xl font-semibold font-['Roboto']">Transaksi</div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {[
           {
-            bgColor: 'bg-sky-100',
-            borderColor: '',
-            textColor: 'text-sky-500',
             label: 'Total Donasi Terkumpul',
-            value: 'RP. 3.900.000,00',
-            icon: hand,
+            value: '3.900.000.00',
+            grade: '12',
           },
           {
-            bgColor: 'bg-sky-200',
-            borderColor: '',
-            textColor: 'text-cyan-600',
             label: 'Jumlah Transaksi',
             value: '1.300',
-            icon: money,
+            grade: '12',
           },
           {
-            bgColor: 'bg-green-200',
-            borderColor: '',
-            textColor: 'text-green-400',
             label: 'Penghasilan',
-            value: 'RP. 1.900.000,00',
-            icon: wallet,
+            value: '1.900.000',
+            grade: '12',
           },
         ].map((item, index) => (
-          <div
-            key={index}
-            className={`p-5 bg-white rounded-xl shadow ${
-              item.borderColor ? `border ${item.borderColor}` : ''
-            } flex items-center gap-4`}
-          >
-            <div className={`${item.bgColor} p-2.5 rounded-xl flex justify-center items-center`}>
-              {item.icon ? (
-                <img className="w-10 h-10" src={item.icon} alt="icon" />
-              ) : (
-                <div className="w-12 h-12" />
-              )}
-            </div>
-            <div className="flex flex-col justify-center">
-              <div className="text-gray-700 text-base font-normal leading-tight">{item.label}</div>
-              <div className={`text-2xl font-semibold leading-[30px] ${item.textColor}`}>{item.value}</div>
+          <div key={index} className="bg-white p-5 rounded-lg border border-gray-200 flex flex-col">
+            <p className="text-zinc-500 text-xs pb-1">{item.label}</p>
+            <div className="flex justify-between items-center w-full">
+              <p className="text-zinc-900 text-xl font-semibold">{item.value}</p>
+              <div className="flex items-center gap-0">
+                <p className="text-green-400 text-sm">+ {item.grade} %</p>
+                <img className="w-2 ml-1" src={up} alt="Arrow Up" />
+              </div>
             </div>
           </div>
         ))}
