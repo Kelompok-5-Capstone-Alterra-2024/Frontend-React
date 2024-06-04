@@ -4,7 +4,7 @@ import TabelDataVolunteer from "../../../../components/admin/ManageContentVolunt
 import PaginationDataVolunteer from "../../../../components/admin/ManageContentVolunteer/PaginationDataVolunteer";
 import up from '../../../../assets/images/arrowUpBlue.svg';
 
-function Relawan() {
+function Volunteer() {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -83,4 +83,4 @@ function Relawan() {
   )
 }
 
-export default Relawan
+export default Volunteer
