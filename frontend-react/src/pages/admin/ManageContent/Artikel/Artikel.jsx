@@ -30,7 +30,7 @@ function Artikel() {
             grade: '12',
           },
           {
-            label: 'Total User Membaca',
+            label: 'Total User Berkomentar',
             value: '1.390',
             grade: '12',
           },

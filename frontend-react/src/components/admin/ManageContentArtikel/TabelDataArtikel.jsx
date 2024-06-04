@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import edit from '../../../assets/images/PencilSimple.svg';
 import trash from '../../../assets/images/Trash.svg'
 
@@ -8,21 +9,21 @@ const TabelDataArtikel = () => {
         judul: "Membantu Isu Pendidikan",
         desc: "Pendidikan menjadi fondasi utama",
         save: "720",
-        pembaca: "1.350",
+        komentar: "1.350",
       },
       {
         no: 2,
         judul: "Membantu Isu Pendidikan",
         desc: "Pendidikan menjadi fondasi utama",
         save: "720",
-        pembaca: "1.350",
+        komentar: "1.350",
       },
       {
-        no: 1,
+        no: 3,
         judul: "Membantu Isu Pendidikan",
         desc: "Pendidikan menjadi fondasi utama",
         save: "720",
-        pembaca: "1.350",
+        komentar: "1.350",
       },
     ];
   
@@ -42,9 +43,9 @@ const TabelDataArtikel = () => {
                   </a>
                 </div>
               </th>
-              <th scope="col" className="px-6 py-3">text artikel</th>
+              <th scope="col" className="px-6 py-3">deskripsi</th>
               <th scope="col" className="px-6 py-3">user menyimpan</th>
-              <th scope="col" className="px-6 py-3">jumlah pembaca</th>
+              <th scope="col" className="px-6 py-3">jumlah komentar</th>
               <th scope="col" className="px-6 py-3">aksi</th>
             </tr>
           </thead>
@@ -57,10 +58,18 @@ const TabelDataArtikel = () => {
                 <td className="px-6 py-4">{item.judul}</td>
                 <td className="px-6 py-4">{item.desc}</td>
                 <td className="px-6 py-4">{item.save}</td>
-                <td className="px-6 py-4">{item.pembaca}</td>
+                <td className="px-6 py-4">{item.komentar}</td>
                 <td className="px-6 py-4 flex">
-                    <img className="pe-3" src={edit} alt="edit" />
-                    <img src={trash} alt="hapus" />
+                  <Link to="detail-artikel">
+                      <button>
+                        <img className="pe-3" src={edit} alt="edit" />
+                      </button>
+                    </Link>
+                    <Link to="detail-artikel">
+                      <button>
+                        <img src={trash} alt="hapus" />
+                      </button>
+                    </Link>
                 </td>
               </tr>
             ))}
