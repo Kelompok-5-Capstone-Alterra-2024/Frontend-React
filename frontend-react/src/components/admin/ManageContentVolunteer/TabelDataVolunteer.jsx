@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import edit from '../../../assets/images/PencilSimple.svg';
 import trash from '../../../assets/images/Trash.svg'
 
@@ -86,8 +87,16 @@ const TabelDataVolunteer = () => {
                     </div>
                 </td>
                 <td className="px-6 py-4 flex">
-                    <img className="pe-3" src={edit} alt="edit" />
-                    <img src={trash} alt="hapus" />
+                <Link to="detail-volunteer">
+                    <button>
+                      <img className="pe-3" src={edit} alt="edit" />
+                    </button>
+                </Link>
+                <Link to="detail-volunteer">
+                    <button>
+                      <img src={trash} alt="hapus" />
+                    </button>
+                </Link>
                 </td>
               </tr>
             ))}
