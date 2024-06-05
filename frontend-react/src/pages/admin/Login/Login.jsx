@@ -25,11 +25,31 @@ function Login() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (username === 'admin' && password === '12345678') {
-      navigate('/admin');
-    } else {
+
+    try {
+      const response = await fetch('https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        sessionStorage.setItem('token', data.data);
+        navigate('/admin');
+      } else {
+        setShowAlert(true);
+      }
+    } catch (error) {
+      console.error('Error logging in:', error);
       setShowAlert(true);
     }
   };
