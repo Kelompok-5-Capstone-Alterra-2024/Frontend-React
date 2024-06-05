@@ -3,7 +3,7 @@ import TabelDetailUserDonasi from "./TabelDetailUserDonasi";
 
 const DetailUserDonasi = () => {
     return (
-      <div className="p-6 shadow-lg rounded-lg">
+      <div className="pt-5 rounded-lg">
         <TabelDetailUserDonasi/>
         <PaginationDetailUserDonasi/>
       </div>
