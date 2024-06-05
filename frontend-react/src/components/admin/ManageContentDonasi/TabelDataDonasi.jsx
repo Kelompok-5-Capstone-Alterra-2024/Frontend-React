@@ -14,7 +14,7 @@ const TabelDataDonasi = () => {
     try {
       const response = await fetch('https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings', {
         headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcxNzU5ODYzN30.K50FKdpe4iPvs04k47712NbPQna4Vs_EdKdKgoa-GRc', // Replace with your actual token
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcxNzYwMjMxNn0.HG-5wMphM3F5LOvs-AOiu6uKIYoeG4DEafB-LLxfq6k', // Replace with your actual token
           'Content-Type': 'application/json'
         }
       });
