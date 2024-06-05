@@ -3,7 +3,7 @@ import TabelDetailUserVolunteer from "./TabelDetailUserVolunteer";
 
 const DetailUserVolunteer = () => {
     return (
-      <div className="p-6 shadow-lg rounded-lg">
+      <div className="pt-5 rounded-lg">
         <TabelDetailUserVolunteer/>
         <PaginationDetailUserVolunteer/>
       </div>
