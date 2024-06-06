@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RiwayatDataDonasi from './RiwayatDataDonasi';
-import Cashout from './Cashout';
+import Cashout from '../Cashout';
 
 function DetailDonasi() {
   const { id } = useParams();
