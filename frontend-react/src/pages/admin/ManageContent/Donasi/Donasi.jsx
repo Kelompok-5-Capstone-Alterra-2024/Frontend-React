@@ -1,11 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddDonasi from "../../../../components/admin/ManageContentDonasi/TambahContentDonasi";
 import TabelDataDonasi from "../../../../components/admin/ManageContentDonasi/TabelDataDonasi";
 import PaginationDataDonasi from "../../../../components/admin/ManageContentDonasi/PaginationDataDonasi";
 import up from '../../../../assets/images/arrowUpBlue.svg';
 
 function Donasi() {
+  const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    fetchFundraisingData(currentPage);
+  }, [currentPage]);
+
+  const API_KEY = import.meta.env.VITE_API_KEY;
+  const fetchFundraisingData = async (page) => {
+    try {
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings?page=${page}&limit=10`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + API_KEY
+        },
+      });
+      const result = await response.json();
+      if (result.success) {
+        setData(result.data);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   const openModal = () => {
     setModalOpen(true);
@@ -76,8 +100,8 @@ function Donasi() {
             </label>
           </div>
         </div>
-        <TabelDataDonasi/>
-        <PaginationDataDonasi/>
+        <TabelDataDonasi data={data}/>
+        <PaginationDataDonasi currentPage={currentPage} onPageChange={setCurrentPage}/>
       </div>
     </div>
   )
