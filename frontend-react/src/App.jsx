@@ -30,7 +30,7 @@ function App() {
         <Route path="admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="manage-content/donasi" element={<Donasi />} />
-          <Route path="manage-content/donasi/detail-donasi" element={<DetailDonasi/>} />
+          <Route path="manage-content/donasi/detail-donasi/:id" element={<DetailDonasi/>} />
           <Route path="manage-content/volunteer" element={<Volunteer />} />
           <Route path="manage-content/volunteer/detail-volunteer" element={<DetailVolunteer/>} />
           <Route path="manage-content/artikel" element={<Artikel />} />
