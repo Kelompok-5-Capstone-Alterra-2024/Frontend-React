@@ -1,11 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import up from '../../../assets/images/arrowUpBlue.svg';
 import TabelDataOrganisasi from '../../../components/admin/ManageOrganizationComponents/TabelDataOrganisasi';
 import PaginationDataOrganisasi from '../../../components/admin/ManageOrganizationComponents/PaginationDataOrganisasi';
 import AddOrganisasi from '../../../components/admin/ManageOrganizationComponents/TambahOrganisasi';
 
-function Artikel() {
+function ManageOrganization() {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    fetchOrganizationData(currentPage);
+  }, [currentPage]);
+
+  const fetchOrganizationData = async (page) => {
+    const API_KEY = import.meta.env.VITE_API_KEY;
+    try {
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/organizations?page=${page}&limit=6`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + API_KEY,
+        },
+      });
+      const result = await response.json();
+      if (result.success) {
+        setData(result.data);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   const openModal = () => {
     setModalOpen(true);
@@ -61,11 +85,11 @@ function Artikel() {
             </label>
           </div>
         </div>
-        <TabelDataOrganisasi/>
-        <PaginationDataOrganisasi/>
+        <TabelDataOrganisasi data={data}/>
+        <PaginationDataOrganisasi currentPage={currentPage} onPageChange={setCurrentPage}/>
       </div>
     </div>
   )
 }
 
-export default Artikel
+export default ManageOrganization
