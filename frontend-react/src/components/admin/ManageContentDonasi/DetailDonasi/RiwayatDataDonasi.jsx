@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import PaginationDataDonasi from "./PaginationDataDonasi"
+import PaginationRiwayatDataDonasi from "./PaginationRiwayatDataDonasi";
 
 function RiwayatDataDonasi({id}) {
 
@@ -126,7 +126,7 @@ function RiwayatDataDonasi({id}) {
             </tbody>
           </table>
         </div>
-      <PaginationDataDonasi/>
+      <PaginationRiwayatDataDonasi/>
     </div>
   )
 }
