@@ -1,48 +1,150 @@
 import { useState } from "react";
+import edit from "../../../../assets/images/edit.svg";
 import unduhDetail from "../../../../assets/images/unduh-detail.png";
 import DetailUserDonasi from "./Donasi/DetailUserDonasi";
 import DetailUserVolunteer from "./Volunteer/DetailUserVolunteer";
+import HapusUser from "../DetailUser/HapusUser";
 
 function DetailUser() {
   const [selectedTab, setSelectedTab] = useState('detail-user-donasi'); 
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleCancelClick = () => {
+    setIsEditing(false);
+  };
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   return (
     <div className="bg-neutral-50 min-h-screen p-4">
       <div className="shadow-xl rounded-xl p-5">
-        {/* Profile User */}
-        <div className="w-full sm:w-auto overflow-x-auto p-1">
-        <div className="w-[1006px] h-[263px] relative rounded-xl border border-gray-400">
-          <div className="w-[674px] h-[0px] left-[332px] top-[131px] absolute border border-gray-400"></div>
-          <div className="left-[672px] top-[41px] absolute flex-col justify-start items-start gap-2 inline-flex">
-            <div className="text-gray-700 text-sm font-normal font-['Roboto'] leading-tight">Email</div>
-            <div className="text-gray-500 text-sm font-normal font-['Roboto'] leading-tight">agung123@gmail.com</div>
-          </div>
-          <div className="left-[672px] top-[173px] absolute flex-col justify-start items-start gap-2 inline-flex">
-            <div className="text-gray-700 text-sm font-normal font-['Roboto'] leading-tight">Tanggal Register</div>
-            <div className="text-gray-500 text-sm font-normal font-['Roboto'] leading-tight">12 Mei 2024</div>
-          </div>
-          <div className="left-[428px] top-[41px] absolute flex-col justify-start items-start gap-2 inline-flex">
-            <div className="text-gray-700 text-sm font-normal font-['Roboto'] leading-tight">Username</div>
-            <div className="text-gray-500 text-sm font-normal font-['Roboto'] leading-tight">agung123</div>
-          </div>
-          <div className="left-[428px] top-[173px] absolute flex-col justify-start items-start gap-2 inline-flex">
-            <div className="text-gray-700 text-sm font-normal font-['Roboto'] leading-tight">Nomor Telefon</div>
-            <div className="text-gray-500 text-sm font-normal font-['Roboto'] leading-tight">081290575320</div>
-          </div>
-          <div className="w-[263px] h-[0px] left-[332px] top-0 absolute origin-top-left rotate-90 border border-gray-400"></div>
-          <div className="left-[85px] top-[209px] absolute">
-            <span style={{ color: 'black', fontSize: '1.25rem', fontWeight: '600', fontFamily: 'Roboto', lineHeight: '1.75rem' }}>Agung Rizky </span>
-            <span style={{ color: 'rgb(14 165 233)', fontSize: '1rem', fontWeight: '600', fontFamily: 'Roboto', lineHeight: '1.5rem' }}>| ID: 01</span>
-          </div>
-          <img className="w-[172px] h-[172px] left-[80px] top-[26px] absolute rounded-full shadow" src="https://via.placeholder.com/172x172" />
-          <div className="p-0.5 left-[923px] top-[36px] absolute bg-white flex-col justify-center items-center inline-flex">
-            <div className="justify-center items-center gap-1.5 inline-flex">
-              <div className="text-sky-500 text-xs font-normal font-['Roboto'] leading-none">Edit</div>
-              <div className="w-3.5 h-3.5 relative" />
+        {/* Conditionally render profile section */}
+        {!isEditing && (
+          <div className="rounded-lg border border-gray-400 overflow-hidden">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3">
+              <div className="flex flex-col items-center justify-center p-6 border-r border-gray-400">
+                <img
+                  className="w-60 object-cover rounded-full"
+                  src="https://via.placeholder.com/150"
+                  alt="Profile"
+                />
+                <div className="pt-3">
+                  <span className="text-black text-xl font-semibold font-['Roboto'] leading-7">Agung Rizky </span>
+                  <span className="text-sky-500 text-base font-semibold font-['Roboto'] leading-normal">| ID: 01</span>
+                </div>
+              </div>
+              <div className="grid grid-rows-2 col-span-2">
+                <div className="flex flex-col justify-center ps-14 border-b border-gray-400">
+                  <div className="grid grid-cols-3">
+                    <div>
+                      <p className="text-gray-700">Username</p>
+                      <p className="text-gray-500">agung123</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-700">Email</p>
+                      <p className="text-gray-500">agung123@gmail.com</p>
+                    </div>
+                    <div>
+                      <button onClick={handleEditClick} className="relative flex text-sky-500 text-lg">
+                        Edit
+                        <img src={edit} alt="edit" className="ms-2 h-5 w-5 object-contain" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center ps-14">
+                  <div className="grid grid-cols-3">
+                    <div>
+                      <p className="text-gray-700">Nomor Telepon</p>
+                      <p className="text-gray-500">081290575320</p>
+                    </div>
+                    <div>
+                      <p className="text-gray-700">Tanggal Register</p>
+                      <p className="text-gray-500">10 Juli 2024</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        </div>
+        )}
+
+        {isEditing && (
+          <div className="grid grid-cols-1 flex-col lg:grid-cols-3 gap-4 mt-4">
+            <div className="bg-white shadow flex flex-col items-center justify-center p-6">
+              <img
+                className="w-60 object-cover rounded-full"
+                src="https://via.placeholder.com/150"
+                alt="Profile"
+              />
+              <div className="pt-3">
+                <span className="text-black text-xl font-semibold font-['Roboto'] leading-7">Agung Rizky </span>
+                <span className="text-sky-500 text-base font-semibold font-['Roboto'] leading-normal">| ID: 01</span>
+              </div>
+              <button className="text-white font-semibold mt-4 py-2 px-8 bg-red-500 rounded-lg border border-gray-100 justify-center items-center" onClick={openModal}>
+                Hapus User
+              </button>
+              <HapusUser isOpen={isModalOpen} onClose={closeModal} />
+            </div>
+            <div className="bg-white p-4 col-span-2 rounded-lg shadow max-h-screen">
+              <form>
+              <h1 className="mb-3 text-black font-semibold font-['Roboto'] leading-normal">Edit Detail User</h1>
+                <div className="mb-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="flex flex-col">
+                      <label htmlFor="nama" className="block text-gray-700 text-sm font-normal">Nama Lengkap</label>
+                      <input type="text" id="nama" placeholder="Ketik nama lengkap baru.." className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="no" className="block text-gray-700 text-sm font-normal">Nama Telefon</label>
+                      <input type="text" id="no" placeholder="Ketik no telefon baru.." className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="username" className="block text-gray-700 text-sm font-normal">Username</label>
+                      <input type="text" id="username" placeholder="Ketik username baru.." className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="id" className="block text-gray-700 text-sm font-normal">ID</label>
+                      <input type="text" id="id" placeholder="Ketik id baru.." className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="email" className="block text-gray-700 text-sm font-normal">Email</label>
+                      <input type="text" id="email" placeholder="Ketik email baru.." className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="password" className="block text-gray-700 text-sm font-normal">Password</label>
+                      <input type="text" id="password" placeholder="Ketik password baru.." className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex justify-end mt-4">
+                  <button 
+                    type="button" 
+                    onClick={handleCancelClick} 
+                    className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg gap-2 me-3"
+                  >
+                    Batal
+                  </button>
+                  <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold">
+                    Simpan
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
         {/* Tabs */}
         <div className="flex flex-wrap justify-between mt-4">
           {/* Bagian kiri */}
@@ -85,7 +187,7 @@ function DetailUser() {
               />
             </label>
             <button>
-              <img className="w-28 h-10" src={unduhDetail} alt="Unduh Detail" />
+              <img className="object-contain w-36" src={unduhDetail} alt="Unduh Detail" />
             </button>
           </div>
         </div>
@@ -95,7 +197,7 @@ function DetailUser() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default DetailUser
+export default DetailUser;
