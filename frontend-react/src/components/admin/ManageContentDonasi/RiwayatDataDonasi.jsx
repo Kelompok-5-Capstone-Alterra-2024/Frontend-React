@@ -1,29 +1,51 @@
+import { useEffect, useState } from "react";
 import PaginationDataDonasi from "./PaginationDataDonasi"
 
-function RiwayatDataDonasi() {
-  const data = [
-    {
-      no: 1,
-      nama: 'Kent Murphy',
-      donasi: '15.000.000.000',
-      pembayaran: 'Transfer Bank',
-      tanggal: '27-04--2024',
-    },
-    {
-      no: 2,
-      nama: 'Kent Murphy',
-      donasi: '15.000.000.000',
-      pembayaran: 'Transfer Bank',
-      tanggal: '27-04--2024',
-    },
-    {
-      no: 3,
-      nama: 'Kent Murphy',
-      donasi: '15.000.000.000',
-      pembayaran: 'Transfer Bank',
-      tanggal: '27-04--2024',
-    },
-  ];
+function RiwayatDataDonasi({id}) {
+
+  const [data, setData] = useState([]);
+  const API_KEY = import.meta.env.VITE_API_KEY;
+
+  useEffect(() => {
+    const fetchDonations = async () => {
+      try {
+        const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings/${id}/donations`, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + API_KEY,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+        if (result.success) {
+          setData(result.data);
+        } else {
+          console.error('Failed to fetch donations:', result.message);
+        }
+      } catch (error) {
+        console.error('Failed to fetch donations:', error);
+      }
+    };
+
+    fetchDonations();
+  }, []);
+
+  if (!data || data.length === 0) {
+    return (
+      <div className="p-6 shadow-lg bg-white mt-4 rounded-lg">
+        <div className="flex flex-wrap justify-between items-center">
+          <div>
+            <h1 className="text-2xl font-bold text-black">Donasi</h1>
+            <p className="text-gray-500 pt-2">Tidak ada data riwayat data donasi</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 shadow-lg bg-white mt-4 rounded-lg">
@@ -81,12 +103,12 @@ function RiwayatDataDonasi() {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {item.no}
+                    {item.id}
                   </th>
-                  <td className="px-6 py-4">{item.nama}</td>
-                  <td className="px-6 py-4">{item.donasi}</td>
-                  <td className="px-6 py-4">{item.pembayaran}</td>
-                  <td className="px-6 py-4">{item.tanggal}</td>
+                  <td className="px-6 py-4">{item.user_name}</td>
+                  <td className="px-6 py-4">{item.current_amount}</td>
+                  <td className="px-6 py-4">{item.payment_method}</td>
+                  <td className="px-6 py-4">{item.donated_date}</td>
                 </tr>
               ))}
             </tbody>
