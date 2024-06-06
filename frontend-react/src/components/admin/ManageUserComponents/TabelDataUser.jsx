@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import lihat from "../../../assets/images/ButtonLihat.png"
 
 const TableDataUser = () => {
     const data = [
@@ -72,8 +71,8 @@ const TableDataUser = () => {
                 <td className="px-6 py-4">{item.tanggalRegister}</td>
                 <td className="px-6 py-1">
                     <Link to="detail-user">
-                    <button className="relative h-12 w-12">
-                        <img src={lihat} alt="Lihat" />
+                    <button className="relative py-1 px-5 flex items-center justify-center bg-sky-500 text-white rounded-full">
+                        Lihat
                     </button>
                     </Link>
                 </td>
