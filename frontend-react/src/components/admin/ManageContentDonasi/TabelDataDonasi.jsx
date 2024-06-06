@@ -10,13 +10,14 @@ const TabelDataDonasi = () => {
     fetchFundraisingData();
   }, []);
 
+  const API_KEY = import.meta.env.VITE_API_KEY;
   const fetchFundraisingData = async () => {
     try {
       const response = await fetch('https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings', {
         headers: {
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImV4cCI6MTcxNzYwMjMxNn0.HG-5wMphM3F5LOvs-AOiu6uKIYoeG4DEafB-LLxfq6k', // Replace with your actual token
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + API_KEY
+        },
       });
       const result = await response.json();
       if (result.success) {
