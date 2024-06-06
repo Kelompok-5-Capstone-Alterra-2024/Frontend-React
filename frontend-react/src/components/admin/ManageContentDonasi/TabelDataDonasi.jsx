@@ -85,7 +85,7 @@ const TabelDataDonasi = () => {
                 </div>
               </td>
               <td className="px-6 py-4 flex">
-                <Link to="detail-donasi">
+                <Link to={`detail-donasi/${item.id}`}>
                   <button>
                     <img className="pe-3" src={edit} alt="edit" />
                   </button>
