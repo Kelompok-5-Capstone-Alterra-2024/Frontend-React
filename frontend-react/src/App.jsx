@@ -36,7 +36,7 @@ function App() {
           <Route path="manage-content/artikel" element={<Artikel />} />
           <Route path="manage-content/artikel/detail-artikel" element={<DetailArtikel/>} />
           <Route path="manage-user" element={<ManageUser />} />
-          <Route path="manage-user/detail-user" element={<DetailUser />} />
+          <Route path="manage-user/detail-user/:id" element={<DetailUser />} />
           <Route path="manage-organization" element={<ManageOrganization />} />
           <Route path="transaksi" element={<Transaksi />} />
           <Route path="chatbot" element={<Chatbot />} />
