@@ -10,7 +10,7 @@ import ManageOrganization from "./pages/admin/ManageOrganization/ManageOrganizat
 import ManageUser from "./pages/admin/ManageUser/ManageUser"
 import DetailUser from "./components/admin/ManageUserComponents/DetailUser/DetailUser"
 import Donasi from "./pages/admin/ManageContent/Donasi/Donasi"
-import DetailDonasi from "./components/admin/ManageContentDonasi/DetailDonasi"
+import DetailDonasi from "./components/admin/ManageContentDonasi/DetailDonasi/DetailDonasi"
 import Volunteer from "./pages/admin/ManageContent/Volunteer/Volunteer"
 import DetailVolunteer from "./components/admin/ManageContentVolunteer/DetailVolunteer"
 import Artikel from "./pages/admin/ManageContent/Artikel/Artikel"
