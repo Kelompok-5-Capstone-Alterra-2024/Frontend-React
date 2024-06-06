@@ -103,13 +103,13 @@ const TabelDataDonasi = () => {
                 </Link>
                 <button onClick={openModal}>
                    <img src={trash} alt="hapus" />
-                </button>
-                <HapusDonasi isOpen={isModalOpen} onClose={closeModal} />
+                </button>             
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <HapusDonasi isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 }
