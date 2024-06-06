@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import edit from '../../../assets/images/PencilSimple.svg';
 import trash from '../../../assets/images/Trash.svg';
+import HapusDonasi from './HapusDonasi';
 
 const TabelDataDonasi = () => {
   const [data, setData] = useState([]);
@@ -26,6 +27,16 @@ const TabelDataDonasi = () => {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+  };
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -84,17 +95,16 @@ const TabelDataDonasi = () => {
                   <div className="text-neutral-700 text-xs font-normal font-['Roboto'] leading-[18px]">{item.status}</div>
                 </div>
               </td>
-              <td className="px-6 py-4 flex">
+              <td className="ps-3 pt-6 flex">
                 <Link to={`detail-donasi/${item.id}`}>
                   <button>
                     <img className="pe-3" src={edit} alt="edit" />
                   </button>
                 </Link>
-                <Link to="detail-donasi">
-                  <button>
-                    <img src={trash} alt="hapus" />
-                  </button>
-                </Link>
+                <button onClick={openModal}>
+                   <img src={trash} alt="hapus" />
+                </button>
+                <HapusDonasi isOpen={isModalOpen} onClose={closeModal} />
               </td>
             </tr>
           ))}

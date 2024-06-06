@@ -76,12 +76,12 @@ function DetailDonasi() {
                   <p className="text-sky-500 font-bold">Rp {data.current_progress}</p>
                   <p className="text-stone-400 font-medium">dari target</p>
                   <p className="text-stone-900 font-bold">Rp {data.target_amount}</p>
+                  <p className="text-black text-xs font-medium ms-8">{new Date(data.end_date).getTime() - Date.now() / (1000 * 3600 * 24)} hari lagi</p>
                 </div>
               </div>
-              <p className="text-black text-xs font-medium ms-8">{new Date(data.end_date).getTime() - Date.now() / (1000 * 3600 * 24)} hari lagi</p>
             </div>
             <div className="w-full p-2 bg-white rounded-lg shadow flex-col justify-start items-start gap-4 flex">
-              <h1 className="text-cyan-600 text-sm font-bold">Deskripsi</h1>
+              <h1 className="text-cyan-600 font-bold">Deskripsi</h1>
               <div className="text-justify">
                 <span className="text-black text-xs font-normal">{data.description}</span>
                 <span className="text-cyan-600 text-xs font-normal">Read More</span>
@@ -96,7 +96,7 @@ function DetailDonasi() {
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-lg shadow max-h-screen">
+        <div className="bg-white p-4 rounded-lg shadow max-h-screen w-11/12 sm:w-3/4 md:w-2/3 lg:w-2/5 overflow-y-auto">
           <form>
             <div className="mb-6">
               <div className="flex flex-col sm:flex-row items-center">
