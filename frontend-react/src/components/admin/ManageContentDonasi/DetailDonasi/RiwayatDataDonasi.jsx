@@ -7,32 +7,32 @@ function RiwayatDataDonasi({id}) {
   const API_KEY = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
-    const fetchDonations = async () => {
-      try {
-        const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings/${id}/donations`, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + API_KEY,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-
-        const result = await response.json();
-        if (result.success) {
-          setData(result.data);
-        } else {
-          console.error('Failed to fetch donations:', result.message);
-        }
-      } catch (error) {
-        console.error('Failed to fetch donations:', error);
-      }
-    };
-
-    fetchDonations();
+    getDonationsByFundraisingId();
   }, []);
+
+  const getDonationsByFundraisingId = async () => {
+    try {
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings/${id}/donations`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + API_KEY,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      if (result.success) {
+        setData(result.data);
+      } else {
+        console.error('Failed to fetch donations:', result.message);
+      }
+    } catch (error) {
+      console.error('Failed to fetch donations:', error);
+    }
+  };
 
   if (!data || data.length === 0) {
     return (

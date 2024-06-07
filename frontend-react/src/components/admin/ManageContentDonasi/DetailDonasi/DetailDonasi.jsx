@@ -21,11 +21,11 @@ function DetailDonasi() {
   const categories = ["Kategori1", "Kategori2", "Kategori3"];
 
   useEffect(() => {
-    fetchFundraisingData();
+    getDetailFundraising();
   }, [id]);
 
   const API_KEY = import.meta.env.VITE_API_KEY;
-  const fetchFundraisingData = async () => {
+  const getDetailFundraising = async () => {
     try {
       const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings/${id}`, {
         headers: {
