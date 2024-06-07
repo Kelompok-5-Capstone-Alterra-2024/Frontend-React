@@ -1,7 +1,20 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import edit from '../../../assets/images/PencilSimple.svg';
 import trash from '../../../assets/images/Trash.svg';
+import HapusOrganisasi from './HapusOrganisasi';
 
 const TabelDataOrganisasi = ({ data }) => {
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
 
   {/* jika data tidak ada */}
   if (!data || data.length === 0) {
@@ -22,8 +35,9 @@ const TabelDataOrganisasi = ({ data }) => {
               </div>
             </th>
             <th scope="col" className="px-6 py-3">Tanggal Bergabung</th>
-            <th scope="col" className="px-6 py-3">Kontak</th>
-            <th scope="col" className="px-6 py-3">Status</th>
+            <th scope="col" className="px-6 py-3">Website</th>
+            <th scope="col" className="px-6 py-3">Instagram</th>
+            <th scope="col" className="px-6 py-3">No Rekening</th>
             <th scope="col" className="px-6 py-3">Aksi</th>
           </tr>
         </thead>
@@ -49,8 +63,9 @@ const TabelDataOrganisasi = ({ data }) => {
               </div>
             </th>
             <th scope="col" className="px-6 py-3">Tanggal Bergabung</th>
-            <th scope="col" className="px-6 py-3">Kontak</th>
-            <th scope="col" className="px-6 py-3">Status</th>
+            <th scope="col" className="px-6 py-3">Website</th>
+            <th scope="col" className="px-6 py-3">Instagram</th>
+            <th scope="col" className="px-6 py-3">No Rekening</th>
             <th scope="col" className="px-6 py-3">Aksi</th>
           </tr>
         </thead>
@@ -63,6 +78,7 @@ const TabelDataOrganisasi = ({ data }) => {
               <td className="px-6 py-4">{item.name}</td>
               <td className="px-6 py-4">{item.join_date}</td>
               <td className="px-6 py-4">{item.contact}</td>
+              <td className="px-6 py-4">@sosmediavlimate</td>
               <td className="px-6 py-4">
                 <div className="px-2 py-1 bg-emerald-100 rounded justify-center items-center gap-2.5 inline-flex">
                   <div className="text-neutral-700 text-xs font-normal font-['Roboto'] leading-[18px]">
@@ -70,14 +86,21 @@ const TabelDataOrganisasi = ({ data }) => {
                   </div>
                 </div>
               </td>
-              <td className="px-6 py-4 flex">
-                <img className="pe-3" src={edit} alt="edit" />
-                <img src={trash} alt="hapus" />
-              </td>
+              <td className="ps-3 pt-6 flex">
+                <Link to="detail-organization">
+                    <button>
+                      <img className="pe-3" src={edit} alt="edit" />
+                    </button>
+                </Link>
+                <button onClick={openModal}>
+                   <img src={trash} alt="hapus" />
+                </button>
+                </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <HapusOrganisasi isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };
