@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound/NotFound"
 import Transaksi from "./pages/admin/Transaksi/Transaksi"
 import DetailTransaksi from "./components/admin/RiwayatTransaksi/DetailTransaksi"
 import ManageOrganization from "./pages/admin/ManageOrganization/ManageOrganization"
+import DetailOrganization from "./components/admin/ManageContentVolunteer/DetailOrganization/DetailOrganization"
 import ManageUser from "./pages/admin/ManageUser/ManageUser"
 import DetailUser from "./components/admin/ManageUserComponents/DetailUser/DetailUser"
 import Donasi from "./pages/admin/ManageContent/Donasi/Donasi"
@@ -39,6 +40,7 @@ function App() {
           <Route path="manage-user" element={<ManageUser />} />
           <Route path="manage-user/detail-user/:id" element={<DetailUser />} />
           <Route path="manage-organization" element={<ManageOrganization />} />
+          <Route path="manage-organization/detail-organization" element={<DetailOrganization/>} />
           <Route path="transaksi" element={<Transaksi />} />
           <Route path="transaksi/detail-transaksi" element={<DetailTransaksi />} />
           <Route path="chatbot" element={<Chatbot />} />
