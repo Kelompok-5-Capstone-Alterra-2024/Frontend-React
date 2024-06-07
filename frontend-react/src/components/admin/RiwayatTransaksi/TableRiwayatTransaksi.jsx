@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const TableRiwayatTransaksi = () => {
   const data = [
     {
@@ -63,7 +65,12 @@ const TableRiwayatTransaksi = () => {
               <td className="px-6 py-4">{item.pembayaran}</td>
               <td className="px-6 py-4">{item.noRekening}</td>
               <td className="px-6 py-4">{item.tanggal}</td>
-              <td className="px-6 py-4">{item.status}</td>
+              <td className="px-6 py-4">
+                <Link to={`detail-transaksi`}>{item.status}</Link>
+              </td>
+              {/* <td className="px-6 py-4">
+                <Link to={`detail-transaksi/${item.no}`}>{item.status}</Link>
+              </td> */}
             </tr>
           ))}
         </tbody>
