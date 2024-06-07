@@ -30,8 +30,8 @@ function Volunteer() {
             grade: '12',
           },
           {
-            label: 'Total Donasi',
-            value: 'Rp 3.900.000,00',
+            label: 'Jumlah Volunteer',
+            value: '1.390',
             grade: '12',
           },
           {
