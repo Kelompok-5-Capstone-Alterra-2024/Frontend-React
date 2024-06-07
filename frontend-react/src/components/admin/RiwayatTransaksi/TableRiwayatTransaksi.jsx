@@ -7,7 +7,7 @@ const TableRiwayatTransaksi = () => {
       pembayaran: "Transfer Bank",
       noRekening: "3098717893290",
       tanggal: "27-04-2024",
-      status: "selesai"
+      status: "Detail"
     },
     {
       no: 2,
@@ -16,7 +16,7 @@ const TableRiwayatTransaksi = () => {
       pembayaran: "Transfer Bank",
       noRekening: "3098717893290",
       tanggal: "27-04-2024",
-      status: "selesai"
+      status: "Detail"
     },
     {
       no: 3,
@@ -25,7 +25,7 @@ const TableRiwayatTransaksi = () => {
       pembayaran: "Transfer Bank",
       noRekening: "3098717893290",
       tanggal: "27-04-2024",
-      status: "selesai"
+      status: "Detail"
     }
   ];
 
