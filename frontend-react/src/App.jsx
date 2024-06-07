@@ -12,7 +12,7 @@ import DetailUser from "./components/admin/ManageUserComponents/DetailUser/Detai
 import Donasi from "./pages/admin/ManageContent/Donasi/Donasi"
 import DetailDonasi from "./components/admin/ManageContentDonasi/DetailDonasi/DetailDonasi"
 import Volunteer from "./pages/admin/ManageContent/Volunteer/Volunteer"
-import DetailVolunteer from "./components/admin/ManageContentVolunteer/DetailVolunteer"
+import DetailVolunteer from "./components/admin/ManageContentVolunteer/DetailVolunteer/DetailVolunteer"
 import Artikel from "./pages/admin/ManageContent/Artikel/Artikel"
 import DetailArtikel from "./components/admin/ManageContentArtikel/DetailArtikel/DetailArtikel"
 import Chatbot from "./pages/admin/Chatbot/Chatbot"
