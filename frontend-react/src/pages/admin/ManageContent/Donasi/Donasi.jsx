@@ -10,11 +10,11 @@ function Donasi() {
   const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
-    fetchFundraisingData(currentPage);
+    getAllFundraising(currentPage);
   }, [currentPage]);
 
   const API_KEY = import.meta.env.VITE_API_KEY;
-  const fetchFundraisingData = async (page) => {
+  const getAllFundraising = async (page) => {
     try {
       const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings?page=${page}&limit=10`, {
         headers: {
