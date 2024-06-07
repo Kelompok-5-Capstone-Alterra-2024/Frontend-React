@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import PaginationRiwayatDataDonasi from "./PaginationRiwayatDataDonasi";
 
 function RiwayatDataDonasi({id}) {
-
   const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const API_KEY = import.meta.env.VITE_API_KEY;
 
   useEffect(() => {
     getDonationsByFundraisingId();
-  }, []);
+  }, [currentPage]);
 
-  const getDonationsByFundraisingId = async () => {
+  const getDonationsByFundraisingId = async (page) => {
     try {
-      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings/${id}/donations`, {
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings/${id}/donations?page=${page}&limit=5`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: 'Bearer ' + API_KEY,
@@ -126,7 +126,7 @@ function RiwayatDataDonasi({id}) {
             </tbody>
           </table>
         </div>
-      <PaginationRiwayatDataDonasi/>
+      <PaginationRiwayatDataDonasi currentPage={currentPage} onPageChange={setCurrentPage}/>
     </div>
   )
 }
