@@ -14,7 +14,7 @@ import DetailDonasi from "./components/admin/ManageContentDonasi/DetailDonasi/De
 import Volunteer from "./pages/admin/ManageContent/Volunteer/Volunteer"
 import DetailVolunteer from "./components/admin/ManageContentVolunteer/DetailVolunteer"
 import Artikel from "./pages/admin/ManageContent/Artikel/Artikel"
-import DetailArtikel from "./components/admin/ManageContentArtikel/DetailArtikel"
+import DetailArtikel from "./components/admin/ManageContentArtikel/DetailArtikel/DetailArtikel"
 import Chatbot from "./pages/admin/Chatbot/Chatbot"
 import Notification from "./pages/admin/Notification/Notification"
 
