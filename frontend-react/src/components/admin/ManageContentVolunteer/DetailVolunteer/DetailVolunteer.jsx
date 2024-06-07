@@ -26,12 +26,13 @@ function DetailVolunteer() {
                       <img className="w-7 h-7 rounded-full" src="https://via.placeholder.com/21x21" />
                       <img className="w-7 h-7 rounded-full" src="https://via.placeholder.com/21x21" />
                       <img className="w-7 h-7 rounded-full" src="https://via.placeholder.com/21x21" />
+                      <p className="ps-3 text-zinc-700 font-['Roboto'] leading-none">{item.pendaftar} relawan telah bergabung</p>
                   </div>
-                  <p className="text-zinc-700 font-['Roboto'] leading-none">{item.pendaftar} relawan telah bergabung</p>
+                  
                 </div>
                 <div className="p-2 items-center gap-4">
                   <div className="flex-col justify-start items-start gap-1">
-                    <progress className="progress progress-info w-96" value={item.pendaftar} max={item.target}></progress>
+                    <progress className="progress progress-info w-3/4" value={item.pendaftar} max={item.target}></progress>
                     <div className="flex justify-start items-center gap-4">
                       <p className="text-sky-500 font-bold">{item.pendaftar} Pendaftar</p>
                       <p className="text-stone-400 font-medium">dari target</p>
