@@ -1,4 +1,4 @@
-import nganjuk from '../../../assets/images/artikelNganjuk.png'
+import nganjuk from '../../../../assets/images/artikelNganjuk.png'
 import RiwayatDataArtikel from './RiwayatDataArtikel'
 
 function DetailArtikel() {
