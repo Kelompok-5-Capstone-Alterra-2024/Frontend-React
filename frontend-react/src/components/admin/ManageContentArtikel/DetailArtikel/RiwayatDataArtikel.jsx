@@ -1,4 +1,4 @@
-import PaginationDataArtikel from "./PaginationDataArtikel"
+import PaginationRiwayatDataArtikel from "./PaginationRiwayatDataArtikel";
 
 function RiwayatDataArtikel() {
   const data = [
@@ -87,7 +87,7 @@ function RiwayatDataArtikel() {
             </tbody>
           </table>
         </div>
-      <PaginationDataArtikel/>
+      <PaginationRiwayatDataArtikel/>
     </div>
   )
 }
