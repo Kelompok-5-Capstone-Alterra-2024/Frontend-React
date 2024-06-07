@@ -93,7 +93,7 @@ function Sidebar() {
                         </div>
                         {isContentOpen && (
                             <div className="flex flex-col gap-1.5">
-                                <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-content/donasi' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/donasi')}>
+                                <div className={`h-[41px] rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-content/donasi' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/donasi')}>
                                     <div className="w-[21px] h-[21px] ml-5" />
                                     <Link to="manage-content/donasi">
                                         <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/donasi' ? 'text-blue-500' : 'text-stone-400'}`}>
@@ -101,7 +101,7 @@ function Sidebar() {
                                         </div>
                                     </Link>
                                 </div>
-                                <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-content/volunteer' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/volunteer')}>
+                                <div className={`h-[41px] rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-content/volunteer' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/volunteer')}>
                                     <div className="w-[21px] h-[21px] ml-5" />
                                     <Link to="manage-content/volunteer">
                                         <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/volunteer' ? 'text-blue-500' : 'text-stone-400'}`}>
@@ -109,7 +109,7 @@ function Sidebar() {
                                         </div>
                                     </Link>
                                 </div>
-                                <div className={`h-[41px] bg-white rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-content/artikel' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/artikel')}>
+                                <div className={`h-[41px] rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-content/artikel' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/artikel')}>
                                     <div className="w-[21px] h-[21px] ml-5" />
                                     <Link to="manage-content/artikel">
                                         <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/artikel' ? 'text-blue-500' : 'text-stone-400'}`}>
