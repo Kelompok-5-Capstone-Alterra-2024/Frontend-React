@@ -41,10 +41,10 @@ function Cashout({ isOpen, onClose }) {
                 <div className="mt-4">
                   <p className="block text-black font-semibold">Bukti Transfer*</p>
                   <div className="mt-1 flex flex-col sm:flex-row items-center">
-                            <label htmlFor="multiple_files" className="text-md w-full sm:w-28 text-white font-medium bg-sky-500 border border-gray-300 rounded-t-lg sm:rounded-e-none sm:rounded-l-lg cursor-pointer p-2 text-center">
+                            <label htmlFor="multiple_files" className="text-md w-full sm:w-28 text-white bg-sky-500 border border-gray-300 rounded-t-lg sm:rounded-e-none sm:rounded-l-lg cursor-pointer p-2 text-center">
                                 Pilih File
                             </label>
-                            <span className="p-2 text-gray-900 font-medium border border-gray-300 w-full rounded-b-lg sm:rounded-b-none sm:rounded-r-lg sm:w-auto sm:mt-0 sm:flex-1" id="file_name">Tidak ada file yang dipilih</span>
+                            <span className="p-2 text-gray-500 border border-gray-300 w-full rounded-b-lg sm:rounded-b-none sm:rounded-r-lg sm:w-auto sm:mt-0 sm:flex-1" id="file_name">Tidak ada file yang dipilih</span>
                             <input
                                 className="hidden"
                                 id="multiple_files"
