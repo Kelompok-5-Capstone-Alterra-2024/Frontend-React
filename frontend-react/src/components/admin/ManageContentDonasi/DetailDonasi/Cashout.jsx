@@ -37,7 +37,23 @@ function Cashout({ isOpen, onClose }) {
                 <div className="mt-4">
                   <label htmlFor="pemilikRekening" className="block text-black font-semibold">Nama Pemilik Rekening*</label>
                   <input type="text" id="pemilikRekening" placeholder="" className="mt-1 w-full h-10 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
-                </div>       
+                </div>
+                <div className="mt-4">
+                  <p className="block text-black font-semibold">Bukti Transfer*</p>
+                  <div className="mt-1 flex flex-col sm:flex-row items-center">
+                            <label htmlFor="multiple_files" className="text-md w-full sm:w-28 text-white font-medium bg-sky-500 border border-gray-300 rounded-t-lg sm:rounded-e-none sm:rounded-l-lg cursor-pointer p-2 text-center">
+                                Pilih File
+                            </label>
+                            <span className="p-2 text-gray-900 font-medium border border-gray-300 w-full rounded-b-lg sm:rounded-b-none sm:rounded-r-lg sm:w-auto sm:mt-0 sm:flex-1" id="file_name">Tidak ada file yang dipilih</span>
+                            <input
+                                className="hidden"
+                                id="multiple_files"
+                                type="file"
+                                multiple
+                                onChange={(e) => setFormData({ ...formData, image_url: URL.createObjectURL(e.target.files[0]) })}
+                            />
+                        </div>
+                </div>  
               </div>
                   <div className="flex flex-col sm:flex-row mt-8">
                       <button type="button" className="bg-gray-100 rounded-lg border border-gray-100 text-gray-800 justify-center items-center gap-2 inline-flex px-4 py-2 mb-2 sm:mb-0 sm:mr-2" onClick={onClose}>Batal</button>
