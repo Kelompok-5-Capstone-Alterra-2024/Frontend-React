@@ -45,7 +45,7 @@ function DetailOrganization() {
                 <div className="w-full p-2 bg-white rounded-lg shadow flex-col justify-start items-start gap-4 flex">
                   <h1 className="text-cyan-600 font-bold">Deskripsi</h1>
                   <div className="text-justify">
-                    <span className="text-black text-sm font-normal">{item.deskripsi}</span>
+                    <span className="text-black text-md font-normal">{item.deskripsi}</span>
                   </div>
                 </div>
               </div>
