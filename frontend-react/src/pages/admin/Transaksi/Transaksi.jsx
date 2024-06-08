@@ -75,7 +75,7 @@ function Transaksi() {
         {/* Bagian kanan */}
         <div className="right p-4">
           <button>
-            <img className="w-28 h-10" src={unduhDetail} alt="Unduh Detail" />
+            <img className="w-36 object-contain" src={unduhDetail} alt="Unduh Detail" />
           </button>
         </div>
       </div>
