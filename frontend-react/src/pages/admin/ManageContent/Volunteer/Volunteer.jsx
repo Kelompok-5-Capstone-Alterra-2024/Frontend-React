@@ -1,11 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddVolunteer from "../../../../components/admin/ManageContentVolunteer/TambahContentVolunteer";
 import TabelDataVolunteer from "../../../../components/admin/ManageContentVolunteer/TabelDataVolunteer";
 import PaginationDataVolunteer from "../../../../components/admin/ManageContentVolunteer/PaginationDataVolunteer";
 import up from '../../../../assets/images/arrowUpBlue.svg';
 
 function Volunteer() {
+  const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    getAllVolunteer(currentPage);
+  }, [currentPage]);
+
+  const API_KEY = import.meta.env.VITE_API_KEY;
+  const getAllVolunteer = async (page) => {
+    try {
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/volunteers?page=${page}&limit=10`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + API_KEY
+        },
+      });
+      const result = await response.json();
+      if (result.success) {
+        setData(result.data);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   const openModal = () => {
     setModalOpen(true);
@@ -76,8 +100,8 @@ function Volunteer() {
             </label>
           </div>
         </div>
-        <TabelDataVolunteer />
-        <PaginationDataVolunteer />
+        <TabelDataVolunteer data={data}/>
+        <PaginationDataVolunteer currentPage={currentPage} onPageChange={setCurrentPage}/>
       </div>
     </div>
   )
