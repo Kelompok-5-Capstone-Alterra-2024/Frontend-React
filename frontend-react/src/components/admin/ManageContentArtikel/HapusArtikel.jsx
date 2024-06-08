@@ -11,8 +11,8 @@ function HapusDonasi({ isOpen, onClose }) {
                         <img src={hapus} alt="Trash icon" className="w-12 h-12 mr-4" />
                     </div>
                     <div className="grid-rows-2">
-                        <h2 className="text-zinc-900 text-xl font-bold">Hapus Data Donasi</h2>
-                        <p className="mb-6 mt-2">Apakah Anda yakin ingin data donasi ini? Tindakan ini tidak dapat dibatalkan.</p>
+                        <h2 className="text-zinc-900 text-xl font-bold">Hapus Data Artikel</h2>
+                        <p className="mb-6 mt-2">Apakah Anda yakin ingin data artikel ini? Tindakan ini tidak dapat dibatalkan.</p>
                     </div>
                 </div>
                 <div className="flex justify-end space-x-2">
