@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RiwayatDataDonasi from './RiwayatDataDonasi';
-import Cashout from '../Cashout';
+import HapusDetailDonasi from './HapusDetailDonasi';
+import Cashout from './Cashout';
 
 function DetailDonasi() {
   const { id } = useParams();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [data, setData] = useState(null);
 
   const [title, setTitle] = useState('');
@@ -57,6 +59,16 @@ function DetailDonasi() {
     setModalOpen(false);
   };
 
+  const openDeleteModal = () => {
+    setDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
+  };
+
+
+
   if (!data) {
     return <div className='min-h-screen bg-neutral-50 flex justify-center items-center'>Loading...</div>;
   }
@@ -83,8 +95,8 @@ function DetailDonasi() {
             <div className="w-full p-2 bg-white rounded-lg shadow flex-col justify-start items-start gap-4 flex">
               <h1 className="text-cyan-600 font-bold">Deskripsi</h1>
               <div className="text-justify">
-                <span className="text-black text-xs font-normal">{data.description}</span>
-                <span className="text-cyan-600 text-xs font-normal">Read More</span>
+                <span className="text-black text-sm font-normal">{data.description}</span>
+                <span className="text-cyan-600 text-sm font-normal">Read More</span>
               </div>
             </div>
           </div>
@@ -197,9 +209,10 @@ function DetailDonasi() {
               </div>
             </div>
             <div className="flex justify-end mt-4">
-              <button className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg gap-2 me-3" type="button">
+              <button className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg gap-2 me-3" type="button" onClick={openDeleteModal}>
                 Hapus
               </button>
+              <HapusDetailDonasi isOpen={isDeleteModalOpen} onClose={closeDeleteModal} />
               <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold" type="button">
                 Edit Konten
               </button>

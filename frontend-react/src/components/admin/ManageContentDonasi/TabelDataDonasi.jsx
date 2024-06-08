@@ -117,7 +117,7 @@ const TabelDataDonasi = ({data}) => {
               <td className="px-6 py-4">{item.target_amount}</td>
               <td className="px-6 py-4">
                 <div className="px-2 py-1 bg-emerald-100 rounded justify-center items-center gap-2.5 inline-flex">
-                  <div className="text-neutral-700 text-xs font-normal font-['Roboto'] leading-[18px]">{item.status}</div>
+                  <div className="text-neutral-700 text-xs font-normal">{item.status}</div>
                 </div>
               </td>
               <td className="ps-3 pt-6 flex">
