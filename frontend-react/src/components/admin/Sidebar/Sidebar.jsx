@@ -63,10 +63,10 @@ function Sidebar() {
             <div className={`w-[300px] bg-white md:block ${isSidebarOpen ? 'block' : 'hidden'}`}>
                 <div className="p-5 flex items-center">
                     <div className="w-[260px] h-[60px] p-2 bg-neutral-100 rounded-lg flex items-center gap-2.5">
-                        <img className="w-10 h-10 rounded-[31px]" src={admin} />
+                        <img className="w-10 h-10 rounded" src={admin} />
                         <div className="flex flex-col">
                             <div className="text-teal-900 text-xs font-normal">Cornelia</div>
-                            <div className="text-teal-900 text-[10px] font-normal">Oniel@gmail.com</div>
+                            <div className="text-teal-900 font-normal">Oniel@gmail.com</div>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@ function Sidebar() {
                         <div className={`h-[41px] rounded-[10px] flex items-center gap-5 ${activeItem === '' ? 'bg-sidebar-1' : ''}`} onClick={() => handleItemClick('')}>
                             <img className="w-5 h-5 ml-5" src={home} />
                             <Link to="">
-                                <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === '' ? 'text-white' : 'text-stone-400'}`}>
+                                <div className={`text-base font-medium leading-tight ${activeItem === '' ? 'text-white' : 'text-stone-400'}`}>
                                     Home
                                 </div>
                             </Link>
@@ -83,7 +83,7 @@ function Sidebar() {
                         <div className={`pt-3 py-2 rounded-md flex items-center gap-5 justify-between ${isContentOpen ? 'bg-sidebar-1' : 'bg-white'}`} onClick={toggleOpen}>
                             <div className="flex items-center gap-5">
                                 <img className="w-5 h-5 ml-5" src={manage} />
-                                <div className={`font-normal font-['Roboto'] leading-tight ${isContentOpen ? 'text-white' : 'text-stone-400'}`}>
+                                <div className={`font-medium leading-tight ${isContentOpen ? 'text-white' : 'text-stone-400'}`}>
                                     Manage Content
                                 </div>
                             </div>
@@ -96,7 +96,7 @@ function Sidebar() {
                                 <div className={`h-[41px] rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-content/donasi' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/donasi')}>
                                     <div className="w-[21px] h-[21px] ml-5" />
                                     <Link to="manage-content/donasi">
-                                        <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/donasi' ? 'text-blue-500' : 'text-stone-400'}`}>
+                                        <div className={`text-base font-medium leading-tight ${activeItem === 'manage-content/donasi' ? 'text-blue-500' : 'text-stone-400'}`}>
                                             • Donasi
                                         </div>
                                     </Link>
@@ -104,7 +104,7 @@ function Sidebar() {
                                 <div className={`h-[41px] rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-content/volunteer' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/volunteer')}>
                                     <div className="w-[21px] h-[21px] ml-5" />
                                     <Link to="manage-content/volunteer">
-                                        <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/volunteer' ? 'text-blue-500' : 'text-stone-400'}`}>
+                                        <div className={`text-base font-medium leading-tight ${activeItem === 'manage-content/volunteer' ? 'text-blue-500' : 'text-stone-400'}`}>
                                             • Volunteer
                                         </div>
                                     </Link>
@@ -112,7 +112,7 @@ function Sidebar() {
                                 <div className={`h-[41px] rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-content/artikel' ? 'bg-sidebar-2' : ''}`} onClick={() => handleItemClick('manage-content/artikel')}>
                                     <div className="w-[21px] h-[21px] ml-5" />
                                     <Link to="manage-content/artikel">
-                                        <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-content/artikel' ? 'text-blue-500' : 'text-stone-400'}`}>
+                                        <div className={`text-base font-medium leading-tight ${activeItem === 'manage-content/artikel' ? 'text-blue-500' : 'text-stone-400'}`}>
                                             • Artikel
                                         </div>
                                     </Link>
@@ -122,7 +122,7 @@ function Sidebar() {
                         <div className={`h-[41px] rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-user' ? 'bg-sidebar-1' : ''}`} onClick={() => handleItemClick('manage-user')}>
                             <img className="w-5 h-5 ml-5" src={user} />
                             <Link to="manage-user">
-                                <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-user' ? 'text-white' : 'text-stone-400'}`}>
+                                <div className={`text-base font-medium leading-tight ${activeItem === 'manage-user' ? 'text-white' : 'text-stone-400'}`}>
                                     Manage User
                                 </div>
                             </Link>
@@ -130,7 +130,7 @@ function Sidebar() {
                         <div className={`h-[41px] rounded-[10px] flex items-center gap-5 ${activeItem === 'manage-organization' ? 'bg-sidebar-1' : ''}`} onClick={() => handleItemClick('manage-organization')}>
                             <img className="w-5 h-5 ml-5" src={organization} />
                             <Link to="manage-organization">
-                                <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'manage-organization' ? 'text-white' : 'text-stone-400'}`}>
+                                <div className={`text-base font-medium leading-tight ${activeItem === 'manage-organization' ? 'text-white' : 'text-stone-400'}`}>
                                     Manage Organization
                                 </div>
                             </Link>
@@ -138,7 +138,7 @@ function Sidebar() {
                         <div className={`h-[41px] rounded-[10px] flex items-center gap-5 ${activeItem === 'transaksi' ? 'bg-sidebar-1' : ''}`} onClick={() => handleItemClick('transaksi')}>
                             <img className="w-5 h-5 ml-5" src={transaksi} />
                             <Link to="transaksi">
-                                <div className={`text-base font-normal font-['Roboto'] leading-tight ${activeItem === 'transaksi' ? 'text-white' : 'text-stone-400'}`}>
+                                <div className={`text-base font-medium leading-tight ${activeItem === 'transaksi' ? 'text-white' : 'text-stone-400'}`}>
                                     Transaksi
                                 </div>
                             </Link>
@@ -146,7 +146,7 @@ function Sidebar() {
                         <div className="h-[41px] rounded-[10px] flex items-center gap-5">
                             <img className="w-5 h-5 ml-5" src={dataWarehouse} />
                             <Link to="https://lookerstudio.google.com" target='_blank'>
-                                <div className="text-base font-normal font-['Roboto'] leading-tight text-stone-400">
+                                <div className="text-base font-medium leading-tight text-stone-400">
                                     Data Warehouse
                                 </div>
                             </Link>
@@ -158,7 +158,7 @@ function Sidebar() {
                     <div className="h-[41px] bg-white rounded-[10px] flex items-center gap-5">
                         <img className="w-5 h-5 ml-5" src={logout} />
                         <button onClick={handleShowModal}>
-                            <div className="text-base font-normal font-['Roboto'] leading-tight">
+                            <div className="text-base font-medium leading-tight">
                                 Logout
                             </div>
                         </button>
