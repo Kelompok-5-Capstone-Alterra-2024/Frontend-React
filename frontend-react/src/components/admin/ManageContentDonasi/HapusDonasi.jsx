@@ -1,7 +1,37 @@
+import { useState } from 'react';
 import hapus from "../../../assets/images/Trash.svg";
+import { useNavigate } from 'react-router-dom';
 
-function HapusDonasi({ isOpen, onClose }) {
+function HapusDonasi({ isOpen, onClose, itemId}) {
+    const [isDeleting, setIsDeleting] = useState(false);
+    const navigate = useNavigate();
+
     if (!isOpen) return null;
+
+    const API_KEY = import.meta.env.VITE_API_KEY;
+
+    const handleDelete = async () => {
+        setIsDeleting(true);
+        try {
+            const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings/${itemId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${API_KEY}`
+                },
+            });
+            if (response.ok) {
+                onClose();
+                navigate('/admin/manage-content/donasi');
+            } else {
+                console.error('Failed to delete the item.');
+            }
+        } catch (error) {
+            console.error('Error deleting the item:', error);
+        } finally {
+            setIsDeleting(false);
+        }
+    };
 
     return (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
@@ -12,22 +42,25 @@ function HapusDonasi({ isOpen, onClose }) {
                     </div>
                     <div className="grid-rows-2">
                         <h2 className="text-zinc-900 text-xl font-bold">Hapus Data Donasi</h2>
-                        <p className="mb-6 mt-2">Apakah Anda yakin ingin data donasi ini? Tindakan ini tidak dapat dibatalkan.</p>
+                        <p className="mb-6 mt-2">Apakah Anda yakin ingin menghapus data donasi ini? Tindakan ini tidak dapat dibatalkan.</p>
                     </div>
                 </div>
                 <div className="flex justify-end space-x-2">
-                    <button 
-                        type="button" 
-                        className="bg-gray-100 rounded-lg border border-gray-100 text-gray-800 justify-center items-center gap-2 inline-flex px-4 py-2" 
+                    <button
+                        type="button"
+                        className="bg-gray-100 rounded-lg border border-gray-100 text-gray-800 justify-center items-center gap-2 inline-flex px-4 py-2"
                         onClick={onClose}
+                        disabled={isDeleting}
                     >
                         Batalkan
                     </button>
-                    <button 
-                        type="submit" 
+                    <button
+                        type="button"
                         className="bg-red-500 rounded-lg justify-center items-center gap-2 inline-flex text-white px-4 py-2"
+                        onClick={handleDelete}
+                        disabled={isDeleting}
                     >
-                        Hapus
+                        {isDeleting ? 'Menghapus...' : 'Hapus'}
                     </button>
                 </div>
             </div>
@@ -35,4 +68,4 @@ function HapusDonasi({ isOpen, onClose }) {
     )
 }
 
-export default HapusDonasi
+export default HapusDonasi;
