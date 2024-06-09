@@ -19,11 +19,12 @@ function DetailDonasi() {
   const [description, setDescription] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
-  const organizations = ["Organisasi1", "Organisasi2", "Organisasi3"];
-  const categories = ["Kategori1", "Kategori2", "Kategori3"];
+  const [organizations, setOrganizations] = useState([]);
+  const categories = ["Edukasi", "Bencana Alam", "Kegiatan Sosial", "Lingkungan"];
 
   useEffect(() => {
     getDetailFundraising();
+    fetchOrganizations();
   }, [id]);
 
   const API_KEY = import.meta.env.VITE_API_KEY;
@@ -51,6 +52,23 @@ function DetailDonasi() {
     }
   };
 
+  const fetchOrganizations = async () => {
+    try {
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/organizations`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + API_KEY,
+        },
+      });
+      const result = await response.json();
+      if (result.success) {
+        setOrganizations(result.data);
+      }
+    } catch (error) {
+      console.error('Error fetching organizations:', error);
+    }
+  };
+
   const updateFundraising = async () => {
     try {
       const formData = new FormData();
@@ -58,7 +76,7 @@ function DetailDonasi() {
         formData.append('image_url', imageFile);
       }
       formData.append('title', title);
-      formData.append('organization_id', organizations.indexOf(organizationName) + 1); // Assuming the index + 1 is the organization_id
+      formData.append('organization_id', organizations.find(org => org.name === organizationName)?.id); // Assuming the organization object has id and name
       formData.append('target_amount', targetAmount);
       formData.append('category_id', categories.indexOf(category) + 1); // Assuming the index + 1 is the category_id
       formData.append('start_date', startDate);
@@ -180,8 +198,8 @@ function DetailDonasi() {
                   onChange={(e) => setOrganizationName(e.target.value)}
                   className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-100"
                 >
-                  {organizations.map((org, index) => (
-                    <option key={index} value={org}>{org}</option>
+                  {organizations.map((org) => (
+                    <option key={org.id} value={org.name}>{org.name}</option>
                   ))}
                 </select>
               </div>
