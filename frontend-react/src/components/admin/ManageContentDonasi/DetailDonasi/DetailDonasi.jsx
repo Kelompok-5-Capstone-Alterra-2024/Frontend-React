@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import RiwayatDataDonasi from './RiwayatDataDonasi';
-import HapusDetailDonasi from './HapusDetailDonasi';
+import HapusDonasi from '../HapusDonasi';
 import Cashout from './Cashout';
 
 function DetailDonasi() {
@@ -66,8 +66,6 @@ function DetailDonasi() {
   const closeDeleteModal = () => {
     setDeleteModalOpen(false);
   };
-
-
 
   if (!data) {
     return <div className='min-h-screen bg-neutral-50 flex justify-center items-center'>Loading...</div>;
@@ -211,14 +209,13 @@ function DetailDonasi() {
             <button className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg gap-2 me-3" type="button" onClick={openDeleteModal}>
               Hapus
             </button>
-            <HapusDetailDonasi isOpen={isDeleteModalOpen} onClose={closeDeleteModal} />
+            <HapusDonasi isOpen={isDeleteModalOpen} onClose={closeDeleteModal} itemId={id} />
             <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold" type="button">
               Edit Konten
             </button>
           </div>
         </form>
       </div>
-
       </div>
       <RiwayatDataDonasi id={id} />
     </div>

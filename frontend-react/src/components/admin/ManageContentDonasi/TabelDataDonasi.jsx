@@ -6,13 +6,16 @@ import HapusDonasi from './HapusDonasi';
 
 const TabelDataDonasi = ({data}) => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedItemId, setSelectedItemId] = useState(null);
 
-  const openModal = () => {
+  const openModal = (id) => {
+    setSelectedItemId(id);
     setModalOpen(true);
   };
 
   const closeModal = () => {
     setModalOpen(false);
+    setSelectedItemId(null);
   };
 
   // Define a function to get the background color based on the status
@@ -73,7 +76,6 @@ const TabelDataDonasi = ({data}) => {
           </tr>
         </thead>
       </table>
-      <HapusDonasi isOpen={isModalOpen} onClose={closeModal} />
     </div>
     );
   }
@@ -140,15 +142,19 @@ const TabelDataDonasi = ({data}) => {
                     <img className="pe-3" src={edit} alt="edit" />
                   </button>
                 </Link>
-                <button onClick={openModal}>
-                   <img src={trash} alt="hapus" />
-                </button>             
+                <button onClick={() => openModal(item.id)}>
+                  <img src={trash} alt="hapus" className="w-6 h-6" />
+                </button>            
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <HapusDonasi isOpen={isModalOpen} onClose={closeModal} />
+      <HapusDonasi
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        itemId={selectedItemId}
+      />
     </div>
   );
 }
