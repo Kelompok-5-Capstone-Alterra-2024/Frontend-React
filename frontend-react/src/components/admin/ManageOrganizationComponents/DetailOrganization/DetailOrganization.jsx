@@ -1,5 +1,5 @@
 import { useState } from "react"
-import DetailOrganizationDonasi from "./Donasi/DetaiOrganizationDonasi";
+import DetailOrganizationDonasi from "./Donasi/DetailOrganizationDonasi";
 import DetailOrganizationVolunteer from "./Volunteer/DetailOrganizationVolunteer";
 import HapusDetailOrganisasi from "./HapusDetailOrganisasi"
 import yayasan from "../../../../assets/images/logoYayasan.png"
@@ -33,7 +33,7 @@ function DetailOrganization() {
               },
             ].map((item, index) => (
               <div key={index} className="p-1 bg-white rounded-lg shadow justify-start items-start gap-2">
-                <div class="flex justify-center items-center">
+                <div className="flex justify-center items-center">
                   <img className="w-64- h-64 rounded-full oject-cover" src={item.image} alt="Image" />
                 </div>
                 <h1 className="p-2 text-black text-2xl font-bold">{item.organisasi}</h1>
