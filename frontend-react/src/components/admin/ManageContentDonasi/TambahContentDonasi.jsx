@@ -13,6 +13,8 @@ function AddDonasi({ isOpen, onClose }) {
         organization_id: ''
     });
 
+    const [file, setFile] = useState(null);
+
     if (!isOpen) return null;
 
     const handleChange = (e) => {
@@ -20,10 +22,22 @@ function AddDonasi({ isOpen, onClose }) {
         setFormData({ ...formData, [name]: value });
     };
 
+    const handleFileChange = (e) => {
+        const selectedFile = e.target.files[0];
+        setFile(selectedFile);
+        setFormData({ ...formData, image_url: selectedFile ? URL.createObjectURL(selectedFile) : '' });
+    };
+
     const API_KEY = import.meta.env.VITE_API_KEY;
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            const data = new FormData();
+            data.append('image', file);
+            Object.keys(formData).forEach(key => {
+                data.append(key, formData[key]);
+            });
+
             const response = await fetch('https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings', {
                 method: 'POST',
                 headers: {
@@ -54,13 +68,12 @@ function AddDonasi({ isOpen, onClose }) {
                             <label htmlFor="multiple_files" className="text-md w-full sm:w-28 text-white bg-sky-500 border border-gray-300 rounded-t-lg sm:rounded-e-none sm:rounded-l-lg cursor-pointer p-2 text-center">
                                 Pilih File
                             </label>
-                            <span className="p-2 text-gray-500 border border-gray-300 w-full rounded-b-lg sm:rounded-b-none sm:rounded-r-lg sm:w-auto sm:mt-0 sm:flex-1" id="file_name">Tidak ada file yang dipilih</span>
+                            <span className="p-2 text-gray-500 border border-gray-300 w-full rounded-b-lg sm:rounded-b-none sm:rounded-r-lg sm:w-auto sm:mt-0 sm:flex-1" id="file_name">{file ? file.name : 'Tidak ada file yang dipilih'}</span>
                             <input
                                 className="hidden"
                                 id="multiple_files"
                                 type="file"
-                                multiple
-                                onChange={(e) => setFormData({ ...formData, image_url: URL.createObjectURL(e.target.files[0]) })}
+                                onChange={handleFileChange}
                             />
                         </div>
                     </div>
