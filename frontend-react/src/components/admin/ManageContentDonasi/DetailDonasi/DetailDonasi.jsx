@@ -17,8 +17,8 @@ function DetailDonasi() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [description, setDescription] = useState('');
+  const [imageFile, setImageFile] = useState(null);
 
-  // Example data for organizations and categories
   const organizations = ["Organisasi1", "Organisasi2", "Organisasi3"];
   const categories = ["Kategori1", "Kategori2", "Kategori3"];
 
@@ -49,6 +49,42 @@ function DetailDonasi() {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+  };
+
+  const updateFundraising = async () => {
+    try {
+      const formData = new FormData();
+      if (imageFile) {
+        formData.append('image_url', imageFile);
+      }
+      formData.append('title', title);
+      formData.append('organization_id', organizations.indexOf(organizationName) + 1); // Assuming the index + 1 is the organization_id
+      formData.append('target_amount', targetAmount);
+      formData.append('category_id', categories.indexOf(category) + 1); // Assuming the index + 1 is the category_id
+      formData.append('start_date', startDate);
+      formData.append('end_date', endDate);
+      formData.append('description', description);
+
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings/${id}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: 'Bearer ' + API_KEY,
+        },
+        body: formData,
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        getDetailFundraising(); // Refresh the data after successful update
+      }
+    } catch (error) {
+      console.error('Error updating data:', error);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    setImageFile(e.target.files[0]);
+    document.getElementById('file_name').textContent = e.target.files[0].name;
   };
 
   const openModal = () => {
@@ -82,7 +118,7 @@ function DetailDonasi() {
             <div className="p-2 items-center gap-4 inline-flex">
               <div className="flex-col justify-start items-start gap-1">
                 <p className="text-zinc-700 font-normal">Donasi Terkumpul</p>
-                <p className="text-black text-xs font-medium text-end">{new Date(data.end_date).getTime() - Date.now() / (1000 * 3600 * 24)} hari lagi</p>
+                <p className="text-black text-xs font-medium text-end">{Math.ceil((new Date(data.end_date).getTime() - Date.now()) / (1000 * 3600 * 24))} hari lagi</p>
                 <div className="flex justify-start items-center gap-4">
                   <p className="text-sky-500 font-bold">Rp {data.current_progress}</p>
                   <p className="text-stone-400 font-medium">dari target</p>
@@ -118,6 +154,7 @@ function DetailDonasi() {
                 className="hidden"
                 id="multiple_files"
                 type="file"
+                onChange={handleFileChange}
                 multiple
               />
             </div>
@@ -200,7 +237,7 @@ function DetailDonasi() {
                   id="deskripsi"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="block p-2.5 w-full h-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 flex-1"
+                  className="block p-2.5 w-full h-full text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 flex-1"
                 />
               </div>
             </div>
@@ -210,7 +247,7 @@ function DetailDonasi() {
               Hapus
             </button>
             <HapusDonasi isOpen={isDeleteModalOpen} onClose={closeDeleteModal} itemId={id} />
-            <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold" type="button">
+            <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold" type="button" onClick={updateFundraising}>
               Edit Konten
             </button>
           </div>
