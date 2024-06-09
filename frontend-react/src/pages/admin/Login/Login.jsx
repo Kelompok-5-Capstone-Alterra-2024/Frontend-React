@@ -43,7 +43,9 @@ function Login() {
       const data = await response.json();
 
       if (data.success) {
-        sessionStorage.setItem('token', data.data);
+        // Store the tokens in sessionStorage
+        sessionStorage.setItem('access_token', data.data.access_token);
+        sessionStorage.setItem('refresh_token', data.data.refresh_token);
         navigate('/admin');
       } else {
         setShowAlert(true);
