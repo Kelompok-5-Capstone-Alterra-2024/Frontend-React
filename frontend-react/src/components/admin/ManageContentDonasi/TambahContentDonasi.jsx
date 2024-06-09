@@ -41,10 +41,10 @@ function AddDonasi({ isOpen, onClose }) {
             const response = await fetch('https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
                     Authorization: 'Bearer ' + API_KEY
                   },
-                body: JSON.stringify(formData)
+                body: data
             });
             if (response.ok) {
                 alert('Fundraising created successfully!');
