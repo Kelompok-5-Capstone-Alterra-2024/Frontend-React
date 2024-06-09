@@ -23,7 +23,7 @@ function Volunteer() {
         },
       });
       const result = await response.json();
-      if (result.success) {
+      if (result.status) {
         setData(result.data);
       }
     } catch (error) {
