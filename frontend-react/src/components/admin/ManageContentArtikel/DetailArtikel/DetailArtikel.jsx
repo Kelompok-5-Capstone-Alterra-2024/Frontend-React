@@ -1,7 +1,7 @@
 import { useState } from "react"
 import nganjuk from '../../../../assets/images/artikelNganjuk.png'
 import RiwayatDataArtikel from './RiwayatDataArtikel'
-import HapusDetailArtikel from "./HapusDetailArtikel"
+import HapusArtikel from "../HapusArtikel"
 
 function DetailArtikel() {
 
@@ -87,7 +87,7 @@ function DetailArtikel() {
               <button className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg gap-2 me-3" onClick={openModal}>
                 Hapus
               </button>
-              <HapusDetailArtikel isOpen={isModalOpen} onClose={closeModal} />
+              <HapusArtikel isOpen={isModalOpen} onClose={closeModal} />
               <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold">
                 Edit Konten
               </button>
