@@ -28,7 +28,7 @@ function AddDonasi({ isOpen, onClose }) {
         setFormData({ ...formData, image_url: selectedFile });
     };
 
-    const API_KEY = import.meta.env.VITE_API_KEY;
+    const accessToken = sessionStorage.getItem('access_token');
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -41,7 +41,7 @@ function AddDonasi({ isOpen, onClose }) {
             const response = await fetch('https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings', {
                 method: 'POST',
                 headers: {
-                    Authorization: 'Bearer ' + API_KEY
+                    'Authorization': `Bearer ${accessToken}`
                   },
                 body: data
             });

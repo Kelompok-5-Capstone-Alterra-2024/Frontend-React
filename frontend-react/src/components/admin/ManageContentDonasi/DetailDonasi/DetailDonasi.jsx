@@ -19,22 +19,17 @@ function DetailDonasi() {
   const [description, setDescription] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
-  // const [organizations, setOrganizations] = useState([]);
-  // const [categories, setCategories] = useState([]);
-
   useEffect(() => {
     getDetailFundraising();
-    // fetchOrganizations();
-    // fetchCategories();
   }, [id]);
 
-  const API_KEY = import.meta.env.VITE_API_KEY;
+  const accessToken = sessionStorage.getItem('access_token');
   const getDetailFundraising = async () => {
     try {
       const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings/${id}`, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + API_KEY,
+          'Authorization': `Bearer ${accessToken}`
         },
       });
       const result = await response.json();
@@ -53,40 +48,6 @@ function DetailDonasi() {
     }
   };
 
-  // const fetchOrganizations = async () => {
-  //   try {
-  //     const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/organizations`, {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: 'Bearer ' + API_KEY,
-  //       },
-  //     });
-  //     const result = await response.json();
-  //     if (result.success) {
-  //       setOrganizations(result.data);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching organizations:', error);
-  //   }
-  // };
-
-  // const fetchCategories = async () => {
-  //   try {
-  //     const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraising-categories`, {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: 'Bearer ' + API_KEY,
-  //       },
-  //     });
-  //     const result = await response.json();
-  //     if (result.success) {
-  //       setCategories(result.data);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching categories:', error);
-  //   }
-  // };
-
   const updateFundraising = async () => {
     try {
       const formData = new FormData();
@@ -94,10 +55,8 @@ function DetailDonasi() {
         formData.append('image_url', imageFile);
       }
       formData.append('title', title);
-      // formData.append('organization_id', organizations.find(org => org.name === organization)?.id); 
       formData.append('organization_id', organization); 
       formData.append('target_amount', targetAmount);
-      // formData.append('category_id', categories.find(cat => cat.name === category)?.id);
       formData.append('category_id', category);
       formData.append('start_date', startDate);
       formData.append('end_date', endDate);
@@ -106,7 +65,7 @@ function DetailDonasi() {
       const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings/${id}`, {
         method: 'PUT',
         headers: {
-          Authorization: 'Bearer ' + API_KEY,
+          'Authorization': `Bearer ${accessToken}`
         },
         body: formData
       });
