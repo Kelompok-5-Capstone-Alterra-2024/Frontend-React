@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import home from "../../../assets/images/home.png";
 import admin from "../../../assets/images/admin.png";
@@ -11,6 +10,8 @@ import up from "../../../assets/images/CaretUp.png";
 import down from "../../../assets/images/CaretDown.png";
 import manage from "../../../assets/images/HandCoins.png";
 import Modal from '../../ui/Modal/Modal';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../../../App';
 
 function Sidebar() {
     const [isContentOpen, setIsContentOpen] = useState(false);
@@ -20,6 +21,7 @@ function Sidebar() {
     const location = useLocation();
     const [activeItem, setActiveItem] = useState(location.pathname);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const { setIsLoggedIn } = useContext(AuthContext);
 
     const toggleOpen = () => {
         setIsContentOpen(!isContentOpen);
@@ -27,6 +29,9 @@ function Sidebar() {
     };
 
     const handleLogout = () => {
+        sessionStorage.removeItem('access_token');
+        sessionStorage.removeItem('refresh_token');
+        setIsLoggedIn(false);
         navigate("login");
     };
 
