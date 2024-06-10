@@ -7,7 +7,7 @@ import passwordIcon from '../../../assets/images/password.svg';
 import visible from '../../../assets/images/visible.png';
 import invalid from '../../../assets/images/WarningCircle.png';
 
-function Login() {
+function Login({ setIsLoggedIn }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordType, setPasswordType] = useState('password');
@@ -46,6 +46,7 @@ function Login() {
         // Store the tokens in sessionStorage
         sessionStorage.setItem('access_token', data.data.access_token);
         sessionStorage.setItem('refresh_token', data.data.refresh_token);
+        setIsLoggedIn(true);
         navigate('/admin');
       } else {
         setShowAlert(true);
