@@ -20,11 +20,12 @@ function DetailDonasi() {
   const [imageFile, setImageFile] = useState(null);
 
   const [organizations, setOrganizations] = useState([]);
-  const categories = ["Edukasi", "Bencana Alam", "Kegiatan Sosial", "Lingkungan"];
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     getDetailFundraising();
     fetchOrganizations();
+    fetchCategories();
   }, [id]);
 
   const API_KEY = import.meta.env.VITE_API_KEY;
@@ -69,6 +70,23 @@ function DetailDonasi() {
     }
   };
 
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraising-categories`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + API_KEY,
+        },
+      });
+      const result = await response.json();
+      if (result.success) {
+        setCategories(result.data);
+      }
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
   const updateFundraising = async () => {
     try {
       const formData = new FormData();
@@ -76,9 +94,9 @@ function DetailDonasi() {
         formData.append('image_url', imageFile);
       }
       formData.append('title', title);
-      formData.append('organization_id', organizations.find(org => org.name === organizationName)?.id); // Assuming the organization object has id and name
+      formData.append('organization_id', organizations.find(org => org.name === organizationName)?.id); 
       formData.append('target_amount', targetAmount);
-      formData.append('category_id', categories.indexOf(category) + 1); // Assuming the index + 1 is the category_id
+      formData.append('category_id', categories.find(cat => cat.name === category)?.id);
       formData.append('start_date', startDate);
       formData.append('end_date', endDate);
       formData.append('description', description);
@@ -222,9 +240,9 @@ function DetailDonasi() {
                   onChange={(e) => setCategory(e.target.value)}
                   className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-100"
                 >
-                  {categories.map((cat, index) => (
-                    <option key={index} value={cat}>{cat}</option>
-                  ))}
+                  {categories.map((cat) => (
+                      <option key={cat.id} value={cat.name}>{cat.name}</option>
+                    ))}
                 </select>
               </div>
               <div className="grid grid-rows-1 md:grid-rows-2 gap-4">
