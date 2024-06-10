@@ -71,7 +71,7 @@ const TabelDataArtikel = () => {
               <td className="px-6 py-4">{item.desc}</td>
               <td className="px-6 py-4">{item.save}</td>
               <td className="px-6 py-4">{item.komentar}</td>
-              <td className="px-6 py-4 flex">
+              <td className="ps-3 pt-4 flex">
                 <Link to="detail-artikel">
                   <button>
                     <img className="pe-3" src={edit} alt="edit" />
