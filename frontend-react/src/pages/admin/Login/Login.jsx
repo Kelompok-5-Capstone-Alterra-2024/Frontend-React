@@ -107,7 +107,7 @@ function Login() {
           <div className="w-full">
             <button
               type="submit"
-              className="w-full mt-8 bg-sky-500 text-gray-50 text-sm font-normal font-['Roboto'] leading-tight rounded-full py-3.5 hover:bg-sky-600 transition duration-300"
+              className="w-full mt-8 bg-sky-500 text-gray-50 text-md font-bold leading-tight rounded-full py-3.5 hover:bg-sky-600 transition duration-300"
             >
               LOGIN
             </button>
