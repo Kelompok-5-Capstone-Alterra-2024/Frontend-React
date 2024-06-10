@@ -129,8 +129,8 @@ const TabelDataDonasi = ({data}) => {
               </th>
               <td className="px-6 py-4">{item.title}</td>
               <td className="px-6 py-4">{item.organization_name}</td>
-              <td className="px-6 py-4">{item.current_progress}</td>
               <td className="px-6 py-4">{item.target_amount}</td>
+              <td className="px-6 py-4">{item.current_progress}</td>
               <td className="px-6 py-4">
                 <div className={`px-2 py-1 rounded justify-center items-center gap-2.5 inline-flex ${getStatusColor(item.status)}`}>
                   <div className="text-neutral-700 text-xs font-normal">{item.status}</div>

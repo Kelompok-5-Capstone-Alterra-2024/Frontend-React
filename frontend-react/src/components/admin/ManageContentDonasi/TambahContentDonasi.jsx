@@ -25,7 +25,7 @@ function AddDonasi({ isOpen, onClose }) {
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
         setFile(selectedFile);
-        setFormData({ ...formData, image_url: selectedFile ? URL.createObjectURL(selectedFile) : '' });
+        setFormData({ ...formData, image_url: selectedFile });
     };
 
     const API_KEY = import.meta.env.VITE_API_KEY;
@@ -33,7 +33,7 @@ function AddDonasi({ isOpen, onClose }) {
         e.preventDefault();
         try {
             const data = new FormData();
-            data.append('image', file);
+            data.append('image_url', file);
             Object.keys(formData).forEach(key => {
                 data.append(key, formData[key]);
             });
@@ -41,7 +41,6 @@ function AddDonasi({ isOpen, onClose }) {
             const response = await fetch('https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraisings', {
                 method: 'POST',
                 headers: {
-                    'Access-Control-Allow-Origin': '*',
                     Authorization: 'Bearer ' + API_KEY
                   },
                 body: data
@@ -85,18 +84,7 @@ function AddDonasi({ isOpen, onClose }) {
                             </div>
                             <div className="flex flex-col">
                                 <label htmlFor="organization_id" className="block text-gray-700 text-sm font-normal">Organisasi</label>
-                                <select
-                                    id="organization_id"
-                                    name="organization_id"
-                                    className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    value={formData.organization_id}
-                                    onChange={handleChange}
-                                >
-                                    <option value=""></option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
+                                <input type="text" id="organization_id" name="organization_id" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.organization_id} onChange={handleChange} />
                             </div>
                             <div className="flex flex-col">
                                 <label htmlFor="target_amount" className="block text-gray-700 text-sm font-normal">Target Donasi</label>
@@ -104,67 +92,30 @@ function AddDonasi({ isOpen, onClose }) {
                             </div>
                             <div className="flex flex-col">
                                 <label htmlFor="category_id" className="block text-gray-700 text-sm font-normal">Kategori</label>
-                                <select
-                                    id="category_id"
-                                    name="category_id"
-                                    className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    value={formData.category_id}
-                                    onChange={handleChange}
-                                >
-                                    <option value=""></option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
+                                <input type="text" id="category_id" name="category_id" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.category_id} onChange={handleChange} />
                             </div>
                             <div className="grid grid-rows-1 md:grid-rows-2 gap-4">
                                 <div className="flex flex-col">
                                     <label htmlFor="start_date" className="block text-gray-700 text-sm font-normal mb-1">Tanggal mulai</label>
-                                    <div className="relative max-w-sm">
-                                        <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                            <svg
-                                                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor"
-                                                viewBox="0 0 20 20"
-                                            >
-                                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                            </svg>
-                                        </div>
-                                        <input
-                                            type="date"
-                                            id="start_date"
-                                            name="start_date"
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                            value={formData.start_date}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
+                                    <input
+                                        type="date"
+                                        id="start_date"
+                                        name="start_date"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={formData.start_date}
+                                        onChange={handleChange}
+                                    />
                                 </div>
                                 <div className="flex flex-col">
                                     <label htmlFor="end_date" className="block text-gray-700 text-sm font-normal mb-1">Tanggal selesai</label>
-                                    <div className="relative max-w-sm">
-                                        <div className="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                            <svg
-                                                className="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor"
-                                                viewBox="0 0 20 20"
-                                            >
-                                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                            </svg>
-                                        </div>
-                                        <input
-                                            type="date"
-                                            id="end_date"
-                                            name="end_date"
-                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                            value={formData.end_date}
-                                            onChange={handleChange}
-                                        />
-                                    </div>
+                                    <input
+                                        type="date"
+                                        id="end_date"
+                                        name="end_date"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={formData.end_date}
+                                        onChange={handleChange}
+                                    />
                                 </div>
                             </div>
                             <div className="flex flex-col">
