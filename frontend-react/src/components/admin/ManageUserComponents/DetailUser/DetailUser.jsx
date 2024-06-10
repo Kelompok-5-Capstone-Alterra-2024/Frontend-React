@@ -41,8 +41,8 @@ function DetailUser() {
                   alt="Profile"
                 />
                 <div className="pt-3">
-                  <span className="text-black text-xl font-semibold font-['Roboto'] leading-7">Agung Rizky </span>
-                  <span className="text-sky-500 text-base font-semibold font-['Roboto'] leading-normal">| ID: 01</span>
+                  <span className="text-black text-xl font-bold leading-7">Agung Rizky </span>
+                  <span className="text-sky-500 text-base font-bold leading-normal">| ID: 01</span>
                 </div>
               </div>
               <div className="grid grid-rows-2 col-span-2">
@@ -100,7 +100,7 @@ function DetailUser() {
             </div>
             <div className="bg-white p-4 col-span-2 rounded-lg shadow max-h-screen">
               <form>
-              <h1 className="mb-3 text-black font-semibold font-['Roboto'] leading-normal">Edit Detail User</h1>
+              <h1 className="mb-3 text-black font-bold leading-normal">Edit Detail User</h1>
                 <div className="mb-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col">
