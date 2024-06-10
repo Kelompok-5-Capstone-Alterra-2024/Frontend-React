@@ -42,7 +42,7 @@ function ManageOrganization() {
   return (
     <div className="min-h-screen bg-neutral-50 flex flex-col p-4">
       <div className="w-full flex gap-4 items-center mb-6">
-        <div className="text-black text-2xl font-semibold font-['Roboto']">Manage Organization</div>
+        <div className="text-black text-2xl font-bold">Manage Organization</div>
           <button className="px-4 py-2 bg-sky-500 text-gray-50 text-sm font-semibold rounded-lg" onClick={openModal}>Tambah Organisasi</button>
           <AddOrganisasi isOpen={isModalOpen} onClose={closeModal} />
         </div>
