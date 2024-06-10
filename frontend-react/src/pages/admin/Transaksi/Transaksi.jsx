@@ -11,7 +11,7 @@ function Transaksi() {
     <div className="min-h-screen bg-neutral-50 flex flex-col p-4">
       {/* card */}
       <div className="w-full flex gap-4 items-center mb-6">
-        <div className="text-black text-2xl font-semibold font-['Roboto']">Transaksi</div>
+        <div className="text-black text-2xl font-bold">Transaksi</div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {[
