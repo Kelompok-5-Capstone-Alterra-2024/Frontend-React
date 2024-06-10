@@ -42,10 +42,8 @@ function AddOrganisasi({ isOpen, onClose }) {
                                             </svg>
                                         </div>
                                         <input
-                                            datepicker=""
                                             type="date"
                                             className="mt-1 h-12 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                            placeholder="Select date"
                                         />
                                     </div>
                                 </div>
@@ -65,8 +63,7 @@ function AddOrganisasi({ isOpen, onClose }) {
                             <div className="flex flex-col">
                                 <label htmlFor="deskripsiOrganisasi" className="block text-gray-700 text-sm font-normal mb-1">Deskripsi Organisasi</label>
                                 <textarea
-                                    id="message"
-                                    
+                                    id="message"     
                                     className="block p-2.5 w-full h-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                     placeholder="Deskripsi Organisasi"
                                 />

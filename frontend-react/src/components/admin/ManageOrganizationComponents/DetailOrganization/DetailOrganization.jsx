@@ -1,7 +1,7 @@
 import { useState } from "react"
 import DetailOrganizationDonasi from "./Donasi/DetailOrganizationDonasi";
 import DetailOrganizationVolunteer from "./Volunteer/DetailOrganizationVolunteer";
-import HapusDetailOrganisasi from "./HapusDetailOrganisasi"
+import HapusOrganisasi from "../HapusOrganisasi"
 import yayasan from "../../../../assets/images/logoYayasan.png"
 
 function DetailOrganization() {
@@ -10,7 +10,7 @@ function DetailOrganization() {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = (event) => {
-    event.preventDefault();  // Prevent form submission
+    event.preventDefault();
     setModalOpen(true);
   };
 
@@ -93,10 +93,8 @@ function DetailOrganization() {
                                     </svg>
                                 </div>
                                 <input
-                                    datepicker=""
                                     type="date"
                                     className="bg-gray-50 border h-12 mt-1 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Select date"
                                 />
                             </div>
                             <div className="flex flex-col mt-3">
@@ -123,7 +121,7 @@ function DetailOrganization() {
                   <button className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg gap-2 me-3" onClick={openModal}>
                     Hapus
                   </button>
-                  <HapusDetailOrganisasi isOpen={isModalOpen} onClose={closeModal} />
+                  <HapusOrganisasi isOpen={isModalOpen} onClose={closeModal} />
                   <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold">
                     Edit Organisasi
                   </button>
@@ -168,7 +166,7 @@ function DetailOrganization() {
               </svg>
               <input
                 type="text"
-                className="grow border-0 focus:outline-none focus:ring-0 w-40 md:w-60"
+                className="grow border-0 focus:outline-none focus:ring-0 lg:w-96"
                 placeholder="Search"
               />
             </label>

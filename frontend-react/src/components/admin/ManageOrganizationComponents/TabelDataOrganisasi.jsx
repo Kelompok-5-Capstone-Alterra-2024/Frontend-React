@@ -81,12 +81,12 @@ const TabelDataOrganisasi = ({ data }) => {
               <td className="px-6 py-4">@sosmediavlimate</td>
               <td className="px-6 py-4">
                 <div className="px-2 py-1 bg-emerald-100 rounded justify-center items-center gap-2.5 inline-flex">
-                  <div className="text-neutral-700 text-xs font-normal font-['Roboto'] leading-[18px]">
+                  <div className="text-neutral-700 text-xs font-normal leading-[18px]">
                     {item.is_verified ? 'Verified' : 'Not Verified'}
                   </div>
                 </div>
               </td>
-              <td className="ps-3 pt-6 flex">
+              <td className="ps-2 pt-4 flex">
                 <Link to="detail-organization">
                     <button>
                       <img className="pe-3" src={edit} alt="edit" />
