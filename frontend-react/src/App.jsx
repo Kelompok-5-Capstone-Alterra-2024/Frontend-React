@@ -1,4 +1,3 @@
-import { Route, Routes } from "react-router-dom"
 import UserLayout from "./Layout/UserLayout"
 import Home from "./pages/user/Home/Home"
 import AdminLayout from "./Layout/AdminLayout"
@@ -19,11 +18,36 @@ import Artikel from "./pages/admin/ManageContent/Artikel/Artikel"
 import DetailArtikel from "./components/admin/ManageContentArtikel/DetailArtikel/DetailArtikel"
 import Chatbot from "./pages/admin/Chatbot/Chatbot"
 import Notification from "./pages/admin/Notification/Notification"
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect, createContext } from "react";
+
+export const AuthContext = createContext();
 
 function App() {
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('access_token');
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isLoggedIn && location.pathname === '/admin/login') {
+      navigate('/admin');
+    } else if (!isLoggedIn && location.pathname.startsWith('/admin') && location.pathname !== '/admin/login') {
+      navigate('/admin/login');
+    }
+  }, [isLoggedIn, location, navigate]);
+
   return (
-    <>
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       <Routes>
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Home/>} />
@@ -46,12 +70,11 @@ function App() {
           <Route path="chatbot" element={<Chatbot />} />
           <Route path="notification" element={<Notification />} />
         </Route>
-        <Route path="admin/login" element={<Login />} />
-
+        <Route path="admin/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </AuthContext.Provider>
   )
 }
 
-export default App
+export default App;
