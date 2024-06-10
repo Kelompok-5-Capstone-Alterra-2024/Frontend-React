@@ -11,7 +11,7 @@ function DetailDonasi() {
   const [data, setData] = useState(null);
 
   const [title, setTitle] = useState('');
-  const [organizationName, setOrganizationName] = useState('');
+  const [organization, setOrganization] = useState('');
   const [targetAmount, setTargetAmount] = useState(0);
   const [category, setCategory] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -19,13 +19,13 @@ function DetailDonasi() {
   const [description, setDescription] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
-  const [organizations, setOrganizations] = useState([]);
-  const [categories, setCategories] = useState([]);
+  // const [organizations, setOrganizations] = useState([]);
+  // const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     getDetailFundraising();
-    fetchOrganizations();
-    fetchCategories();
+    // fetchOrganizations();
+    // fetchCategories();
   }, [id]);
 
   const API_KEY = import.meta.env.VITE_API_KEY;
@@ -41,9 +41,9 @@ function DetailDonasi() {
       if (result.success) {
         setData(result.data);
         setTitle(result.data.title);
-        setOrganizationName(result.data.organization_name);
+        setOrganization(result.data.organization_id);
         setTargetAmount(result.data.target_amount);
-        setCategory(result.data.category);
+        setCategory(result.data.category_id);
         setStartDate(result.data.start_date);
         setEndDate(result.data.end_date);
         setDescription(result.data.description);
@@ -53,39 +53,39 @@ function DetailDonasi() {
     }
   };
 
-  const fetchOrganizations = async () => {
-    try {
-      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/organizations`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + API_KEY,
-        },
-      });
-      const result = await response.json();
-      if (result.success) {
-        setOrganizations(result.data);
-      }
-    } catch (error) {
-      console.error('Error fetching organizations:', error);
-    }
-  };
+  // const fetchOrganizations = async () => {
+  //   try {
+  //     const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/organizations`, {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Authorization: 'Bearer ' + API_KEY,
+  //       },
+  //     });
+  //     const result = await response.json();
+  //     if (result.success) {
+  //       setOrganizations(result.data);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching organizations:', error);
+  //   }
+  // };
 
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraising-categories`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + API_KEY,
-        },
-      });
-      const result = await response.json();
-      if (result.success) {
-        setCategories(result.data);
-      }
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    }
-  };
+  // const fetchCategories = async () => {
+  //   try {
+  //     const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/fundraising-categories`, {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Authorization: 'Bearer ' + API_KEY,
+  //       },
+  //     });
+  //     const result = await response.json();
+  //     if (result.success) {
+  //       setCategories(result.data);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error fetching categories:', error);
+  //   }
+  // };
 
   const updateFundraising = async () => {
     try {
@@ -94,9 +94,11 @@ function DetailDonasi() {
         formData.append('image_url', imageFile);
       }
       formData.append('title', title);
-      formData.append('organization_id', organizations.find(org => org.name === organizationName)?.id); 
+      // formData.append('organization_id', organizations.find(org => org.name === organization)?.id); 
+      formData.append('organization_id', organization); 
       formData.append('target_amount', targetAmount);
-      formData.append('category_id', categories.find(cat => cat.name === category)?.id);
+      // formData.append('category_id', categories.find(cat => cat.name === category)?.id);
+      formData.append('category_id', category);
       formData.append('start_date', startDate);
       formData.append('end_date', endDate);
       formData.append('description', description);
@@ -106,7 +108,7 @@ function DetailDonasi() {
         headers: {
           Authorization: 'Bearer ' + API_KEY,
         },
-        body: formData,
+        body: formData
       });
 
       const result = await response.json();
@@ -210,16 +212,14 @@ function DetailDonasi() {
               </div>
               <div className="flex flex-col">
                 <label htmlFor="organisasi" className="block text-gray-700 text-sm font-normal">Organisasi</label>
-                <select
+                <input
+                  type="text"
                   id="organisasi"
-                  value={organizationName}
-                  onChange={(e) => setOrganizationName(e.target.value)}
-                  className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-100"
-                >
-                  {organizations.map((org) => (
-                    <option key={org.id} value={org.name}>{org.name}</option>
-                  ))}
-                </select>
+                  value={organization}
+                  onChange={(e) => setOrganization(e.target.value)}
+                  placeholder="Type here"
+                  className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
               </div>
               <div className="flex flex-col">
                 <label htmlFor="target" className="block text-gray-700 text-sm font-normal">Target Donasi</label>
@@ -234,16 +234,14 @@ function DetailDonasi() {
               </div>
               <div className="flex flex-col">
                 <label htmlFor="kategori" className="block text-gray-700 text-sm font-normal">Kategori</label>
-                <select
+                <input
+                  type="text"
                   id="kategori"
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-100"
-                >
-                  {categories.map((cat) => (
-                      <option key={cat.id} value={cat.name}>{cat.name}</option>
-                    ))}
-                </select>
+                  placeholder="Type here"
+                  className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
               </div>
               <div className="grid grid-rows-1 md:grid-rows-2 gap-4">
                 <div className="flex flex-col">
