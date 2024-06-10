@@ -27,18 +27,9 @@ function AddVolunteer({ isOpen, onClose }) {
                             <input type="text" id="judul" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
                         </div>
                         <div className="flex flex-col">
-                        <label htmlFor="organisasi" className="block text-gray-700 text-sm font-normal">Organisasi</label>
-                            <select
-                                id="organisasi"
-                                className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            >
-                                <option selected=""></option>
-                                <option value="US">Pilih Organiasi</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-                        </div>
+                                <label htmlFor="organization_id" className="block text-gray-700 text-sm font-normal">Organisasi</label>
+                                <input type="text" id="organization_id" name="organization_id" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"/>
+                         </div>
                         <div className="grid grid-rows-1 md:grid-rows-3 gap-4">
                             <div className="flex flex-col">
                                 <label htmlFor="target" className="block text-gray-700 text-sm font-normal">Target Donasi</label>
