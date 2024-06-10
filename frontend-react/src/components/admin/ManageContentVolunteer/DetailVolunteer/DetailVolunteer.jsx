@@ -1,7 +1,7 @@
 import { useState } from "react"
 import sabang from '../../../../assets/images/volunteerSabang.png'
 import RiwayatDataVolunteer from './RiwayatDataVolunteer'
-import HapusDetailVolunteer from './HapusDetailVolunteer'
+import HapusVolunteer from '../HapusVolunteer'
 
 function DetailVolunteer() {
 
@@ -127,10 +127,8 @@ function DetailVolunteer() {
                       </svg>
                     </div>
                     <input
-                      datepicker=""
                       type="date"
                       className="bg-gray-50 border h-12 mt-1 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Select date"
                     />
                   </div>
                 </div>
@@ -149,10 +147,8 @@ function DetailVolunteer() {
                       </svg>
                     </div>
                     <input
-                      datepicker=""
                       type="date"
                       className="bg-gray-50 border h-12 mt-1 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      placeholder="Select date"
                     />
                   </div>
                 </div>
@@ -171,7 +167,7 @@ function DetailVolunteer() {
             <button className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg gap-2 me-3" onClick={openModal}>
               Hapus
             </button>
-            <HapusDetailVolunteer isOpen={isModalOpen} onClose={closeModal} />
+            <HapusVolunteer isOpen={isModalOpen} onClose={closeModal} />
             <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold">
               Edit Konten
             </button>
