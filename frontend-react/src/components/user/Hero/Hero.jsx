@@ -1,6 +1,6 @@
 import ellipse3 from '../../../assets/images/ellipse3.svg';
 import ellipse4 from '../../../assets/images/ellipse4.svg';
-import mobile from '../../../assets/images/mobile.png';
+import mobile from '../../../assets/images/mobileNew.png';
 import appstore from '../../../assets/images/appstore.png';
 import playstore from '../../../assets/images/playstore.png';
 
