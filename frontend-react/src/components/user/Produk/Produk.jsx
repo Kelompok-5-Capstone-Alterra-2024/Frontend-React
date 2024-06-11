@@ -7,8 +7,8 @@ import artikel from '../../../assets/images/Confetti.svg';
 
 function Produk() {
   return (
-    <div className="relative p-10 bg-white min-h-screen flex flex-col items-center">
-      <div className="mt-10 md:mt-20 text-neutral-800 text-5xl font-semibold tracking-wide text-center" id='produk'>
+    <div className="relative p-10 bg-white min-h-screen flex flex-col items-center" id='produk'>
+      <div className="mt-10 md:mt-20 text-neutral-800 text-5xl font-bold tracking-wide text-center">
         Fitur Utama
       </div>
       <div className="mt-10 md:mt-20 pb-44 flex flex-col md:flex-row justify-center items-center gap-10 px-4 relative z-10">

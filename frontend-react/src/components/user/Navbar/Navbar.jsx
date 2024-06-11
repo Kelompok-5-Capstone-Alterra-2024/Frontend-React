@@ -1,18 +1,40 @@
-import { useState } from 'react';
-import { Link } from 'react-scroll';
+import { useState, useEffect } from 'react';
+import { Link, Events, scrollSpy } from 'react-scroll';
 import logo from '../../../assets/images/logo.png';
 
 function Navbar() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
 
+  useEffect(() => {
+    Events.scrollEvent.register('begin', function () {
+      console.log("begin", arguments);
+    });
+
+    Events.scrollEvent.register('end', function () {
+      console.log("end", arguments);
+    });
+
+    scrollSpy.update();
+
+    return () => {
+      Events.scrollEvent.remove('begin');
+      Events.scrollEvent.remove('end');
+    };
+  }, []);
+
+  const handleSetActive = (to) => {
+    setActiveSection(to);
+  };
+
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
+    <nav className="bg-white border-gray-200 fixed top-0 left-0 w-full z-50 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse cursor-pointer" smooth={true} duration={500}>
+        <Link to="home" className="flex items-center space-x-3 rtl:space-x-reverse cursor-pointer" smooth={true} duration={500}>
           <img src={logo} className="h-8" alt="Peduli Pintar Logo" />
         </Link>
         <button
@@ -30,19 +52,54 @@ function Navbar() {
         <div className={`w-full md:block md:w-auto ${isNavOpen ? "block" : "hidden"}`} id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-              <Link to="/" className="block py-2 px-3 text-gray-400 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer" smooth={true} duration={500}>Home</Link>
+              <Link
+                to="/"
+                className={`block py-2 px-3 ${activeSection === '/' ? 'text-sky-500' : 'text-gray-400'} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-sky-500 md:p-0 dark:text-white md:dark:hover:text-sky-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer`}
+                smooth={true}
+                duration={500}
+                spy={true}
+                onSetActive={handleSetActive}
+              >Home</Link>
             </li>
             <li>
-              <Link to="produk" className="block py-2 px-3 text-gray-400 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer" smooth={true} duration={500}>Fitur</Link>
+              <Link
+                to="produk"
+                className={`block py-2 px-3 ${activeSection === 'produk' ? 'text-sky-500' : 'text-gray-400'} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-sky-500 md:p-0 dark:text-white md:dark:hover:text-sky-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer`}
+                smooth={true}
+                duration={500}
+                spy={true}
+                onSetActive={handleSetActive}
+              >Fitur</Link>
             </li>
             <li>
-              <Link to="testimonials" className="block py-2 px-3 text-gray-400 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer" smooth={true} duration={500}>Testimonial</Link>
+              <Link
+                to="testimonials"
+                className={`block py-2 px-3 ${activeSection === 'testimonials' ? 'text-sky-500' : 'text-gray-400'} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-sky-500 md:p-0 dark:text-white md:dark:hover:text-sky-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer`}
+                smooth={true}
+                duration={500}
+                spy={true}
+                onSetActive={handleSetActive}
+              >Testimonial</Link>
             </li>
             <li>
-              <Link to="faq" className="block py-2 px-3 text-gray-400 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer" smooth={true} duration={500}>FAQ</Link>
+              <Link
+                to="faq"
+                className={`block py-2 px-3 ${activeSection === 'faq' ? 'text-sky-500' : 'text-gray-400'} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-skyy-500 md:p-0 dark:text-white md:dark:hover:text-sky-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer`}
+                smooth={true}
+                duration={500}
+                spy={true}
+                onSetActive={handleSetActive}
+              >FAQ</Link>
             </li>
             <li>
-              <Link to="about" className="block py-2 px-3 text-gray-400 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer" smooth={true} duration={500}>About</Link>
+              <Link
+                to="about"
+                className={`block py-2 px-3 ${activeSection === 'about' ? 'text-sky-500' : 'text-gray-400'} rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-sky-500 md:p-0 dark:text-white md:dark:hover:text-sky-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent cursor-pointer`}
+                smooth={true}
+                duration={500}
+                spy={true}
+                onSetActive={handleSetActive}
+              >About</Link>
             </li>
           </ul>
         </div>

@@ -6,9 +6,9 @@ import playstore from '../../../assets/images/playstore.png';
 
 function Hero() {
   return (
-    <div className="relative bg-white min-h-screen flex flex-col">
+    <div className="relative bg-white min-h-screen flex flex-col" id='/'>
       <div className="flex flex-col md:flex-row md:h-full flex-1">
-        <div className="md:w-1/2 flex flex-col justify-center items-start p-10">
+        <div className="md:w-1/2 flex flex-col justify-center items-start p-10 pt-20">
           <div className="flex flex-col gap-6">
             <div>
               <p className="text-neutral-700 text-4xl md:text-5xl font-extrabold leading-[50px] md:leading-[65px] tracking-wide">
