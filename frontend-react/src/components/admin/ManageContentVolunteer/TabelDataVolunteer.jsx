@@ -117,11 +117,11 @@ const TabelDataVolunteer = ({data}) => {
                 </div>
               </td>
               <td className="ps-3 pt-6 flex">
-              <Link to="detail-volunteer">
+                <Link to={`detail-volunteer/${item.id}`}>
                   <button>
                     <img className="pe-3" src={edit} alt="edit" />
                   </button>
-              </Link>
+                </Link>
               <button onClick={openModal}>
                  <img src={trash} alt="hapus" />
               </button>
