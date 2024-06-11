@@ -11,12 +11,12 @@ const ManageUser = () => {
   }, [currentPage]);
 
   const fetchUserData = async (page) => {
-    const API_KEY = import.meta.env.VITE_API_KEY;
+    const accessToken = sessionStorage.getItem('access_token');
     try {
       const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/users?page=${page}&limit=10`, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + API_KEY,
+          'Authorization': `Bearer ${accessToken}`
         },
       });
       const result = await response.json();
