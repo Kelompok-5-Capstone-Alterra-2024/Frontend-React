@@ -13,18 +13,20 @@ function Chatbot() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Pesan awal yang akan dikirimkan ke CineBot
-    const promptAwal = 'kamu adalah bot peduli pintar';
+    // Initial prompt to define the bot's role
+    const promptAwal = 'kamu adalah bot peduli pintar yang memberikan rekomendasi artikel kepada user sesuai pertanyaan dari mereka.';
 
-    // Struktur body request untuk mengirim pertanyaan ke OpenAI API
+    // API body structure to send the user question to OpenAI API
     const APIBody = {
       model: 'gpt-4',
       messages: [
         {
+          role: 'system',
+          content: promptAwal
+        },
+        {
           role: 'user',
-          content: `${promptAwal} 
-          + kamu adalah bot peduli pintar yang memberikan rekomendasi artikel kepada user sesuai pertanyaan dari mereka
-          + pertanyaan dari user${prompt}`
+          content: `Pertanyaan dari user: ${prompt}`
         }
       ]
     };
