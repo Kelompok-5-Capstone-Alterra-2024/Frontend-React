@@ -136,7 +136,7 @@ const TabelDataDonasi = ({data}) => {
                   <div className="text-neutral-700 text-xs font-normal">{item.status}</div>
                 </div>
               </td>
-              <td className="ps-3 pt-6 flex">
+              <td className="justify-center items-center space-x-4">
                 <Link to={`detail-donasi/${item.id}`}>
                   <button>
                     <img className="pe-3" src={edit} alt="edit" />
