@@ -1,7 +1,33 @@
+import { useEffect, useState } from "react";
 import PaginationRiwayatDonasi from "./PaginationRiwayatDonasi";
 import TableRiwayatDonasi from "./TableRiwayatDonasi";
 
 const RiwayatDonasi = () => {
+  const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    getAllDonationHistory(currentPage);
+  }, [currentPage]);
+
+  const accessToken = sessionStorage.getItem('access_token');
+  const getAllDonationHistory = async (page) => {
+    try {
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/donations?page=${page}&limit=10`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+      });
+      const result = await response.json();
+      if (result.status) {
+        setData(result.data);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   return (
     <div className="p-6 shadow-lg rounded-lg">
       <div className="flex flex-wrap justify-between items-center">
@@ -22,8 +48,8 @@ const RiwayatDonasi = () => {
           </label>
         </div>
       </div>
-      <TableRiwayatDonasi/>
-      <PaginationRiwayatDonasi/>
+      <TableRiwayatDonasi data={data}/>
+      <PaginationRiwayatDonasi currentPage={currentPage} onPageChange={setCurrentPage}/>
     </div>
   );
 };
