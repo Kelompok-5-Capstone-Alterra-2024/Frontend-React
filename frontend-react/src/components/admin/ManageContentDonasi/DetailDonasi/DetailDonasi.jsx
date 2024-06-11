@@ -9,7 +9,6 @@ function DetailDonasi() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [data, setData] = useState(null);
-
   const [title, setTitle] = useState('');
   const [organization, setOrganization] = useState('');
   const [targetAmount, setTargetAmount] = useState(0);
