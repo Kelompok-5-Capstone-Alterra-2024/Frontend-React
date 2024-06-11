@@ -60,7 +60,7 @@ function App() {
           <Route path="manage-content/volunteer" element={<Volunteer />} />
           <Route path="manage-content/volunteer/detail-volunteer/:id" element={<DetailVolunteer/>} />
           <Route path="manage-content/artikel" element={<Artikel />} />
-          <Route path="manage-content/artikel/detail-artikel" element={<DetailArtikel/>} />
+          <Route path="manage-content/artikel/detail-artikel/:id" element={<DetailArtikel/>} />
           <Route path="manage-user" element={<ManageUser />} />
           <Route path="manage-user/detail-user/:id" element={<DetailUser />} />
           <Route path="manage-organization" element={<ManageOrganization />} />
