@@ -12,7 +12,7 @@ const Testimonial = ({ testimonial }) => {
             </div>
             <div className="block pt-2 text-lg leading-tight font-medium text-black text-center">{name}</div>
             <p className="pt-2 text-gray-500 text-center">{content}</p>
-            <div className="pt-6 text-sm text-indigo-500 font-semibold text-center">{position}</div>
+            <div className="pt-6 text-sm text-sky-500 font-semibold text-center">{position}</div>
         </div>
       </div>
     </div>

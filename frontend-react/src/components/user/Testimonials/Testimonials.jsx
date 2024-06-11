@@ -36,7 +36,7 @@ function Testimonials() {
 
   return (
     <div className="bg-white relative" id='testimonials'>
-      <div className='p-8 md:p-16'>
+      <div className='p-8 pt-20 md:p-16'>
       <h1 className="text-3xl font-bold text-black pb-2">Apa Kata Mereka?</h1>
       <p className="text-lg text-gray-600">Kami bangga bisa menjadi jembatan antara mereka yang ingin membantu dan yang membutuhkan.</p>
       <p className="text-lg text-gray-600">Berikut adalah beberapa kisah inspiratif dari pengguna aplikasi Peduli Pintar yang telah merasakan manfaatnya.</p>

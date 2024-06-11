@@ -6,7 +6,7 @@ import ellipse3 from '../../../assets/images/ellipse3.svg';
 function About() {
   return (
     <div className='relative' id='about'>
-    <div className="flex flex-wrap md:flex-nowrap bg-white p-5 lg:pb-16">
+    <div className="flex flex-wrap md:flex-nowrap bg-white p-5 lg:pb-16 pt-20">
       {/* Bagian Kiri */}
       <div className="relative w-full md:w-1/2 flex flex-col justify-center items-center">
         <div className="relative w-full md:w-auto">
