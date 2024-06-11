@@ -1,11 +1,35 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddArtikel from "../../../../components/admin/ManageContentArtikel/TambahContentArtikel";
 import TabelDataArtikel from "../../../../components/admin/ManageContentArtikel/TabelDataArtikel";
 import PaginationDataArtikel from "../../../../components/admin/ManageContentArtikel/PaginationDataArtikel";
 import up from '../../../../assets/images/arrowUpBlue.svg';
 
-function Artikel() {
+const Artikel = () => {
+  const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    getAllArticles(currentPage);
+  }, [currentPage]);
+
+  const API_KEY = import.meta.env.VITE_API_KEY;
+  const getAllArticles = async (page) => {
+    try {
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/articles?page=${page}&limit=10`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + API_KEY
+        },
+      });
+      const result = await response.json();
+      if (result.status) {
+        setData(result.data);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   const openModal = () => {
     setModalOpen(true);
@@ -71,8 +95,8 @@ function Artikel() {
             </label>
           </div>
         </div>
-        <TabelDataArtikel/>
-        <PaginationDataArtikel/>
+        <TabelDataArtikel data={data}/>
+        <PaginationDataArtikel currentPage={currentPage} onPageChange={setCurrentPage}/>
       </div>
     </div>
   )

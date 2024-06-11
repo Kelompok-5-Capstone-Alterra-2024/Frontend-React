@@ -1,42 +1,21 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import edit from '../../../assets/images/PencilSimple.svg';
 import trash from '../../../assets/images/Trash.svg'
 import HapusArtikel from './HapusArtikel';
-import { useState } from 'react';
 
-const TabelDataArtikel = () => {
-  const data = [
-    {
-      no: 1,
-      judul: "Membantu Isu Pendidikan",
-      desc: "Pendidikan menjadi fondasi utama",
-      save: "720",
-      komentar: "1.350",
-    },
-    {
-      no: 2,
-      judul: "Membantu Isu Pendidikan",
-      desc: "Pendidikan menjadi fondasi utama",
-      save: "720",
-      komentar: "1.350",
-    },
-    {
-      no: 3,
-      judul: "Membantu Isu Pendidikan",
-      desc: "Pendidikan menjadi fondasi utama",
-      save: "720",
-      komentar: "1.350",
-    },
-  ];
-
+const TabelDataArtikel = ({data}) => {
+  const [selectedItemId, setSelectedItemId] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const openModal = () => {
+  const openModal = (id) => {
+    setSelectedItemId(id);
     setModalOpen(true);
   };
-  
+
   const closeModal = () => {
     setModalOpen(false);
+    setSelectedItemId(null);
   };
 
   return (
@@ -65,19 +44,19 @@ const TabelDataArtikel = () => {
           {data.map((item, index) => (
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {item.no}
+                {item.id}
               </th>
-              <td className="px-6 py-4">{item.judul}</td>
-              <td className="px-6 py-4">{item.desc}</td>
-              <td className="px-6 py-4">{item.save}</td>
-              <td className="px-6 py-4">{item.komentar}</td>
-              <td className="ps-3 pt-4 flex">
-                <Link to="detail-artikel">
+              <td className="px-6 py-4">{item.title}</td>
+              <td className="px-6 py-4">{item.content}</td>
+              <td className="px-6 py-4">{item.total_user_bookmark}</td>
+              <td className="px-6 py-4">{item.total_comment}</td>
+              <td className="justify-center items-center space-x-4">
+                <Link to={`detail-artikel/${item.id}`}>
                   <button>
                     <img className="pe-3" src={edit} alt="edit" />
                   </button>
                 </Link>
-                <button onClick={openModal}>
+                <button onClick={() => openModal(item.id)}>
                    <img src={trash} alt="hapus" />
                 </button> 
               </td>
@@ -85,7 +64,11 @@ const TabelDataArtikel = () => {
           ))}
         </tbody>
       </table>
-      <HapusArtikel isOpen={isModalOpen} onClose={closeModal} />
+      <HapusArtikel
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        itemId={selectedItemId}
+      />
     </div>
   )
 }
