@@ -14,7 +14,7 @@ const TableRiwayatDonasi = ({data, setData}) => {
 
   const handleModalSubmit = (amount) => {
     const updatedData = data.map(d =>
-      d.id === currentItem.id ? { ...d, amount: parseInt(amount, 10), aksi: true } : d
+      d.id === currentItem.id ? { ...d, amount: parseInt(amount, 10), status: "success" } : d
     );
     setData(updatedData); // Use setData to update the data state in the parent component
     setShowModal(false);
@@ -133,12 +133,18 @@ const TableRiwayatDonasi = ({data, setData}) => {
               </td>
               <td className="px-6 py-4">{item.created_at}</td>
               <td className="px-6 py-4">
-                <button
-                  onClick={() => handleConfirmClick(item)}
-                  className={`rounded-xl px-2 py-1 text-white ${item.aksi ? 'bg-success-main' : 'bg-error-main'}`}
-                >
-                  {item.aksi ? 'Confirmed' : 'Confirm'}
-                </button>
+                {item.status === "success" ? (
+                  <button className="rounded-xl px-2 py-1 text-white bg-success-main">
+                    Success
+                  </button>
+                ) : (
+                  <button
+                    className="rounded-xl px-2 py-1 text-white bg-error-main"
+                    onClick={() => handleConfirmClick(item)}
+                  >
+                    Pending
+                  </button>
+                )}
               </td>
             </tr>
           ))}
