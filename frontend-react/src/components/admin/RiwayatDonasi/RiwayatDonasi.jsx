@@ -48,7 +48,7 @@ const RiwayatDonasi = () => {
           </label>
         </div>
       </div>
-      <TableRiwayatDonasi data={data}/>
+      <TableRiwayatDonasi data={data} setData={setData}/>
       <PaginationRiwayatDonasi currentPage={currentPage} onPageChange={setCurrentPage}/>
     </div>
   );
