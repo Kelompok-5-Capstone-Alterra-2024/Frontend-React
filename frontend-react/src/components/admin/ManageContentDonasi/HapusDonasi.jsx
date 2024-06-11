@@ -8,8 +8,7 @@ function HapusDonasi({ isOpen, onClose, itemId}) {
 
     if (!isOpen) return null;
 
-    const API_KEY = import.meta.env.VITE_API_KEY;
-
+    const accessToken = sessionStorage.getItem('access_token');
     const handleDelete = async () => {
         setIsDeleting(true);
         try {
@@ -17,7 +16,7 @@ function HapusDonasi({ isOpen, onClose, itemId}) {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer ${API_KEY}`
+                    'Authorization': `Bearer ${accessToken}`
                 },
             });
             if (response.ok) {
