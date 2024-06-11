@@ -39,7 +39,7 @@ function Hero() {
             <img src={playstore} alt="Play Store" />
           </div>
         </div>
-        <div className="md:w-1/2 flex justify-center items-center mb-40 mt-10 md:mt-0">
+        <div className="md:w-1/2 pt-20 flex justify-center items-center mb-40 mt-10 md:mt-0">
           <img src={mobile} alt="hero section" />
         </div>
       </div>
