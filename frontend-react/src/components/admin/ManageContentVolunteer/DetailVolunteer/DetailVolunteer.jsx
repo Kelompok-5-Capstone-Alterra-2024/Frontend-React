@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 function DetailVolunteer() {
   const { id } = useParams();
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [data, setData] = useState(null);
   const [title, setTitle] = useState('');
   const [targetVolunteer, setTargetVolunteer] = useState(0);
@@ -78,13 +78,13 @@ function DetailVolunteer() {
     document.getElementById('file_name').textContent = e.target.files[0].name;
   };
 
-  const openModal = (event) => {
+  const openDeleteModal = (event) => {
     event.preventDefault();
-    setModalOpen(true);
+    setDeleteModalOpen(true);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
   };
 
   if (!data) {
@@ -212,10 +212,10 @@ function DetailVolunteer() {
             </div>
           </div>
           <div className="flex justify-end">
-            <button className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg gap-2 me-3" onClick={openModal}>
+            <button className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg gap-2 me-3" onClick={openDeleteModal}>
               Hapus
             </button>
-            <HapusVolunteer isOpen={isModalOpen} onClose={closeModal} />
+            <HapusVolunteer isOpen={isDeleteModalOpen} onClose={closeDeleteModal} itemId={id} />
             <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold" type="button" onClick={updateVolunteer}>
               Edit Konten
             </button>
