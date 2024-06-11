@@ -2,7 +2,7 @@ import { useState } from 'react';
 import InputNominalDonasi from './InputNominalDonasi';
 import BuktiTransfer from './BuktiTransfer';
 
-const TableRiwayatDonasi = ({data}) => {
+const TableRiwayatDonasi = ({data, setData}) => {
   const [showModal, setShowModal] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
   const [showImageModal, setShowImageModal] = useState(false);
@@ -12,10 +12,13 @@ const TableRiwayatDonasi = ({data}) => {
     setShowModal(true);
   };
 
-  // const handleModalSubmit = (donationAmount) => {
-  //   setData(data.map(d => d.id === currentItem.id ? { ...d, donasi: donationAmount, aksi: true } : d));
-  //   setShowModal(false);
-  // };
+  const handleModalSubmit = (amount) => {
+    const updatedData = data.map(d =>
+      d.id === currentItem.id ? { ...d, amount: parseInt(amount, 10), aksi: true } : d
+    );
+    setData(updatedData); // Use setData to update the data state in the parent component
+    setShowModal(false);
+  };
 
   const handleImageClick = (item) => {
     setCurrentItem(item);
@@ -141,8 +144,13 @@ const TableRiwayatDonasi = ({data}) => {
           ))}
         </tbody>
       </table>
-      {/* {showModal && <InputNominalDonasi onSubmit={handleModalSubmit} onCancel={() => setShowModal(false)} />} */}
-      {showModal && <InputNominalDonasi onCancel={() => setShowModal(false)} />}
+      {showModal && (
+        <InputNominalDonasi
+          onSubmit={handleModalSubmit}
+          onCancel={() => setShowModal(false)}
+          itemId={currentItem.id}
+        />
+      )}
       {showImageModal && currentItem && (
         <BuktiTransfer
           src={currentItem.image_payment}

@@ -1,11 +1,34 @@
 import { useState } from 'react';
 
-function InputNominalDonasi({ onSubmit, onCancel }) {
+function InputNominalDonasi({ onSubmit, onCancel, itemId }) {
   const [donationAmount, setDonationAmount] = useState('');
 
-  const handleSubmit = () => {
+  const accessToken = sessionStorage.getItem('access_token');
+  const handleSubmit = async () => {
     if (donationAmount) {
-      onSubmit(donationAmount);
+      try {
+        const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/donations/${itemId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`
+          },
+          body: JSON.stringify({ amount: parseInt(donationAmount, 10) }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.success) {
+            onSubmit(donationAmount);
+          } else {
+            console.error('Failed to update donation amount:', data.message);
+          }
+        } else {
+          console.error('Failed to update donation amount:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
     }
   };
 
@@ -46,3 +69,4 @@ function InputNominalDonasi({ onSubmit, onCancel }) {
 }
 
 export default InputNominalDonasi;
+
