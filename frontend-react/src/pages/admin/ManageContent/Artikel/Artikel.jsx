@@ -13,13 +13,13 @@ const Artikel = () => {
     getAllArticles(currentPage);
   }, [currentPage]);
 
-  const API_KEY = import.meta.env.VITE_API_KEY;
+  const accessToken = sessionStorage.getItem('access_token');
   const getAllArticles = async (page) => {
     try {
       const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/articles?page=${page}&limit=10`, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + API_KEY
+          'Authorization': `Bearer ${accessToken}`
         },
       });
       const result = await response.json();
