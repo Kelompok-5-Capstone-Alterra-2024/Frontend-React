@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import RiwayatDataDonasi from './RiwayatDataDonasi';
 import HapusDonasi from '../HapusDonasi';
 import Cashout from './Cashout';
+import Swal from "sweetalert2";
 
 function DetailDonasi() {
   const { id } = useParams();
@@ -72,6 +73,11 @@ function DetailDonasi() {
       const result = await response.json();
       if (result.success) {
         getDetailFundraising(); // Refresh the data after successful update
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'data berhasil diedit',
+        });
       } else {
         console.error('Failed to update fundraising:', result.message);
       }

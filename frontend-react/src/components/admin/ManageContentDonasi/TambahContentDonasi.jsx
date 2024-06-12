@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import Swal from "sweetalert2";
 
 function AddDonasi({ isOpen, onClose }) {
     const [formData, setFormData] = useState({
@@ -46,7 +47,11 @@ function AddDonasi({ isOpen, onClose }) {
                 body: data
             });
             if (response.ok) {
-                alert('Fundraising created successfully!');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'data berhasil ditambahkan',
+                });
                 onClose();
             } else {
                 const errorData = await response.json();
