@@ -55,6 +55,7 @@ function DetailVolunteer() {
       formData.append('start_date', startDate);
       formData.append('end_date', endDate);
       formData.append('content_activity', description);
+      formData.append('registration_deadline', '2024-07-20'); // tambah data manual
 
       const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/volunteers/${id}`, {
         method: 'PUT',
@@ -67,6 +68,8 @@ function DetailVolunteer() {
       const result = await response.json();
       if (result.success) {
         getDetailVolunteer(); // Refresh the data after successful update
+      } else {
+        console.error('Failed to update volunteer:', result.message);
       }
     } catch (error) {
       console.error('Error updating data:', error);
@@ -74,8 +77,11 @@ function DetailVolunteer() {
   };
 
   const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]);
-    document.getElementById('file_name').textContent = e.target.files[0].name;
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      document.getElementById('file_name').textContent = file.name;
+    }
   };
 
   const openDeleteModal = (event) => {
@@ -200,7 +206,7 @@ function DetailVolunteer() {
               </div>
               </div>
               <div className="flex flex-col flex-1">
-                <label htmlFor="tanggalSelesai" className="block text-gray-700 text-sm font-normal mb-1">Deskripsi</label>
+                <label htmlFor="deskripsi" className="block text-gray-700 text-sm font-normal mb-1">Deskripsi</label>
                 <textarea
                   id="deskripsi"
                   value={description}
