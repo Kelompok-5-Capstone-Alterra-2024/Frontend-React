@@ -72,6 +72,8 @@ function DetailDonasi() {
       const result = await response.json();
       if (result.success) {
         getDetailFundraising(); // Refresh the data after successful update
+      } else {
+        console.error('Failed to update fundraising:', result.message);
       }
     } catch (error) {
       console.error('Error updating data:', error);
@@ -79,8 +81,11 @@ function DetailDonasi() {
   };
 
   const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]);
-    document.getElementById('file_name').textContent = e.target.files[0].name;
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      document.getElementById('file_name').textContent = file.name;
+    }
   };
 
   const openModal = () => {
