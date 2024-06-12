@@ -1,15 +1,92 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import edit from "../../../../assets/images/edit.svg";
 import unduhDetail from "../../../../assets/images/unduh-detail.png";
 import DetailUserDonasi from "./Donasi/DetailUserDonasi";
 import DetailUserVolunteer from "./Volunteer/DetailUserVolunteer";
 import HapusUser from "../DetailUser/HapusUser";
+import { useParams } from "react-router-dom";
 
 function DetailUser() {
+  const { id } = useParams();
+  const [data, setData] = useState(null);
+  const [editUsername, setEditUsername] = useState('');
+  const [editFullName, setEditFullName] = useState('');
+  const [editEmail, setEditEmail] = useState('');
+  const [editPhone, setEditPhone] = useState('');
+  const [editRegisterDate, setEditRegisterDate] = useState('');
+  const [imageFile, setImageFile] = useState(null);
+  const [editPassword, setEditPassword] = useState('');
+
   const [selectedTab, setSelectedTab] = useState('detail-user-donasi'); 
   const [isEditing, setIsEditing] = useState(false);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  useEffect(() => {
+    getDetailUser();
+  }, [id]);
+
+  const accessToken = sessionStorage.getItem('access_token');
+  const getDetailUser = async () => {
+    try {
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/users/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+      });
+      const result = await response.json();
+      if (result.success) {
+        setData(result.data);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const updateUser = async (event) => {
+    event.preventDefault();
+    try {
+      const formData = new FormData();
+      if (imageFile) {
+        formData.append('avatar', imageFile);
+      }
+      formData.append('username', editUsername);
+      formData.append('full_name', editFullName); 
+      formData.append('email', editEmail);
+      formData.append('phone', editPhone);
+      formData.append('register_date', editRegisterDate);
+      formData.append('password', editPassword);
+
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/users/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        },
+        body: formData
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        getDetailUser(); // Refresh the data after successful update
+        setIsEditing(false); // Exit edit mode after update
+      }
+    } catch (error) {
+      console.error('Error updating data:', error);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    setImageFile(e.target.files[0]);
+    document.getElementById('file_name').textContent = e.target.files[0].name;
+  };
+
 
   const handleEditClick = () => {
+    setEditUsername(data.username);
+    setEditFullName(data.full_name);
+    setEditEmail(data.email);
+    setEditPhone(data.phone);
+    setEditRegisterDate(data.register_date);
     setIsEditing(true);
   };
 
@@ -17,15 +94,17 @@ function DetailUser() {
     setIsEditing(false);
   };
 
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
+  const openDeleteModal = () => {
+    setDeleteModalOpen(true);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
   };
+
+  if (!data) {
+    return <div className='min-h-screen bg-neutral-50 flex justify-center items-center'>Loading...</div>;
+  }
 
   return (
     <div className="bg-neutral-50 min-h-screen p-4">
@@ -37,12 +116,12 @@ function DetailUser() {
               <div className="flex flex-col items-center justify-center p-6 border-r border-gray-400">
                 <img
                   className="w-60 object-cover rounded-full"
-                  src="https://via.placeholder.com/150"
+                  src={data.avatar}
                   alt="Profile"
                 />
                 <div className="pt-3">
-                  <span className="text-black text-xl font-bold leading-7">Agung Rizky </span>
-                  <span className="text-sky-500 text-base font-bold leading-normal">| ID: 01</span>
+                  <span className="text-black text-xl font-bold leading-7">{data.full_name} </span>
+                  <span className="text-sky-500 text-base font-bold leading-normal">| ID: {data.id}</span>
                 </div>
               </div>
               <div className="grid grid-rows-2 col-span-2">
@@ -50,11 +129,11 @@ function DetailUser() {
                   <div className="grid grid-cols-3">
                     <div>
                       <p className="text-gray-700">Username</p>
-                      <p className="text-gray-500">agung123</p>
+                      <p className="text-gray-500">{data.username}</p>
                     </div>
                     <div>
                       <p className="text-gray-700">Email</p>
-                      <p className="text-gray-500">agung123@gmail.com</p>
+                      <p className="text-gray-500">{data.email}</p>
                     </div>
                     <div>
                       <button onClick={handleEditClick} className="relative flex text-sky-500 text-lg">
@@ -68,11 +147,11 @@ function DetailUser() {
                   <div className="grid grid-cols-3">
                     <div>
                       <p className="text-gray-700">Nomor Telepon</p>
-                      <p className="text-gray-500">081290575320</p>
+                      <p className="text-gray-500">{data.phone}</p>
                     </div>
                     <div>
                       <p className="text-gray-700">Tanggal Register</p>
-                      <p className="text-gray-500">10 Juli 2024</p>
+                      <p className="text-gray-500">{data.register_date}</p>
                     </div>
                   </div>
                 </div>
@@ -84,48 +163,94 @@ function DetailUser() {
         {isEditing && (
           <div className="grid grid-cols-1 flex-col lg:grid-cols-3 gap-4 mt-4">
             <div className="bg-white shadow flex flex-col items-center justify-center p-6">
-              <img
-                className="w-60 object-cover rounded-full"
-                src="https://via.placeholder.com/150"
-                alt="Profile"
-              />
+              <label className="cursor-pointer">
+                <input type="file" className="hidden" onChange={handleFileChange} />
+                <img
+                  id='file_name'
+                  className="w-60 object-cover rounded-full"
+                  src={imageFile ? URL.createObjectURL(imageFile) : "https://via.placeholder.com/150"}
+                  alt="Profile"
+                />
+              </label>
               <div className="pt-3">
-                <span className="text-black text-xl font-semibold font-['Roboto'] leading-7">Agung Rizky </span>
-                <span className="text-sky-500 text-base font-semibold font-['Roboto'] leading-normal">| ID: 01</span>
+                <span className="text-black text-xl font-semibold font-['Roboto'] leading-7">{editFullName} </span>
+                <span className="text-sky-500 text-base font-semibold font-['Roboto'] leading-normal">| ID: {id}</span>
               </div>
-              <button className="text-white font-semibold mt-4 py-2 px-8 bg-red-500 rounded-lg border border-gray-100 justify-center items-center" onClick={openModal}>
+              <button className="text-white font-semibold mt-4 py-2 px-8 bg-red-500 rounded-lg border border-gray-100 justify-center items-center" onClick={openDeleteModal}>
                 Hapus User
               </button>
-              <HapusUser isOpen={isModalOpen} onClose={closeModal} />
+              <HapusUser isOpen={isDeleteModalOpen} onClose={closeDeleteModal} itemId={id}/>
             </div>
             <div className="bg-white p-4 col-span-2 rounded-lg shadow max-h-screen">
-              <form>
+              <form onSubmit={updateUser}>
               <h1 className="mb-3 text-black font-bold leading-normal">Edit Detail User</h1>
                 <div className="mb-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col">
                       <label htmlFor="nama" className="block text-gray-700 text-sm font-normal">Nama Lengkap</label>
-                      <input type="text" id="nama" placeholder="Ketik nama lengkap baru.." className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                      <input
+                        type="text"
+                        id="nama"
+                        value={editFullName}
+                        onChange={e => setEditFullName(e.target.value)}
+                        placeholder="Ketik nama lengkap baru.."
+                        className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      />
                     </div>
                     <div className="flex flex-col">
                       <label htmlFor="no" className="block text-gray-700 text-sm font-normal">Nama Telefon</label>
-                      <input type="text" id="no" placeholder="Ketik no telefon baru.." className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                      <input
+                        type="text"
+                        id="no"
+                        value={editPhone}
+                        onChange={e => setEditPhone(e.target.value)}
+                        placeholder="Ketik no telefon baru.."
+                        className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      />
                     </div>
                     <div className="flex flex-col">
                       <label htmlFor="username" className="block text-gray-700 text-sm font-normal">Username</label>
-                      <input type="text" id="username" placeholder="Ketik username baru.." className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                      <input
+                        type="text"
+                        id="username"
+                        value={editUsername}
+                        onChange={e => setEditUsername(e.target.value)}
+                        placeholder="Ketik username baru.."
+                        className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      />
                     </div>
                     <div className="flex flex-col">
                       <label htmlFor="id" className="block text-gray-700 text-sm font-normal">ID</label>
-                      <input type="text" id="id" placeholder="Ketik id baru.." className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                      <input
+                        type="text"
+                        id="id"
+                        value={id}
+                        disabled
+                        placeholder="Ketik id baru.."
+                        className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      />
                     </div>
                     <div className="flex flex-col">
                       <label htmlFor="email" className="block text-gray-700 text-sm font-normal">Email</label>
-                      <input type="text" id="email" placeholder="Ketik email baru.." className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                      <input
+                        type="text"
+                        id="email"
+                        value={editEmail}
+                        onChange={e => setEditEmail(e.target.value)}
+                        placeholder="Ketik email baru.."
+                        className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      />
                     </div>
                     <div className="flex flex-col">
                       <label htmlFor="password" className="block text-gray-700 text-sm font-normal">Password</label>
-                      <input type="text" id="password" placeholder="Ketik password baru.." className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                      <input
+                        type="password"
+                        id="password"
+                        value={editPassword}
+                        onChange={e => setEditPassword(e.target.value)}
+                        placeholder="Ketik password baru.."
+                        className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      />
                     </div>
                   </div>
                 </div>
