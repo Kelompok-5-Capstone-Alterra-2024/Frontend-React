@@ -307,7 +307,7 @@ function DetailUser() {
         </div>
         {/* Table */}
         <div>
-          {selectedTab === 'detail-user-donasi' ? <DetailUserDonasi /> : <DetailUserVolunteer />}
+          {selectedTab === 'detail-user-donasi' ? <DetailUserDonasi id={id}/> : <DetailUserVolunteer id={id}/>}
         </div>
       </div>
     </div>
