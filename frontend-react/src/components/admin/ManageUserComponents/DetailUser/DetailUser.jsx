@@ -14,7 +14,6 @@ function DetailUser() {
   const [editEmail, setEditEmail] = useState('');
   const [editPhone, setEditPhone] = useState('');
   const [editRegisterDate, setEditRegisterDate] = useState('');
-  const [imageFile, setImageFile] = useState(null);
   const [editPassword, setEditPassword] = useState('');
 
   const [selectedTab, setSelectedTab] = useState('detail-user-donasi'); 
@@ -47,14 +46,11 @@ function DetailUser() {
     event.preventDefault();
     try {
       const formData = new FormData();
-      if (imageFile) {
-        formData.append('avatar', imageFile);
-      }
       formData.append('username', editUsername);
-      formData.append('full_name', editFullName); 
+      formData.append('fullName', editFullName); 
       formData.append('email', editEmail);
       formData.append('phone', editPhone);
-      formData.append('register_date', editRegisterDate);
+      formData.append('registerDate', editRegisterDate);
       formData.append('password', editPassword);
 
       const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/users/${id}`, {
@@ -74,12 +70,6 @@ function DetailUser() {
       console.error('Error updating data:', error);
     }
   };
-
-  const handleFileChange = (e) => {
-    setImageFile(e.target.files[0]);
-    document.getElementById('file_name').textContent = e.target.files[0].name;
-  };
-
 
   const handleEditClick = () => {
     setEditUsername(data.username);
@@ -164,11 +154,10 @@ function DetailUser() {
           <div className="grid grid-cols-1 flex-col lg:grid-cols-3 gap-4 mt-4">
             <div className="bg-white shadow flex flex-col items-center justify-center p-6">
               <label className="cursor-pointer">
-                <input type="file" className="hidden" onChange={handleFileChange} />
                 <img
                   id='file_name'
                   className="w-60 object-cover rounded-full"
-                  src={imageFile ? URL.createObjectURL(imageFile) : "https://via.placeholder.com/150"}
+                  src={data.avatar}
                   alt="Profile"
                 />
               </label>
