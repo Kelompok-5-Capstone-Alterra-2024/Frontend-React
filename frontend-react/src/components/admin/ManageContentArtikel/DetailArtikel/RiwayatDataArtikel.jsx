@@ -1,26 +1,38 @@
+import { useEffect, useState } from "react";
 import PaginationRiwayatDataArtikel from "./PaginationRiwayatDataArtikel";
 
-function RiwayatDataArtikel() {
-  const data = [
-    {
-      no: 1,
-      nama: 'Kent Murphy',
-      komentar: 'Kisah yang sangat patut dicontoh karena dengan keterbatasan yang ada mbah',
-      tanggal: '27-04--2024',
-    },
-    {
-      no: 2,
-      nama: 'Kent Murphy',
-      komentar: 'Kisah yang sangat patut dicontoh karena dengan keterbatasan yang ada mbah',
-      tanggal: '27-04--2024',
-    },
-    {
-      no: 3,
-      nama: 'Kent Murphy',
-      komentar: 'Kisah yang sangat patut dicontoh karena dengan keterbatasan yang ada mbah',
-      tanggal: '27-04--2024',
-    },
-  ];
+function RiwayatDataArtikel({id}) {
+  const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const accessToken = sessionStorage.getItem('access_token');
+
+  useEffect(() => {
+    getAllCommentByArticleId();
+  }, [currentPage]);
+
+  const getAllCommentByArticleId = async (page) => {
+    try {
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/articles/${id}/comments?page=${page}&limit=6`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const result = await response.json();
+      if (result.success) {
+        setData(result.data);
+      } else {
+        console.error('Failed to fetch comments:', result.message);
+      }
+    } catch (error) {
+      console.error('Failed to fetch comments:', error);
+    }
+  };
 
   return (
     <div className="p-6 shadow-lg bg-white mt-4 rounded-lg">
@@ -77,17 +89,17 @@ function RiwayatDataArtikel() {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {item.no}
+                    {item.id}
                   </th>
-                  <td className="px-6 py-4">{item.nama}</td>
-                  <td className="px-6 py-4">{item.komentar}</td>
-                  <td className="px-6 py-4">{item.tanggal}</td>
+                  <td className="px-6 py-4">{item.username}</td>
+                  <td className="px-6 py-4">{item.body}</td>
+                  <td className="px-6 py-4">{item.created_at}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      <PaginationRiwayatDataArtikel/>
+      <PaginationRiwayatDataArtikel currentPage={currentPage} onPageChange={setCurrentPage}/>
     </div>
   )
 }
