@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import RiwayatDataArtikel from './RiwayatDataArtikel';
 import HapusArtikel from "../HapusArtikel";
+import Swal from "sweetalert2";
 
 function DetailArtikel() {
   const { id } = useParams();
@@ -56,7 +57,12 @@ function DetailArtikel() {
 
       const result = await response.json();
       if (result.success) {
-        getDetailArticles(); // Refresh the data after successful update
+        getDetailArticles();
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'data berhasil diedit',
+        }); // Refresh the data after successful update
       } else {
         console.error('Failed to update articles:', result.message);
       }
@@ -136,7 +142,7 @@ function DetailArtikel() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="Type here"
-                  className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="mt-1 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
               <div className="flex flex-col flex-1">
