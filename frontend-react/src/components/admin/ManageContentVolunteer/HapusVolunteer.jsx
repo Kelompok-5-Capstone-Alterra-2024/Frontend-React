@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import hapus from "../../../assets/images/Trash.svg";
 import { useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2";
 
 function HapusVolunteer({ isOpen, onClose, itemId}) {
     const [isDeleting, setIsDeleting] = useState(false);
@@ -21,6 +22,11 @@ function HapusVolunteer({ isOpen, onClose, itemId}) {
             });
             if (response.ok) {
                 onClose();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'data berhasil dihapus',
+                });
                 navigate('/admin/manage-content/volunteer');
             } else {
                 console.error('Failed to delete the item.');

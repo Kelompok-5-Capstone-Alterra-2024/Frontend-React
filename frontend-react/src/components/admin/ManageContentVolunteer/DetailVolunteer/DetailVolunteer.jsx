@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import RiwayatDataVolunteer from './RiwayatDataVolunteer'
 import HapusVolunteer from '../HapusVolunteer'
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function DetailVolunteer() {
   const { id } = useParams();
@@ -68,6 +69,11 @@ function DetailVolunteer() {
       const result = await response.json();
       if (result.success) {
         getDetailVolunteer(); // Refresh the data after successful update
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'data berhasil diedit',
+        });
       } else {
         console.error('Failed to update volunteer:', result.message);
       }
