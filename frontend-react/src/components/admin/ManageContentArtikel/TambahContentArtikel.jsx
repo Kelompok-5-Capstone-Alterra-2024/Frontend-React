@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import Swal from "sweetalert2";
 
 function AddArtikel({ isOpen, onClose }) {
     const [formData, setFormData] = useState({
@@ -41,7 +42,11 @@ function AddArtikel({ isOpen, onClose }) {
                 body: data
             });
             if (response.ok) {
-                alert('Fundraising created successfully!');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'data berhasil ditambahkan',
+                });
                 onClose();
             } else {
                 const errorData = await response.json();
@@ -79,7 +84,7 @@ function AddArtikel({ isOpen, onClose }) {
                                 id="title"
                                 name="title"
                                 placeholder="Type here"
-                                className="mt-1 h-11 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                className="mt-1 h-11 text-gray-900  border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                                 value={formData.title}
                                 onChange={handleChange}
                             />
