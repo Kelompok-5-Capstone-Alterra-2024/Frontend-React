@@ -56,7 +56,6 @@ function DetailVolunteer() {
       formData.append('start_date', startDate);
       formData.append('end_date', endDate);
       formData.append('content_activity', description);
-      formData.append('registration_deadline', '2024-07-20'); // tambah data manual
 
       const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/volunteers/${id}`, {
         method: 'PUT',

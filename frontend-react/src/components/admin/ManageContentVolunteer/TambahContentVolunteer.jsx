@@ -11,7 +11,6 @@ function AddVolunteer({ isOpen, onClose }) {
         end_date: '',
         content_activity: '',
         organization_id: '',
-        registration_deadline: '2024-07-20' // tambah data manual
     });
 
     const [file, setFile] = useState(null);
