@@ -77,17 +77,11 @@ const TabelDataOrganisasi = ({ data }) => {
               </th>
               <td className="px-6 py-4">{item.name}</td>
               <td className="px-6 py-4">{item.join_date}</td>
-              <td className="px-6 py-4">{item.contact}</td>
-              <td className="px-6 py-4">@sosmediavlimate</td>
-              <td className="px-6 py-4">
-                <div className="px-2 py-1 bg-emerald-100 rounded justify-center items-center gap-2.5 inline-flex">
-                  <div className="text-neutral-700 text-xs font-normal leading-[18px]">
-                    {item.is_verified ? 'Verified' : 'Not Verified'}
-                  </div>
-                </div>
-              </td>
+              <td className="px-6 py-4">{item.website}</td>
+              <td className="px-6 py-4">{item.instagram}</td>
+              <td className="px-6 py-4">{item.no_rek}</td>
               <td className="ps-2 pt-4 flex">
-                <Link to="detail-organization">
+                <Link to={`detail-organization/${item.id}`}>
                     <button>
                       <img className="pe-3" src={edit} alt="edit" />
                     </button>

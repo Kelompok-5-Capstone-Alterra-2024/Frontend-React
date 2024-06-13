@@ -10,7 +10,7 @@ function PaginationDataOrganisasi({ currentPage, onPageChange }) {
           <span className="text-gray-500 text-md font-normal leading-[21px]">Showing </span>
           <span className="text-gray-900 text-md font-semibold leading-[21px]">1-6</span>
           <span className="text-gray-500 text-md font-normal leading-[21px]"> of </span>
-          <span className="text-gray-900 text-md font-semibold leading-[21px]">36</span>
+          <span className="text-gray-900 text-md font-semibold leading-[21px]">30</span>
         </div>
         <nav aria-label="Page navigation example">
           <ul className="inline-flex -space-x-px text-sm">
