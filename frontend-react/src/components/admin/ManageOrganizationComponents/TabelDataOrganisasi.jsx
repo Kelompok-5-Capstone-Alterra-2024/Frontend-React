@@ -5,15 +5,17 @@ import trash from '../../../assets/images/Trash.svg';
 import HapusOrganisasi from './HapusOrganisasi';
 
 const TabelDataOrganisasi = ({ data }) => {
-
   const [isModalOpen, setModalOpen] = useState(false);
+  const [selectedItemId, setSelectedItemId] = useState(null);
 
-  const openModal = () => {
+  const openModal = (id) => {
+    setSelectedItemId(id);
     setModalOpen(true);
   };
 
   const closeModal = () => {
     setModalOpen(false);
+    setSelectedItemId(null);
   };
 
   {/* jika data tidak ada */}
@@ -86,15 +88,19 @@ const TabelDataOrganisasi = ({ data }) => {
                       <img className="pe-3" src={edit} alt="edit" />
                     </button>
                 </Link>
-                <button onClick={openModal}>
-                   <img src={trash} alt="hapus" />
+                <button onClick={() => openModal(item.id)}>
+                  <img src={trash} alt="hapus" className="w-6 h-6" />
                 </button>
                 </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <HapusOrganisasi isOpen={isModalOpen} onClose={closeModal} />
+      <HapusOrganisasi
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        itemId={selectedItemId}
+      />
     </div>
   );
 };
