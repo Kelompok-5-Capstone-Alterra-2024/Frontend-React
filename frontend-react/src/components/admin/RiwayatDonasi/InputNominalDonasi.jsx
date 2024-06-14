@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Swal from "sweetalert2";
 
 function InputNominalDonasi({ onSubmit, onCancel, itemId }) {
   const [donationAmount, setDonationAmount] = useState('');
@@ -20,6 +21,11 @@ function InputNominalDonasi({ onSubmit, onCancel, itemId }) {
           const data = await response.json();
           if (data.success) {
             onSubmit(donationAmount);
+            Swal.fire({
+              icon: 'success',
+              title: 'Success!',
+              text: 'data berhasil ditambahkan',
+          });
           } else {
             console.error('Failed to update donation amount:', data.message);
           }
