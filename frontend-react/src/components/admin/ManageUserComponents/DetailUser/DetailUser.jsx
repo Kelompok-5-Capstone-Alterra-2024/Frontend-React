@@ -5,6 +5,7 @@ import DetailUserDonasi from "./Donasi/DetailUserDonasi";
 import DetailUserVolunteer from "./Volunteer/DetailUserVolunteer";
 import HapusUser from "../DetailUser/HapusUser";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function DetailUser() {
   const { id } = useParams();
@@ -64,6 +65,11 @@ function DetailUser() {
       const result = await response.json();
       if (result.success) {
         getDetailUser(); // Refresh the data after successful update
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'data berhasil diedit',
+        });
         setIsEditing(false); // Exit edit mode after update
       }
     } catch (error) {
