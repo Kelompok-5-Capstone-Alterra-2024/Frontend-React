@@ -1,13 +1,93 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import DetailOrganizationDonasi from "./Donasi/DetailOrganizationDonasi";
 import DetailOrganizationVolunteer from "./Volunteer/DetailOrganizationVolunteer";
 import HapusOrganisasi from "../HapusOrganisasi"
-import yayasan from "../../../../assets/images/logoYayasan.png"
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function DetailOrganization() {
   const [selectedTab, setSelectedTab] = useState('detail-organization-donasi');
-
   const [isModalOpen, setModalOpen] = useState(false);
+  const { id } = useParams();
+  const [data, setData] = useState(null);
+  const [name, setName] = useState('');
+  // const [joinDate, setJoinDate] = useState('');
+  const [description, setDescription] = useState('');
+  const [noRekening, setNoRekening] = useState('');
+  const [website, setWebsite] = useState('');
+  const [instagram, setInstagram] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [imageFile, setImageFile] = useState(null);
+
+  useEffect(() => {
+    getDetailOrganization();
+  }, [id]);
+
+  const accessToken = sessionStorage.getItem('access_token');
+  const getDetailOrganization = async () => {
+    try {
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/organizations/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+      });
+      const result = await response.json();
+      if (result.success) {
+        setData(result.data);
+        setName(result.data.name);
+        // setJoinDate(result.data.join_date);
+        setDescription(result.data.description);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const updateOrganization = async () => {
+    try {
+      const formData = new FormData();
+      if (imageFile) {
+        formData.append('avatar', imageFile);
+      }
+      formData.append('name', name);
+      formData.append('no_rek', noRekening);
+      formData.append('start_date', startDate);
+      formData.append('website', website);
+      formData.append('instagram', instagram); 
+      formData.append('description', description);
+
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/organizations/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`
+        },
+        body: formData
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        getDetailOrganization(); // Refresh the data after successful update
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          text: 'data berhasil diedit',
+        });
+      } else {
+        console.error('Failed to update organization:', result.message);
+      }
+    } catch (error) {
+      console.error('Error updating data:', error);
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      document.getElementById('file_name').textContent = file.name;
+    }
+  };
 
   const openModal = (event) => {
     event.preventDefault();
@@ -19,37 +99,32 @@ function DetailOrganization() {
     setModalOpen(false);
   }; 
 
+  if (!data) {
+    return <div className='min-h-screen bg-neutral-50 flex justify-center items-center'>Loading...</div>;
+  }
+
     return (
     <div className="min-h-screen bg-neutral-50 flex flex-col p-4">
       <div className="text-zinc-600 text-base font-normal mb-4">Donasi / Detail organisasi</div>
       <div className="grid grid-cols-1 flex-col lg:grid-cols-2 gap-4">
         <div className="bg-transparent">
-        {[
-              { 
-                image: yayasan,
-                organisasi: 'Yayasan Berbagi Kasih',
-                waktu: '27 Agustus  2020',
-                deskripsi: 'Tentang Yayasan Berbagi Kasih merupakan Yayasan Independen yang lahir dari inisiatif PeduliPintar untuk mengelola dan mengimplementasikan program sosial secara profesional dan transparan. Sebagai yayasan independen, Social Project tidak hanya mengimplementasikan donasi dari PeduliPintar, melainkan juga berkolaborasi dengan beragam pihak untuk menjalankan, mengimplementasikan, dan menyalurkan donasi beragam program sosial. Telah menghubungkan jutaan dampak sosial. Sampai saat ini, Yayasan Berbagi Kasih telah menjalankan ratusan program sosial dan berkolaborasi dengan ratusan mitra kolaborator. Mulai dari pemulihan bencana alam sampai bantuan kebutuhan pokok.'
-              },
-            ].map((item, index) => (
-              <div key={index} className="p-1 bg-white rounded-lg shadow justify-start items-start gap-2">
-                <div className="flex justify-center items-center">
-                  <img className="w-64- h-64 rounded-full oject-cover" src={item.image} alt="Image" />
-                </div>
-                <h1 className="p-2 text-black text-2xl font-bold">{item.organisasi}</h1>
-                <p className="ps-2 text-zinc-700 text-sm font-normal">Terdaftar sejak {item.waktu}</p>
-                <div className="p-2 items-center gap-4 inline-flex">
-                  <div className="flex-col justify-start items-start gap-1">
-                  </div>
-                </div>
-                <div className="w-full p-2 bg-white rounded-lg shadow flex-col justify-start items-start gap-4 flex">
-                  <h1 className="text-cyan-600 font-bold">Deskripsi</h1>
-                  <div className="text-justify">
-                    <span className="text-black text-md font-normal">{item.deskripsi}</span>
-                  </div>
+          <div className="p-1 bg-white rounded-lg shadow justify-start items-start gap-2">
+            <div className="flex justify-center items-center">
+              <img className="w-64- h-64 rounded-full oject-cover" src={data.avatar} alt="Image" />
+            </div>
+            <h1 className="p-2 text-black text-2xl font-bold">{data.name}</h1>
+            <p className="ps-2 text-zinc-700 text-sm font-normal">Terdaftar sejak {data.join_date}</p>
+            <div className="p-2 items-center gap-4 inline-flex">
+              <div className="flex-col justify-start items-start gap-1">
+            </div>
+            </div>
+              <div className="w-full p-2 bg-white rounded-lg shadow flex-col justify-start items-start gap-4 flex">
+                <h1 className="text-cyan-600 font-bold">Deskripsi</h1>
+                <div className="text-justify">
+                  <span className="text-black text-md font-normal">{data.description}</span>
                 </div>
               </div>
-            ))}
+            </div>
         </div>
         <div className="bg-white p-4 rounded-lg shadow max-h-screen overflow-y-auto">
         <form>
@@ -63,55 +138,82 @@ function DetailOrganization() {
                   className="hidden"
                   id="multiple_files"
                   type="file"
+                  onChange={handleFileChange}
                   multiple
-                />
+              />
               </div>
             </div>
             <div className="mb-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="flex flex-col">
-                        <label htmlFor="namaOrganisasi" className="block text-gray-700 text-sm font-normal">Nama Organisasi</label>
-                        <input type="text" id="namaOrganisasi" placeholder="Type here" className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
-                    </div>
-                    <div className="flex flex-col">
-                        <label htmlFor="noRekening" className="block text-gray-700 text-sm font-normal">No Rekening</label>
-                        <input type="text" id="noRekeneing" placeholder="Type here" className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
-                    </div>
-                    <div className="grid grid-rows-1 md:grid-rows-3 gap-4">
-                        <div className="flex flex-col">
-                            <label htmlFor="tanggalBergabung" className="block text-gray-700 text-sm font-normal mb-1">Tanggal bergabung</label>
-                            <input
-                                type="date"
-                                id=""
-                                name=""
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                            />
-                            <div className="flex flex-col mt-3">
-                                <label htmlFor="website" className="block text-gray-700 text-sm font-normal">Website</label>
-                                <input type="text" id="website" placeholder="Type here" className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
-                            </div>
-                        </div>
-                        <div className="flex flex-col">
-                                <label htmlFor="ig" className="block text-gray-700 text-sm font-normal">Instagram</label>
-                                <input type="text" id="ig" placeholder="Type here" className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
-                            </div>
-                      </div>
-                      <div className="flex flex-col">
-                          <label htmlFor="tanggalSelesai" className="block text-gray-700 text-sm font-normal mb-1">Deskripsi</label>
-                              <textarea
-                                  id="message"
-                                  className="block p-2.5 w-full h-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                  placeholder="Type here"
-                              />
-                        </div>
-                    </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex flex-col">
+                  <label htmlFor="name" className="block text-gray-700 text-sm font-normal">Nama Organisasi</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="Type here" 
+                    className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                </div>
+                <div className="flex flex-col">
+                  <label htmlFor="no_rek" className="block text-gray-700 text-sm font-normal">No Rekening</label>
+                  <input 
+                    type="text" 
+                    id="no_rek" 
+                    value={noRekening}
+                    onChange={(e) => setNoRekening(e.target.value)}
+                    placeholder="Type here" 
+                    className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                </div>
+              <div className="grid grid-rows-1 md:grid-rows-3 gap-4">
+                <div className="flex flex-col">
+                  <label htmlFor="tanggalBergabung" className="block text-gray-700 text-sm font-normal mb-1">Tanggal bergabung</label>
+                  <input
+                    type="date"
+                    id="start_date"
+                    name="start_date"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                  />
+                <div className="flex flex-col mt-3">
+                  <label htmlFor="website" className="block text-gray-700 text-sm font-normal">Website</label>
+                  <input 
+                    type="text" 
+                    id="website" 
+                    value={website}
+                    onChange={(e) => setWebsite(e.target.value)}
+                    placeholder="Type here" className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                </div>
+              </div>
+                <div className="flex flex-col">
+                  <label htmlFor="ig" className="block text-gray-700 text-sm font-normal">Instagram</label>
+                  <input 
+                    type="text" 
+                    id="ig" 
+                    value={instagram}
+                    onChange={(e) => setInstagram(e.target.value)}
+                    placeholder="Type here" className="mt-1 h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                </div>
+              </div>
+                <div className="flex flex-col">
+                  <label htmlFor="tanggalSelesai" className="block text-gray-700 text-sm font-normal mb-1">Deskripsi</label>
+                  <textarea
+                    id="message"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="block p-2.5 w-full h-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Type here"
+                  />
+                </div>
+                </div>
                 </div>
                 <div className="flex justify-end ">
                   <button className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg gap-2 me-3" onClick={openModal}>
                     Hapus
                   </button>
                   <HapusOrganisasi isOpen={isModalOpen} onClose={closeModal} />
-                  <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold">
+                  <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold" type="button" onClick={updateOrganization}>
                     Edit Organisasi
                   </button>
               </div>
