@@ -11,12 +11,11 @@ function DetailOrganization() {
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [name, setName] = useState('');
-  // const [joinDate, setJoinDate] = useState('');
+  const [joinDate, setJoinDate] = useState('');
   const [description, setDescription] = useState('');
   const [noRekening, setNoRekening] = useState('');
   const [website, setWebsite] = useState('');
   const [instagram, setInstagram] = useState('');
-  const [startDate, setStartDate] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
@@ -36,8 +35,11 @@ function DetailOrganization() {
       if (result.success) {
         setData(result.data);
         setName(result.data.name);
-        // setJoinDate(result.data.join_date);
+        setJoinDate(result.data.join_date);
         setDescription(result.data.description);
+        setWebsite(result.data.website);
+        setInstagram(result.data.instagram);
+        setNoRekening(result.data.no_rek);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -52,7 +54,7 @@ function DetailOrganization() {
       }
       formData.append('name', name);
       formData.append('no_rek', noRekening);
-      formData.append('start_date', startDate);
+      formData.append('join_date', joinDate);
       formData.append('website', website);
       formData.append('instagram', instagram); 
       formData.append('description', description);
@@ -170,10 +172,10 @@ function DetailOrganization() {
                   <label htmlFor="tanggalBergabung" className="block text-gray-700 text-sm font-normal mb-1">Tanggal bergabung</label>
                   <input
                     type="date"
-                    id="start_date"
-                    name="start_date"
-                    value={startDate}
-                    onChange={(e) => setStartDate(e.target.value)}
+                    id="join_date"
+                    name="join_date"
+                    value={joinDate}
+                    onChange={(e) => setJoinDate(e.target.value)}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   />
                 <div className="flex flex-col mt-3">
