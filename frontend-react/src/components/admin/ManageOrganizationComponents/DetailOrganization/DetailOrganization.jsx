@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 function DetailOrganization() {
   const [selectedTab, setSelectedTab] = useState('detail-organization-donasi');
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [name, setName] = useState('');
@@ -91,14 +91,14 @@ function DetailOrganization() {
     }
   };
 
-  const openModal = (event) => {
+  const openDeleteModal = (event) => {
     event.preventDefault();
-    setModalOpen(true);
+    setDeleteModalOpen(true);
   };
 
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const closeDeleteModal = () => {
+    setDeleteModalOpen(false);
   }; 
 
   if (!data) {
@@ -211,10 +211,10 @@ function DetailOrganization() {
                 </div>
                 </div>
                 <div className="flex justify-end ">
-                  <button className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg gap-2 me-3" onClick={openModal}>
+                  <button className="px-6 py-3 bg-gray-100 text-gray-800 rounded-lg gap-2 me-3" onClick={openDeleteModal}>
                     Hapus
                   </button>
-                  <HapusOrganisasi isOpen={isModalOpen} onClose={closeModal} />
+                  <HapusOrganisasi isOpen={isDeleteModalOpen} onClose={closeDeleteModal} itemId={id} />
                   <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold" type="button" onClick={updateOrganization}>
                     Edit Organisasi
                   </button>
