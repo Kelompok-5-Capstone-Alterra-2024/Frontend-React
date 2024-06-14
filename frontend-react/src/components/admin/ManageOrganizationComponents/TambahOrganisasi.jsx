@@ -8,7 +8,7 @@ function AddOrganisasi({ isOpen, onClose }) {
         name: '',
         description: '',
         website: '',
-        start_date: '',
+        join_date: '',
         instagram: '',
         no_rek: '',
     });
@@ -96,10 +96,10 @@ function AddOrganisasi({ isOpen, onClose }) {
                                     <label htmlFor="tanggalBergabung" className="block text-gray-700 text-sm font-normal mb-1">Tanggal bergabung</label>
                                     <input
                                         type="date"
-                                        id="start_date"
-                                        name="start_date"
+                                        id="join_date"
+                                        name="join_date"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                        value={formData.start_date}
+                                        value={formData.join_date}
                                         onChange={handleChange}
                                     />
                                 </div>
