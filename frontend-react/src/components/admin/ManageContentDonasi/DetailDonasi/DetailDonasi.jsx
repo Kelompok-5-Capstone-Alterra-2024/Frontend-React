@@ -180,7 +180,7 @@ function DetailDonasi() {
                 />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="organisasi" className="block text-gray-700 text-sm font-normal">Organisasi</label>
+                <label htmlFor="organisasi" className="block text-gray-700 text-sm font-normal">id organisasi</label>
                 <input
                   type="text"
                   id="organisasi"
@@ -202,7 +202,7 @@ function DetailDonasi() {
                 />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="kategori" className="block text-gray-700 text-sm font-normal">Kategori</label>
+                <label htmlFor="kategori" className="block text-gray-700 text-sm font-normal">id kategori</label>
                 <input
                   type="text"
                   id="kategori"
