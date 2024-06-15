@@ -7,6 +7,7 @@ function AddVolunteer({ isOpen, onClose }) {
         image_url: '',
         title: '',
         target_volunteer: '',
+        registration_deadline:'',
         start_date: '',
         end_date: '',
         content_activity: '',
@@ -88,13 +89,28 @@ function AddVolunteer({ isOpen, onClose }) {
                             <input type="text" id="title" name="title" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.title} onChange={handleChange} />
                         </div>
                         <div className="flex flex-col">
-                                <label htmlFor="organization_id" className="block text-gray-700 text-sm font-normal">Organisasi</label>
+                            <label htmlFor="linkWA" className="block text-gray-700 text-sm font-normal">Link Group WA</label>
+                            <input type="text" id="linkWA" name="linkWA" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                        </div>
+                        <div className="flex flex-col">
+                                <label htmlFor="target_volunteer" className="block text-gray-700 text-sm font-normal">Target Donasi</label>
+                                <input type="number" id="target_volunteer" name="target_volunteer" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.target_volunteer} onChange={handleChange}/>
+                        </div>
+                        <div className="flex flex-col">
+                                <label htmlFor="organization_id" className="block text-gray-700 text-sm font-normal">id organisasi</label>
                                 <input type="text" id="organization_id" name="organization_id" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.organization_id} onChange={handleChange}/>
                          </div>
                         <div className="grid grid-rows-1 md:grid-rows-3 gap-4">
                             <div className="flex flex-col">
-                                <label htmlFor="target_volunteer" className="block text-gray-700 text-sm font-normal">Target Donasi</label>
-                                <input type="number" id="target_volunteer" name="target_volunteer" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.target_volunteer} onChange={handleChange}/>
+                                    <label htmlFor="registration_deadline" className="block text-gray-700 text-sm font-normal mb-1">Deadline pendaftaran</label>
+                                    <input
+                                        type="date"
+                                        id="registration_deadline"
+                                        name="registration_deadline"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        value={formData.registration_deadline}
+                                        onChange={handleChange}
+                                    />
                             </div>
                             <div className="flex flex-col">
                                     <label htmlFor="start_date" className="block text-gray-700 text-sm font-normal mb-1">Tanggal mulai</label>
@@ -125,7 +141,7 @@ function AddVolunteer({ isOpen, onClose }) {
                                     id="content_activity"
                                     name='content_activity'
                                     rows={5}
-                                    className="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                    className="block p-2.5 w-full h-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                     placeholder="Type here"
                                     value={formData.content_activity}
                                     onChange={handleChange}
