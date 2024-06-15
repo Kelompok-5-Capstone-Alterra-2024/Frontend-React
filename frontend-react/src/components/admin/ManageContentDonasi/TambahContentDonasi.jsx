@@ -88,7 +88,7 @@ function AddDonasi({ isOpen, onClose }) {
                                 <input type="text" id="title" name="title" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.title} onChange={handleChange} />
                             </div>
                             <div className="flex flex-col">
-                                <label htmlFor="organization_id" className="block text-gray-700 text-sm font-normal">Organisasi</label>
+                                <label htmlFor="organization_id" className="block text-gray-700 text-sm font-normal">id organisasi</label>
                                 <input type="text" id="organization_id" name="organization_id" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.organization_id} onChange={handleChange} />
                             </div>
                             <div className="flex flex-col">
@@ -96,7 +96,7 @@ function AddDonasi({ isOpen, onClose }) {
                                 <input type="number" id="target_amount" name="target_amount" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.target_amount} onChange={handleChange} />
                             </div>
                             <div className="flex flex-col">
-                                <label htmlFor="category_id" className="block text-gray-700 text-sm font-normal">Kategori</label>
+                                <label htmlFor="category_id" className="block text-gray-700 text-sm font-normal">id kategori</label>
                                 <input type="text" id="category_id" name="category_id" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.category_id} onChange={handleChange} />
                             </div>
                             <div className="grid grid-rows-1 md:grid-rows-2 gap-4">
