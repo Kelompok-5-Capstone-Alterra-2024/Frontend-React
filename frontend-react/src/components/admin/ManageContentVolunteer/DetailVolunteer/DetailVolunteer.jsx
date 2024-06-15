@@ -167,7 +167,22 @@ function DetailVolunteer() {
                 />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="organisasi" className="block text-gray-700 text-sm font-normal">Organisasi</label>
+                  <label htmlFor="linkWA" className="block text-gray-700 text-sm font-normal">Link Group WA</label>
+                  <input type="text" id="linkWA" name="linkWA" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+              </div>
+              <div className="flex flex-col">
+                  <label htmlFor="target" className="block text-gray-700 text-sm font-normal">Target Volunteer</label>
+                  <input
+                    type="number"
+                    id="target"
+                    value={targetVolunteer}
+                    onChange={(e) => setTargetVolunteer(e.target.value)}
+                    placeholder="Type here"
+                    className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  />
+                </div>
+              <div className="flex flex-col">
+                <label htmlFor="organisasi" className="block text-gray-700 text-sm font-normal">id organisasi</label>
                 <input
                   type="text"
                   id="organisasi"
@@ -179,14 +194,12 @@ function DetailVolunteer() {
               </div>
               <div className="grid grid-rows-1 md:grid-rows-3 gap-4">
                 <div className="flex flex-col">
-                  <label htmlFor="target" className="block text-gray-700 text-sm font-normal">Target Volunteer</label>
+                  <label htmlFor="registration_deadline" className="block text-gray-700 text-sm font-normal mb-1">Deadline pendaftaran</label>
                   <input
-                    type="number"
-                    id="target"
-                    value={targetVolunteer}
-                    onChange={(e) => setTargetVolunteer(e.target.value)}
-                    placeholder="Type here"
-                    className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                      type="date"
+                      id="registration_deadline"
+                      name="registration_deadline"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   />
                 </div>
                 <div className="flex flex-col">
