@@ -21,12 +21,24 @@ const TabelDataVolunteer = ({data}) => {
   // Define a function to get the background color based on the status
   const getStatusColor = (status) => {
     switch (status) {
-      case 'aktif':
+      case 'active':
         return 'bg-blue-200';
-      case 'selesai':
+      case 'inactive':
         return 'bg-emerald-100';
       default:
         return 'bg-neutral-100';
+    }
+  };
+
+  // Define a function to get the status text based on the status
+  const getStatusText = (status) => {
+    switch (status) {
+      case 'active':
+        return 'aktif';
+      case 'inactive':
+        return 'selesai';
+      default:
+        return 'unknown';
     }
   };
   
@@ -116,7 +128,7 @@ const TabelDataVolunteer = ({data}) => {
               <td className="px-6 py-4">{item.registered_volunteer}</td>
               <td className="px-6 py-4">
                 <div className={`px-2 py-1 rounded justify-center items-center gap-2.5 inline-flex ${getStatusColor(item.status)}`}>
-                  <div className="text-neutral-700 text-xs font-normal">{item.status}</div>
+                  <div className="text-neutral-700 text-xs font-normal">{getStatusText(item.status)}</div>
                 </div>
               </td>
               <td className="justify-center items-center space-x-4">
