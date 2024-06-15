@@ -10,8 +10,9 @@ function AddVolunteer({ isOpen, onClose }) {
         registration_deadline:'',
         start_date: '',
         end_date: '',
-        content_activity: '',
+        link_wa: '',
         organization_id: '',
+        content_activity: '',
     });
 
     const [file, setFile] = useState(null);
@@ -89,11 +90,11 @@ function AddVolunteer({ isOpen, onClose }) {
                             <input type="text" id="title" name="title" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.title} onChange={handleChange} />
                         </div>
                         <div className="flex flex-col">
-                            <label htmlFor="linkWA" className="block text-gray-700 text-sm font-normal">Link Group WA</label>
-                            <input type="text" id="linkWA" name="linkWA" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                            <label htmlFor="link_wa" className="block text-gray-700 text-sm font-normal">Link Group WA</label>
+                            <input type="text" id="link_wa" name="link_wa" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.link_wa} onChange={handleChange}/>
                         </div>
                         <div className="flex flex-col">
-                                <label htmlFor="target_volunteer" className="block text-gray-700 text-sm font-normal">Target Donasi</label>
+                                <label htmlFor="target_volunteer" className="block text-gray-700 text-sm font-normal">Kapasitas</label>
                                 <input type="number" id="target_volunteer" name="target_volunteer" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" value={formData.target_volunteer} onChange={handleChange}/>
                         </div>
                         <div className="flex flex-col">

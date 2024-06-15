@@ -14,6 +14,8 @@ function DetailVolunteer() {
   const [endDate, setEndDate] = useState('');
   const [organization, setOrganization] = useState('');
   const [description, setDescription] = useState('');
+  const [registrationDeadline, setRegistrationDeadline] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
   const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
@@ -33,11 +35,13 @@ function DetailVolunteer() {
       if (result.success) {
         setData(result.data);
         setTitle(result.data.title);
-        setOrganization(result.data.organization_id);
+        setOrganization(result.data.organization.id);
         setTargetVolunteer(result.data.target_volunteer);
         setStartDate(result.data.start_date);
         setEndDate(result.data.end_date);
         setDescription(result.data.content_activity);
+        setRegistrationDeadline(result.data.registration_deadline);
+        setWhatsapp(result.data.link_wa);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -51,11 +55,13 @@ function DetailVolunteer() {
         formData.append('image_url', imageFile);
       }
       formData.append('title', title);
-      formData.append('organization_id', organization); 
+      formData.append('organization.id', organization); 
       formData.append('target_volunteer', targetVolunteer);
       formData.append('start_date', startDate);
       formData.append('end_date', endDate);
       formData.append('content_activity', description);
+      formData.append('registration_deadline', registrationDeadline);
+      formData.append('link_wa', whatsapp);
 
       const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/volunteers/${id}`, {
         method: 'PUT',
@@ -167,11 +173,18 @@ function DetailVolunteer() {
                 />
               </div>
               <div className="flex flex-col">
-                  <label htmlFor="linkWA" className="block text-gray-700 text-sm font-normal">Link Group WA</label>
-                  <input type="text" id="linkWA" name="linkWA" placeholder="Type here" className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
+                  <label htmlFor="link_wa" className="block text-gray-700 text-sm font-normal">Link Group WA</label>
+                  <input 
+                    type="text" 
+                    id="link_wa" 
+                    name="link_wa" 
+                    value={whatsapp}
+                    onChange={(e) => setWhatsapp(e.target.value)}
+                    placeholder="Type here" 
+                    className="mt-1 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm" />
               </div>
               <div className="flex flex-col">
-                  <label htmlFor="target" className="block text-gray-700 text-sm font-normal">Target Volunteer</label>
+                  <label htmlFor="target" className="block text-gray-700 text-sm font-normal">Target pendaftar</label>
                   <input
                     type="number"
                     id="target"
@@ -199,6 +212,8 @@ function DetailVolunteer() {
                       type="date"
                       id="registration_deadline"
                       name="registration_deadline"
+                      value={registrationDeadline}
+                      onChange={(e) => setRegistrationDeadline(e.target.value)}
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   />
                 </div>
