@@ -262,7 +262,7 @@ function DetailVolunteer() {
         </form>
       </div>
       </div>
-      <RiwayatDataVolunteer/>
+      <RiwayatDataVolunteer id={id}/>
     </div>
   )
 }
