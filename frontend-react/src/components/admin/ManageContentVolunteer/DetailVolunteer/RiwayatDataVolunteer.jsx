@@ -1,38 +1,86 @@
+import { useEffect, useState } from "react";
 import PaginationCustomDataVolunteer from "./PaginationCustomDataVolunteer"
+import BuktiFollow from "./BuktiFollow";
 
-function RiwayatDataVolunteer() {
-  const data = [
-    {
-      no: 1,
-      nama: 'Kent Murphy',
-      umur: '18-20',
-      pekerjaan: 'mahasiswa',
-      ig : 'follow.ig',
-      yt: 'follow.yt',
-      alasan: 'ingin membantu',
-      status: 'aktif',
-    },
-    {
-      no: 2,
-      nama: 'Kent Murphy',
-      umur: '18-20',
-      pekerjaan: 'mahasiswa',
-      ig : 'follow.ig',
-      yt: 'follow.yt',
-      alasan: 'ingin membantu',
-      status: 'aktif',
-    },
-    {
-      no: 2,
-      nama: 'Kent Murphy',
-      umur: '18-20',
-      pekerjaan: 'mahasiswa',
-      ig : 'follow.ig',
-      yt : 'follow.yt',
-      alasan: 'ingin membantu',
-      status: 'aktif',
-    },
-  ];
+function RiwayatDataVolunteer({id}) {
+  const [data, setData] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const accessToken = sessionStorage.getItem('access_token');
+  const [currentItem, setCurrentItem] = useState(null);
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
+
+  useEffect(() => {
+    getAllApplyByVolunteerId();
+  }, [currentPage]);
+
+  const getAllApplyByVolunteerId = async (page) => {
+    try {
+      if (!accessToken) {
+        throw new Error('Access token is missing');
+      }
+
+      const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/volunteers/${id}/applications?page=${page}&limit=5`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+      });
+
+      console.log("Response status:", response.status);
+
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(`Network response was not ok: ${errorMessage}`);
+      }
+
+      const result = await response.json();
+      console.log("Fetch result:", result);
+
+      if (result.status === "success") {
+        setData(result.data);
+        console.log("Comments fetched successfully:", result.data);
+      } else {
+        console.error('Failed to fetch comments:', result.message);
+      }
+    } catch (error) {
+      console.error('Failed to fetch comments:', error.message);
+    }
+  };
+
+  // Define a function to get the background color based on the status
+  const getStatusColor = (status) => {
+    switch (status) {
+      case 'active':
+        return 'bg-blue-200';
+      case 'inactive':
+        return 'bg-emerald-100';
+      default:
+        return 'bg-neutral-100';
+    }
+  };
+
+  // Define a function to get the status text based on the status
+  const getStatusText = (status) => {
+    switch (status) {
+      case 'active':
+        return 'aktif';
+      case 'inactive':
+        return 'selesai';
+      default:
+        return 'unknown';
+    }
+  };
+
+  const handleImageClick = (item, type) => {
+    setCurrentItem(item);
+    setShowImageModal(true);
+    if (type === "ig") {
+      setImageUrl(item.ig_image_url);
+    } else if (type === "yt") {
+      setImageUrl(item.yt_image_url);
+    }
+  };
 
   return (
     <div className="p-6 shadow-lg bg-white mt-4 rounded-lg">
@@ -108,21 +156,39 @@ function RiwayatDataVolunteer() {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {item.no}
+                    {item.id}
                   </th>
-                  <td className="px-6 py-4">{item.nama}</td>
-                  <td className="px-6 py-4">{item.umur}</td>
-                  <td className="px-6 py-4">{item.pekerjaan}</td>
-                  <td className="px-6 py-4">{item.ig}</td>
-                  <td className="px-6 py-4">{item.yt}</td>
-                  <td className="px-6 py-4">{item.alasan}</td>
-                  <td className="px-6 py-4">{item.status}</td>
+                  <td className="px-6 py-4">{item.user_fullname}</td>
+                  <td className="px-6 py-4">{item.age}</td>
+                  <td className="px-6 py-4">{item.job}</td>
+                  <td className="px-6 py-4">
+                    <button onClick={() => handleImageClick(item, "ig")}>
+                      <span className="text-blue-500 underline">followig.jpg</span>
+                    </button>
+                  </td>
+                  <td className="px-6 py-4">
+                    <button onClick={() => handleImageClick(item, "yt")}>
+                      <span className="text-blue-500 underline">followYt.jpg</span>
+                    </button>
+                  </td>
+                  <td className="px-6 py-4">{item.reason}</td>
+                  <td className="px-6 py-4">
+                    <div className={`px-2 py-1 rounded justify-center items-center gap-2.5 inline-flex ${getStatusColor(item.status)}`}>
+                      <div className="text-neutral-700 text-xs font-normal">{getStatusText(item.status)}</div>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
+          {showImageModal && currentItem && (
+          <BuktiFollow
+            src={imageUrl}
+            onClose={() => setShowImageModal(false)}
+          />
+          )}
         </div>
-      <PaginationCustomDataVolunteer/>
+      <PaginationCustomDataVolunteer currentPage={currentPage} onPageChange={setCurrentPage}/>
     </div>
   )
 }
