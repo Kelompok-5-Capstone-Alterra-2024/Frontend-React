@@ -66,7 +66,7 @@ function App() {
           <Route path="manage-organization" element={<ManageOrganization />} />
           <Route path="manage-organization/detail-organization/:id" element={<DetailOrganization/>} />
           <Route path="transaksi" element={<Transaksi />} />
-          <Route path="transaksi/detail-transaksi" element={<DetailTransaksi />} />
+          <Route path="transaksi/detail-transaksi/:id" element={<DetailTransaksi />} />
           <Route path="chatbot" element={<Chatbot />} />
           <Route path="notification" element={<Notification />} />
         </Route>
