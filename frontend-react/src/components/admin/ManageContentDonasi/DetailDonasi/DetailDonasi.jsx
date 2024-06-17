@@ -145,7 +145,7 @@ function DetailDonasi() {
             <button className="px-6 py-3 bg-sky-500 text-white rounded-lg font-semibold" onClick={openModal}>
               Salurkan Dana
             </button>
-            <Cashout isOpen={isModalOpen} onClose={closeModal} />
+            <Cashout isOpen={isModalOpen} onClose={closeModal} id={Number(id)}/>
           </div>
         </div>
 

@@ -74,8 +74,8 @@ function Cashout({ isOpen, onClose, id }) {
                 type="number" 
                 id="amount" 
                 name="amount" 
-                placeholder="Rp 3.900.000" 
-                className="mt-1 w-full h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm placeholder:text-end placeholder:font-semibold" 
+                placeholder="hanya menerima inputan berupa angka" 
+                className="mt-1 w-full h-12 border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 sm:text-sm placeholder:text-start" 
                 value={formData.amount || ''} 
                 onChange={handleChange} 
               />
@@ -93,14 +93,16 @@ function Cashout({ isOpen, onClose, id }) {
                   onChange={handleChange}
                 >
                   <option value="" disabled>-- Pilih Bank --</option>
-                  <option value="bca">Bank Central Asia (BCA)</option>
-                  <option value="bri">Bank Rakyat Indonesia (BRI)</option>
-                  <option value="bni">Bank Negara Indonesia (BNI)</option>
-                  <option value="mandiri">Bank Mandiri</option>
-                  <option value="cimb">CIMB Niaga</option>
-                  <option value="permata">Bank Permata</option>
-                  <option value="danamon">Bank Danamon</option>
-                  <option value="btn">Bank Tabungan Negara (BTN)</option>
+                  <option value="Mandiri">Bank Mandiri</option>
+                  <option value="BRI">Bank Rakyat Indonesia (BRI)</option>
+                  <option value="BCA">Bank Central Asia (BCA)</option>
+                  <option value="BNI">Bank Negara Indonesia (BNI)</option>
+                  <option value="BTN">Bank Tabungan Negara (BTN)</option>
+                  <option value="CIMB Niaga">Bank CIMB Niaga</option>
+                  <option value="BSI">Bank Syariah Indonesia (BSI)</option>
+                  <option value="Permata">Bank Permata</option>
+                  <option value="Panin">Bank Panin</option>
+                  <option value="OCBC">OCBC NISP</option>
                 </select>
               </div>
               <div className="mt-4">
@@ -152,7 +154,7 @@ function Cashout({ isOpen, onClose, id }) {
 Cashout.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 
 export default Cashout;
