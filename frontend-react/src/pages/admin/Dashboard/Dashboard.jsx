@@ -107,7 +107,7 @@ function Dashboard() {
               <img className="w-9 h-9 rounded-sm" src="https://via.placeholder.com/36x36" alt="Content" />
                 <div className="ml-2">
                   <p className="text-zinc-900 text-sm font-semibold">Aksi Relawan Kebersihan</p>
-                  <p className="text-zinc-500 text-sm">Jumlah Pendaftar: <span className="text-sky-500">98</span></p>
+                  <p className="text-zinc-500 text-sm">Jumlah Pendaftar : <span className="text-sky-500">98</span></p>
                 </div>
               </div>
               <button className="bg-gray-100 flex text-sky-500 text-xs py-1 px-4 rounded border mt-4">
@@ -126,7 +126,7 @@ function Dashboard() {
                 <img className="w-9 h-9 rounded-sm" src="https://via.placeholder.com/36x36" alt="Content" />
                 <div className="ml-2">
                   <p className="text-zinc-900 text-sm font-semibold">Aksi Relawan Kebersihan</p>
-                  <p className="text-zinc-500 text-sm">Jumlah Pembaca: <span className="text-sky-500">98</span></p>
+                  <p className="text-zinc-500 text-sm">Jumlah User menyimpan : <span className="text-sky-500">98</span></p>
                 </div>
               </div>
               <button className="bg-gray-100 flex text-sky-500 text-xs py-1 px-4 rounded border mt-4">
