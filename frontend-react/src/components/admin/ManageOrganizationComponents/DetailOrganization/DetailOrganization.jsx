@@ -266,7 +266,7 @@ function DetailOrganization() {
           </div>
         </div>
         <div>
-          {selectedTab === 'detail-organization-donasi' ? <DetailOrganizationDonasi /> : <DetailOrganizationVolunteer />}
+          {selectedTab === 'detail-organization-donasi' ? <DetailOrganizationDonasi id={id}/> : <DetailOrganizationVolunteer id={id}/>}
         </div>
       </div>
     </div>
