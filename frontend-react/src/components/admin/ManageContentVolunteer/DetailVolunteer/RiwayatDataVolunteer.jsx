@@ -227,7 +227,7 @@ function RiwayatDataVolunteer({id}) {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {item.id}
+                    {index + 1} {/* Nomor urut otomatis */}
                   </th>
                   <td className="px-6 py-4">{item.user_fullname}</td>
                   <td className="px-6 py-4">{item.age}</td>
