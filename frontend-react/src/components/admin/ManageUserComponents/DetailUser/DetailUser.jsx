@@ -14,7 +14,6 @@ function DetailUser() {
   const [editFullName, setEditFullName] = useState('');
   const [editEmail, setEditEmail] = useState('');
   const [editPhone, setEditPhone] = useState('');
-  const [editRegisterDate, setEditRegisterDate] = useState('');
   const [editPassword, setEditPassword] = useState('');
 
   const [selectedTab, setSelectedTab] = useState('detail-user-donasi'); 
@@ -48,10 +47,9 @@ function DetailUser() {
     try {
       const formData = new FormData();
       formData.append('username', editUsername);
-      formData.append('fullName', editFullName); 
+      formData.append('fullname', editFullName); 
       formData.append('email', editEmail);
-      formData.append('phone', editPhone);
-      formData.append('registerDate', editRegisterDate);
+      formData.append('no_telp', editPhone);
       formData.append('password', editPassword);
 
       const response = await fetch(`https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/users/${id}`, {
@@ -82,7 +80,6 @@ function DetailUser() {
     setEditFullName(data.full_name);
     setEditEmail(data.email);
     setEditPhone(data.phone);
-    setEditRegisterDate(data.register_date);
     setIsEditing(true);
   };
 
