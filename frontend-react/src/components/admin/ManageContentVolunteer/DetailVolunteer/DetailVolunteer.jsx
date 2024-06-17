@@ -55,7 +55,7 @@ function DetailVolunteer() {
         formData.append('image_url', imageFile);
       }
       formData.append('title', title);
-      formData.append('organization.id', organization); 
+      formData.append('organization_id', organization); 
       formData.append('target_volunteer', targetVolunteer);
       formData.append('start_date', startDate);
       formData.append('end_date', endDate);
