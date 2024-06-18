@@ -1,16 +1,26 @@
+import right from '../../../assets/images/rightIcon.svg';
+
 function TopVolunteer() {
   return (
-    <div className="md:col-span-1 bg-white p-4 rounded-lg shadow flex flex-col items-center">
-      <div className="w-full flex flex-col mb-4">
-        <p className="text-zinc-900 text-base font-bold">Relawan</p>
-        <p className="text-zinc-500 text-sm">Kategori relawan paling favorit</p>
+<div className="md:col-span-1 bg-white p-4 rounded-lg shadow flex flex-col items-center">
+        <div className="w-full flex flex-col mb-4">
+          <p className="text-zinc-900 text-base font-bold">Top Konten Volunteer</p>
+          <p className="text-zinc-500 text-sm">Konten volunteer paling banyak pendaftar</p>
+        </div>
+        <div className="flex-1 w-full">
+          <div className="flex items-center border p-2 rounded mb-2">
+            <img className="w-9 h-9 rounded-sm" src="https://via.placeholder.com/36x36" alt="Content" />
+            <div className="ml-2">
+              <p className="text-zinc-900 text-sm font-semibold">Aksi Relawan Kebersihan</p>
+              <p className="text-zinc-500 text-sm">Jumlah pendaftar : <span className="text-sky-500">98</span></p>
+            </div>
+          </div>
+          <button className="bg-gray-100 flex text-sky-500 text-xs py-1 px-4 rounded border mt-4">
+            Lihat Semua Konteen Volunteer
+            <img className="w-3 m-1" src={right} alt="right" />
+          </button>
+        </div>
       </div>
-      <div className="w-56 h-56 bg-sky-800 rounded-full mb-2"></div>
-      <div className="text-center mt-4">
-        <p className="text-gray-900 text-3xl">Top</p>
-        <p className="text-emerald-600 text-sm">25%</p>
-      </div>
-    </div>
   )
 }
 
