@@ -80,13 +80,12 @@ function Login({ setIsLoggedIn }) {
                 onChange={(e) => setUsername(e.target.value)}
                 required
                 className="w-full h-14 bg-gray-50 border border-cyan-500 rounded-lg pl-12 pr-4 py-2 placeholder-gray-800 focus:outline-none"
-                style={{
-                  backgroundImage: `url(${user})`,
-                  backgroundPosition: '10px center',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundSize: '24px 24px',
-                }}
               />
+               <div 
+                className="absolute inset-y-0 left-4 flex items-center cursor-pointer" 
+              >
+                <img src={user} alt="User Icon" className="w-6 h-6" />
+              </div>
             </div>
             <div className="relative w-full">
               <input
