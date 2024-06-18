@@ -5,7 +5,7 @@ function TopArticles() {
       <div className="md:col-span-1 bg-white p-4 rounded-lg shadow flex flex-col items-center">
         <div className="w-full flex flex-col mb-4">
           <p className="text-zinc-900 text-base font-bold">Top Artikel</p>
-          <p className="text-zinc-500 text-sm">Artikel paling sering dibaca</p>
+          <p className="text-zinc-500 text-sm">Artikel paling favorit</p>
         </div>
         <div className="flex-1 w-full">
           <div className="flex items-center border p-2 rounded mb-2">
