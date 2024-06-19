@@ -7,6 +7,7 @@ import up from '../../../../assets/images/arrowUpBlue.svg';
 const Artikel = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const Artikel = () => {
       const result = await response.json();
       if (result.status) {
         setData(result.data);
+        setTotalPages(result.totalPages);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -96,7 +98,7 @@ const Artikel = () => {
           </div>
         </div>
         <TabelDataArtikel data={data}/>
-        <PaginationDataArtikel currentPage={currentPage} onPageChange={setCurrentPage}/>
+        <PaginationDataArtikel currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
       </div>
     </div>
   )
