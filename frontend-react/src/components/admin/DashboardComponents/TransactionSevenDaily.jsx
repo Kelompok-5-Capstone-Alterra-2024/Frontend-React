@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ApexCharts from 'apexcharts';
 
 function TransactionSevenDaily() {
@@ -6,6 +6,7 @@ function TransactionSevenDaily() {
   const [total, setTotal] = useState(0);
   const [chartData, setChartData] = useState([]);
   const [chartCategories, setChartCategories] = useState([]);
+  const chartRef = useRef(null);
 
   useEffect(() => {
     getTransactionSevenDaily();
@@ -113,9 +114,11 @@ function TransactionSevenDaily() {
       },
     };
 
-    if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
-      const chart = new ApexCharts(document.getElementById("area-chart"), options);
-      chart.render();
+    if (chartRef.current) {
+      chartRef.current.updateOptions(options);
+    } else {
+      chartRef.current = new ApexCharts(document.getElementById("area-chart"), options);
+      chartRef.current.render();
     }
   };
 
