@@ -56,11 +56,11 @@ const TopDonationCategory = () => {
               total: {
                 showAlways: true,
                 show: true,
-                label: "Top Donasi",
+                label: "total donasi", 
                 fontFamily: "Inter, sans-serif",
                 formatter: function (w) {
                   const sum = w.globals.seriesTotals.reduce((a, b) => a + b, 0);
-                  return sum + ' donasi';
+                  return sum;
                 },
               },
               value: {
