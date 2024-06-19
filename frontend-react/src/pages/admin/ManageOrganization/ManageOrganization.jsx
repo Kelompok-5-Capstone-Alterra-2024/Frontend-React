@@ -8,6 +8,7 @@ function ManageOrganization() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     fetchOrganizationData(currentPage);
@@ -25,6 +26,7 @@ function ManageOrganization() {
       const result = await response.json();
       if (result.success) {
         setData(result.data);
+        setTotalPages(result.totalPages);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -86,7 +88,7 @@ function ManageOrganization() {
           </div>
         </div>
         <TabelDataOrganisasi data={data}/>
-        <PaginationDataOrganisasi currentPage={currentPage} onPageChange={setCurrentPage}/>
+        <PaginationDataOrganisasi currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
       </div>
     </div>
   )
