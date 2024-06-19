@@ -5,6 +5,7 @@ import TabelDataUser from "../../../components/admin/ManageUserComponents/TabelD
 const ManageUser = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     fetchUserData(currentPage);
@@ -22,6 +23,7 @@ const ManageUser = () => {
       const result = await response.json();
       if (result.success) {
         setData(result.data);
+        setTotalPages(result.totalPages);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -50,7 +52,7 @@ const ManageUser = () => {
         </div>
       </div>
       <TabelDataUser data={data}/>
-      <PaginationDataUser currentPage={currentPage} onPageChange={setCurrentPage}/>
+      <PaginationDataUser currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
     </div>
   );
