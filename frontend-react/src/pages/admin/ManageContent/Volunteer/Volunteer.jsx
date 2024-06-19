@@ -7,6 +7,7 @@ import up from '../../../../assets/images/arrowUpBlue.svg';
 function Volunteer() {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ function Volunteer() {
       const result = await response.json();
       if (result.status) {
         setData(result.data);
+        setTotalPages(result.totalPages);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -101,7 +103,7 @@ function Volunteer() {
           </div>
         </div>
         <TabelDataVolunteer data={data}/>
-        <PaginationDataVolunteer currentPage={currentPage} onPageChange={setCurrentPage}/>
+        <PaginationDataVolunteer currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
       </div>
     </div>
   )
