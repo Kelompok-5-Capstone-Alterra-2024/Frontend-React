@@ -7,6 +7,7 @@ import up from '../../../../assets/images/arrowUpBlue.svg';
 function Donasi() {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [isModalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
@@ -25,6 +26,7 @@ function Donasi() {
       const result = await response.json();
       if (result.success) {
         setData(result.data);
+        setTotalPages(result.totalPages);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -101,7 +103,7 @@ function Donasi() {
           </div>
         </div>
         <TabelDataDonasi data={data}/>
-        <PaginationDataDonasi currentPage={currentPage} onPageChange={setCurrentPage}/>
+        <PaginationDataDonasi currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
       </div>
     </div>
   )
