@@ -44,7 +44,7 @@ function RegisteredOrganization() {
             <img className="w-9 h-9 rounded-full" src={item.avatar} alt="Content" />
             <div className="ml-2">
               <p className="text-zinc-900 text-sm font-semibold">{item.name}</p>
-              <p className="text-zinc-500 text-sm">yayasankalasahan@gmail.com</p>
+              <p className="text-zinc-500 text-sm">{item.instagram}</p>
             </div>
           </div>
         ))}
