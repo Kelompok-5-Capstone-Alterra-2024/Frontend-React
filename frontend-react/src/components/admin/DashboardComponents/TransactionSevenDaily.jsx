@@ -1,25 +1,157 @@
-import up from '../../../assets/images/arrowUp.svg';
+import { useEffect, useState } from 'react';
+import ApexCharts from 'apexcharts';
 
 function TransactionSevenDaily() {
+  const [data, setData] = useState({});
+  const [total, setTotal] = useState(0);
+  const [chartData, setChartData] = useState([]);
+  const [chartCategories, setChartCategories] = useState([]);
+
+  useEffect(() => {
+    getTransactionSevenDaily();
+  }, []);
+
+  useEffect(() => {
+    if (chartData.length > 0 && chartCategories.length > 0) {
+      renderChart();
+    }
+  }, [chartData, chartCategories]);
+
+  const accessToken = sessionStorage.getItem('access_token');
+
+  const getTransactionSevenDaily = async () => {
+    try {
+      const response = await fetch('https://capstone-alterra-424313.as.r.appspot.com/api/v1/admin/transactions-daily', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+      });
+      const result = await response.json();
+      if (result.success) {
+        setData(result.data);
+
+        const totalAmount = Object.values(result.data).reduce((acc, curr) => acc + curr, 0);
+        setTotal(totalAmount);
+
+        const dates = Object.keys(result.data);
+        const amounts = Object.values(result.data);
+        
+        setChartCategories(dates);
+        setChartData(amounts);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const renderChart = () => {
+    const options = {
+      chart: {
+        height: "100%",
+        maxWidth: "100%",
+        type: "area",
+        fontFamily: "Inter, sans-serif",
+        dropShadow: {
+          enabled: false,
+        },
+        toolbar: {
+          show: false,
+        },
+      },
+      tooltip: {
+        enabled: true,
+        x: {
+          show: false,
+        },
+      },
+      fill: {
+        type: "gradient",
+        gradient: {
+          opacityFrom: 0.55,
+          opacityTo: 0,
+          shade: "#1C64F2",
+          gradientToColors: ["#1C64F2"],
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        width: 6,
+      },
+      grid: {
+        show: false,
+        strokeDashArray: 4,
+        padding: {
+          left: 2,
+          right: 2,
+          top: 0
+        },
+      },
+      series: [
+        {
+          name: "data transaksi",
+          data: chartData,
+          color: "#1A56DB",
+        },
+      ],
+      xaxis: {
+        categories: chartCategories,
+        labels: {
+          show: false,
+        },
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+      },
+      yaxis: {
+        show: false,
+      },
+    };
+
+    if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
+      const chart = new ApexCharts(document.getElementById("area-chart"), options);
+      chart.render();
+    }
+  };
+
   return (
-    <div className="md:col-span-2 bg-white p-6 rounded-lg shadow flex flex-col">
-      <div className="flex justify-between items-center mb-4">
+    <div className="md:col-span-2 bg-white p-6 rounded-lg shadow">
+      <div className="flex justify-between">
         <div>
-          <p className="text-gray-900 text-3xl font-bold pb-1">Rp. 89 Juta</p>
-          <p className="text-gray-500">Transaksi 7 Hari</p>
+          <h5 className="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">Rp. {total.toLocaleString()}</h5>
+          <p className="text-base font-normal text-gray-500 dark:text-gray-400">Transaksi selama 7 hari terakhir</p>
         </div>
-        <div className="flex items-center gap-0">
-          <p className="text-green-500 font-semibold text-sm">+ 12%</p>
-          <img className="w-3 ml-1" src={up} alt="Arrow Up" />
+        <div className="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
+          12%
+          <svg className="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
+          </svg>
         </div>
       </div>
-      <div className="flex-1 bg-gray-100 rounded-lg"></div>
-      <div className="flex justify-between items-center mt-4 border-t pt-4">
-        <p className="text-gray-500">7 Hari</p>
-        <p className="text-blue-700 uppercase">Juni</p>
+      <div id="area-chart"></div>
+      <div className="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+        <div className="flex justify-between items-center pt-5">
+          <div
+            className="text-sm font-medium text-gray-500 text-center inline-flex items-center">
+            7 Hari 
+          </div>
+          <a
+            href="#"
+            className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
+            JUNI
+            <svg className="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default TransactionSevenDaily
+export default TransactionSevenDaily;
