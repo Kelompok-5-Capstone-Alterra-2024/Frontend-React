@@ -133,8 +133,8 @@ const TopDonationCategory = () => {
   }, [data]);
 
   return (
-    <div className="md:col-span-1 bg-white rounded-lg shadow flex flex-col items-center">
-      <div className="max-w-sm w-full bg-white md:p-6">
+    <div className="md:col-span-1 bg-white rounded-lg shadow flex flex-col items-center p-2">
+      <div className="max-w-sm w-full bg-white p-2">
         <div className="flex justify-between mb-3">
           <div className="w-full flex flex-col mb-2">
             <p className="text-zinc-900 text-base font-bold">Donasi</p>
