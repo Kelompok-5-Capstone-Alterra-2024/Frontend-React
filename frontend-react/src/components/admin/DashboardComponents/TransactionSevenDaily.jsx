@@ -6,6 +6,8 @@ function TransactionSevenDaily() {
   const [total, setTotal] = useState(0);
   const [chartData, setChartData] = useState([]);
   const [chartCategories, setChartCategories] = useState([]);
+  const [currentMonth, setCurrentMonth] = useState('');
+  const [percentage, setPercentage] = useState(0);
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -32,14 +34,20 @@ function TransactionSevenDaily() {
       if (result.success) {
         setData(result.data);
 
-        const totalAmount = Object.values(result.data).reduce((acc, curr) => acc + curr, 0);
+        const totalAmount = result.data.reduce((acc, curr) => acc + curr.amount, 0);
         setTotal(totalAmount);
 
-        const dates = Object.keys(result.data);
-        const amounts = Object.values(result.data);
+        const dates = result.data.map(item => new Date(item.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }));
+
+        const amounts = result.data.map(item => item.amount);
         
         setChartCategories(dates);
         setChartData(amounts);
+
+        if (result.data.length > 0) {
+          setCurrentMonth(result.data[0].month);
+          setPercentage(result.data[result.data.length - 1].percentage);
+        }
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -130,7 +138,7 @@ function TransactionSevenDaily() {
           <p className="text-base font-normal text-gray-500 dark:text-gray-400">Transaksi selama 7 hari terakhir</p>
         </div>
         <div className="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
-          12%
+          {percentage}%
           <svg className="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
           </svg>
@@ -146,7 +154,7 @@ function TransactionSevenDaily() {
           <a
             href="#"
             className="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-            JUNI
+            {currentMonth.toUpperCase()}
             <svg className="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 9 4-4-4-4"/>
             </svg>
