@@ -5,6 +5,7 @@ import TableRiwayatDonasi from "./TableRiwayatDonasi";
 const RiwayatDonasi = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     getAllDonationHistory(currentPage);
@@ -22,6 +23,7 @@ const RiwayatDonasi = () => {
       const result = await response.json();
       if (result.status) {
         setData(result.data);
+        setTotalPages(result.totalPages);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -49,7 +51,7 @@ const RiwayatDonasi = () => {
         </div>
       </div>
       <TableRiwayatDonasi data={data} setData={setData}/>
-      <PaginationRiwayatDonasi currentPage={currentPage} onPageChange={setCurrentPage}/>
+      <PaginationRiwayatDonasi currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
   );
 };
