@@ -5,6 +5,7 @@ import TableRiwayatTransaksi from "./TableRiwayatTransaksi";
 const RiwayatTransaksi = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     getAllTransactionHistory(currentPage);
@@ -22,6 +23,7 @@ const RiwayatTransaksi = () => {
       const result = await response.json();
       if (result.status) {
         setData(result.data);
+        setTotalPages(result.totalPages);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -49,7 +51,7 @@ const RiwayatTransaksi = () => {
         </div>
       </div>
       <TableRiwayatTransaksi data={data} setData={setData}/>
-      <PaginationRiwayatTransaksi currentPage={currentPage} onPageChange={setCurrentPage}/>
+      <PaginationRiwayatTransaksi currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
   );
 };
