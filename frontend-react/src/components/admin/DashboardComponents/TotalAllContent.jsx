@@ -34,7 +34,7 @@ function TotalAllContent() {
           <div className="flex justify-between items-center w-full">
             <p className="text-zinc-900 text-xl font-semibold">Rp.{data.total_donations_amount}</p>
             <div className="flex items-center gap-0">
-              <p className="text-green-500 text-sm">+ {data.donation_amount_change}</p>
+              <p className="text-green-500 text-sm">+ {data.persentage_donation}</p>
               <img className="w-2 ml-1" src={up} alt="Arrow Up" />
             </div>
           </div>
@@ -44,7 +44,7 @@ function TotalAllContent() {
           <div className="flex justify-between items-center w-full">
             <p className="text-zinc-900 text-xl font-semibold">{data.total_user_volunteers} Orang</p>
             <div className="flex items-center gap-0">
-              <p className="text-green-500 text-sm">+ {data.volunteer_user_change}</p>
+              <p className="text-green-500 text-sm">+ {data.persentage_volunteer}</p>
               <img className="w-2 ml-1" src={up} alt="Arrow Up" />
             </div>
           </div>
@@ -54,7 +54,7 @@ function TotalAllContent() {
           <div className="flex justify-between items-center w-full">
             <p className="text-zinc-900 text-xl font-semibold">{data.total_articles}</p>
             <div className="flex items-center gap-0">
-              <p className="text-green-500 text-sm">+ {data.article_change}</p>
+              <p className="text-green-500 text-sm">+ {data.persentage_article}</p>
               <img className="w-2 ml-1" src={up} alt="Arrow Up" />
             </div>
           </div>
@@ -62,9 +62,9 @@ function TotalAllContent() {
         <div className="bg-white p-5 rounded-lg border border-gray-200 flex flex-col">
           <p className="text-zinc-500 text-xs">JUMLAH TRANSAKSI</p>
           <div className="flex justify-between items-center w-full">
-            <p className="text-zinc-900 text-xl font-semibold">{data.total_donations}</p>
+            <p className="text-zinc-900 text-xl font-semibold">{data.total_transaction}</p>
             <div className="flex items-center gap-0">
-              <p className="text-green-500 text-sm">+ {data.donation_change}</p>
+              <p className="text-green-500 text-sm">+ {data.persentage_transaction}</p>
               <img className="w-2 ml-1" src={up} alt="Arrow Up" />
             </div>
           </div>
