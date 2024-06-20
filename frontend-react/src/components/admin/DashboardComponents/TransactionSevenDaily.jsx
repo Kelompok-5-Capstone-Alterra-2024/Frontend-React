@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import ApexCharts from 'apexcharts';
 
 function TransactionSevenDaily() {
-  const [data, setData] = useState({});
   const [total, setTotal] = useState(0);
   const [chartData, setChartData] = useState([]);
   const [chartCategories, setChartCategories] = useState([]);
@@ -31,23 +30,18 @@ function TransactionSevenDaily() {
         },
       });
       const result = await response.json();
-      if (result.success) {
-        setData(result.data);
-
-        const totalAmount = result.data.reduce((acc, curr) => acc + curr.amount, 0);
+      if (result.transaction) {
+        const totalAmount = result.total_amount;
         setTotal(totalAmount);
 
-        const dates = result.data.map(item => new Date(item.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }));
-
-        const amounts = result.data.map(item => item.amount);
+        const dates = result.transaction.map(item => new Date(item.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }));
+        const amounts = result.transaction.map(item => item.amount);
         
         setChartCategories(dates);
         setChartData(amounts);
 
-        if (result.data.length > 0) {
-          setCurrentMonth(result.data[0].month);
-          setPercentage(result.data[result.data.length - 1].percentage);
-        }
+        setCurrentMonth(result.moth);
+        setPercentage(result.percentage);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
