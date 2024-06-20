@@ -30,18 +30,18 @@ function TransactionSevenDaily() {
         },
       });
       const result = await response.json();
-      if (result.transaction) {
-        const totalAmount = result.total_amount;
+      if (result.success) {
+        const totalAmount = result.data.total_amount;
         setTotal(totalAmount);
 
-        const dates = result.transaction.map(item => new Date(item.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }));
-        const amounts = result.transaction.map(item => item.amount);
+        const dates = result.data.transaction.map(item => new Date(item.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }));
+        const amounts = result.data.transaction.map(item => item.amount);
         
         setChartCategories(dates);
         setChartData(amounts);
 
-        setCurrentMonth(result.moth);
-        setPercentage(result.percentage);
+        setCurrentMonth(result.data.moth);
+        setPercentage(result.data.percentage);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
