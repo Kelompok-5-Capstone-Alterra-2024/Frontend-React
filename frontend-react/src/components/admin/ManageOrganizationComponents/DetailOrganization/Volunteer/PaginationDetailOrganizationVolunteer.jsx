@@ -70,4 +70,4 @@ function PaginationDetailOrganizationVolunteer({ currentPage, onPageChange, tota
   );
 }
 
-export default PaginationDetailOrganizationVolunteeer;
+export default PaginationDetailOrganizationVolunteer;
