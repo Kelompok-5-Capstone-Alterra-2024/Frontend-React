@@ -9,7 +9,7 @@ const TableRiwayatTransaksi = ({data}) => {
       <table className="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead className="text-xs text-white uppercase bg-primary-main">
           <tr>
-            <th scope="col" className="px-6 py-3">No</th>
+            <th scope="col" className="px-6 py-3">id</th>
             <th scope="col" className="px-6 py-3">
               <div className="flex items-center">
                 Organisasi
@@ -37,7 +37,7 @@ const TableRiwayatTransaksi = ({data}) => {
       <table className="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead className="text-xs text-white uppercase bg-primary-main">
           <tr>
-            <th scope="col" className="px-6 py-3">No</th>
+            <th scope="col" className="px-6 py-3">id</th>
             <th scope="col" className="px-6 py-3">
               <div className="flex items-center">
                 Organisasi
@@ -59,7 +59,7 @@ const TableRiwayatTransaksi = ({data}) => {
           {data.map((item, index) => (
             <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
               <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {index + 1}
+                {item.id}
               </th>
               <td className="px-6 py-4">{item.organization_name}</td>
               <td className="px-6 py-4">{item.amount}</td>
