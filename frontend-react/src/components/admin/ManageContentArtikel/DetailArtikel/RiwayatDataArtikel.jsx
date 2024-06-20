@@ -4,10 +4,11 @@ import PaginationRiwayatDataArtikel from "./PaginationRiwayatDataArtikel";
 function RiwayatDataArtikel({ id }) {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const accessToken = sessionStorage.getItem('access_token');
 
   useEffect(() => {
-    getAllCommentByArticleId();
+    getAllCommentByArticleId(currentPage);
   }, [currentPage]);
 
   const getAllCommentByArticleId = async (page) => {
@@ -35,6 +36,7 @@ function RiwayatDataArtikel({ id }) {
 
       if (result.status === "success") {
         setData(result.data);
+        setTotalPages(result.totalPages)
         console.log("Comments fetched successfully:", result.data);
       } else {
         console.error('Failed to fetch comments:', result.message);
@@ -69,7 +71,7 @@ function RiwayatDataArtikel({ id }) {
         <table className="w-full text-sm text-left rtl:text-right text-gray-500">
           <thead className="text-xs text-white uppercase bg-primary-main">
             <tr>
-              <th scope="col" className="px-6 py-3">no</th>
+              <th scope="col" className="px-6 py-3">id</th>
               <th scope="col" className="px-6 py-3">
                 <div className="flex items-center">
                   nama
@@ -92,6 +94,7 @@ function RiwayatDataArtikel({ id }) {
           </thead>
         </table>
       </div>
+      <PaginationRiwayatDataArtikel currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
     );
   }
@@ -120,7 +123,7 @@ function RiwayatDataArtikel({ id }) {
         <table className="w-full text-sm text-left rtl:text-right text-gray-500">
           <thead className="text-xs text-white uppercase bg-primary-main">
             <tr>
-              <th scope="col" className="px-6 py-3">no</th>
+              <th scope="col" className="px-6 py-3">id</th>
               <th scope="col" className="px-6 py-3">
                 <div className="flex items-center">
                   nama
@@ -151,7 +154,7 @@ function RiwayatDataArtikel({ id }) {
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                  {index + 1} {/* Nomor urut otomatis */}
+                  {item.id}
                 </th>
                 <td className="px-6 py-4">{item.user.username}</td> {/* Akses `username` dari `user` */}
                 <td className="px-6 py-4">{item.body}</td>
@@ -161,7 +164,7 @@ function RiwayatDataArtikel({ id }) {
           </tbody>
         </table>
       </div>
-      <PaginationRiwayatDataArtikel currentPage={currentPage} onPageChange={setCurrentPage} />
+      <PaginationRiwayatDataArtikel currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
   )
 }
