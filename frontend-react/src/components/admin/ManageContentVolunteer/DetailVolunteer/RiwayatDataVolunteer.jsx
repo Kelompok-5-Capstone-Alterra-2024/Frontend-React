@@ -5,13 +5,14 @@ import BuktiFollow from "./BuktiFollow";
 function RiwayatDataVolunteer({id}) {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const accessToken = sessionStorage.getItem('access_token');
   const [currentItem, setCurrentItem] = useState(null);
   const [showImageModal, setShowImageModal] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
 
   useEffect(() => {
-    getAllApplyByVolunteerId();
+    getAllApplyByVolunteerId(currentPage);
   }, [currentPage]);
 
   const getAllApplyByVolunteerId = async (page) => {
@@ -39,6 +40,7 @@ function RiwayatDataVolunteer({id}) {
 
       if (result.status === "success") {
         setData(result.data);
+        setTotalPages(result.totalPages);
         console.log("Comments fetched successfully:", result.data);
       } else {
         console.error('Failed to fetch comments:', result.message);
@@ -107,7 +109,7 @@ function RiwayatDataVolunteer({id}) {
           <table className="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead className="text-xs text-white uppercase bg-primary-main">
               <tr>
-                <th scope="col" className="px-6 py-3">no</th>
+                <th scope="col" className="px-6 py-3">id</th>
                 <th scope="col" className="px-6 py-3">
                   <div className="flex items-center">
                     nama
@@ -149,6 +151,7 @@ function RiwayatDataVolunteer({id}) {
             </thead>
           </table>
         </div>
+        <PaginationCustomDataVolunteer currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
     );
   }
@@ -177,7 +180,7 @@ function RiwayatDataVolunteer({id}) {
           <table className="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead className="text-xs text-white uppercase bg-primary-main">
               <tr>
-                <th scope="col" className="px-6 py-3">no</th>
+                <th scope="col" className="px-6 py-3">id</th>
                 <th scope="col" className="px-6 py-3">
                   <div className="flex items-center">
                     nama
@@ -227,7 +230,7 @@ function RiwayatDataVolunteer({id}) {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {index + 1} {/* Nomor urut otomatis */}
+                    {item.id}
                   </th>
                   <td className="px-6 py-4">{item.user_fullname}</td>
                   <td className="px-6 py-4">{item.age}</td>
@@ -259,7 +262,7 @@ function RiwayatDataVolunteer({id}) {
           />
           )}
         </div>
-      <PaginationCustomDataVolunteer currentPage={currentPage} onPageChange={setCurrentPage}/>
+      <PaginationCustomDataVolunteer currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
   )
 }
