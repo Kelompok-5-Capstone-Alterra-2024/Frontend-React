@@ -4,10 +4,11 @@ import PaginationDetailOrganizationVolunteer from "./PaginationDetailOrganizatio
 const DetailOrganizationVolunteer = ({id}) => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const accessToken = sessionStorage.getItem('access_token');
 
   useEffect(() => {
-    getOrganizationVolunteer();
+    getOrganizationVolunteer(currentPage);
   }, [currentPage]);
 
   const getOrganizationVolunteer = async (page) => {
@@ -26,6 +27,7 @@ const DetailOrganizationVolunteer = ({id}) => {
       const result = await response.json();
       if (result.status) {
         setData(result.data);
+        setTotalPages(result.totalPages);
       } else {
         console.error('Failed to fetch volunteers:', result.message);
       }
@@ -65,7 +67,7 @@ const DetailOrganizationVolunteer = ({id}) => {
         <table className="w-full text-sm text-left rtl:text-right text-gray-500">
           <thead className="text-xs text-white uppercase bg-primary-main">
             <tr>
-            <th scope="col" className="px-6 py-3">no</th>
+            <th scope="col" className="px-6 py-3">id</th>
               <th scope="col" className="px-6 py-3">
                 <div className="flex items-center">
                   Judul
@@ -84,6 +86,7 @@ const DetailOrganizationVolunteer = ({id}) => {
           </thead>
         </table>
       </div>
+      <PaginationDetailOrganizationVolunteer currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
     );
   }
@@ -94,7 +97,7 @@ const DetailOrganizationVolunteer = ({id}) => {
         <table className="w-full text-sm text-left rtl:text-right text-gray-500">
           <thead className="text-xs text-white uppercase bg-primary-main">
             <tr>
-            <th scope="col" className="px-6 py-3">no</th>
+            <th scope="col" className="px-6 py-3">id</th>
               <th scope="col" className="px-6 py-3">
                 <div className="flex items-center">
                   Judul
@@ -131,7 +134,7 @@ const DetailOrganizationVolunteer = ({id}) => {
           </tbody>
         </table>
       </div>
-      <PaginationDetailOrganizationVolunteer currentPage={currentPage} onPageChange={setCurrentPage}/>
+      <PaginationDetailOrganizationVolunteer currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
   );
 };

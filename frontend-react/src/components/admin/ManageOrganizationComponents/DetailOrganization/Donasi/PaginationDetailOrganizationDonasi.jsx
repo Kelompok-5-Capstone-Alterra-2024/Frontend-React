@@ -1,8 +1,38 @@
-function PaginationDetailOrganizationDonasi({ currentPage, onPageChange }) {
+function PaginationDetailOrganizationDonasi({ currentPage, onPageChange, totalPages }) {
   const handlePageChange = (newPage) => {
     onPageChange(newPage);
   };
 
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    const maxVisiblePages = 5;
+    let startPage = Math.max(currentPage - Math.floor(maxVisiblePages / 2), 1);
+    let endPage = startPage + maxVisiblePages - 1;
+
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(endPage - maxVisiblePages + 1, 1);
+    }
+
+    for (let page = startPage; page <= endPage; page++) {
+      pageNumbers.push(
+        <li key={page}>
+          <button
+            onClick={() => handlePageChange(page)}
+            className={`flex items-center justify-center px-3 h-8 leading-tight ${
+              page === currentPage
+                ? 'text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
+                : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'
+            } dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+          >
+            {page}
+          </button>
+        </li>
+      );
+    }
+    return pageNumbers;
+  };
+  
   return (
     <div className="pt-5 w-full sm:w-auto overflow-x-auto">
       <div className="flex flex-wrap justify-between">
@@ -10,7 +40,7 @@ function PaginationDetailOrganizationDonasi({ currentPage, onPageChange }) {
           <span className="text-gray-500 text-md font-normal leading-[21px]">Showing </span>
           <span className="text-gray-900 text-md font-semibold leading-[21px]">1-5</span>
           <span className="text-gray-500 text-md font-normal leading-[21px]"> of </span>
-          <span className="text-gray-900 text-md font-semibold leading-[21px]">25</span>
+          <span className="text-gray-900 text-md font-semibold leading-[21px]">100</span>
         </div>
         <nav aria-label="Page navigation example">
           <ul className="inline-flex -space-x-px text-sm">
@@ -23,24 +53,11 @@ function PaginationDetailOrganizationDonasi({ currentPage, onPageChange }) {
                 Previous
               </button>
             </li>
-            {[1, 2, 3, 4, 5].map((page) => (
-              <li key={page}>
-                <button
-                  onClick={() => handlePageChange(page)}
-                  className={`flex items-center justify-center px-3 h-8 leading-tight ${
-                    page === currentPage
-                      ? 'text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
-                      : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'
-                  } dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
-                >
-                  {page}
-                </button>
-              </li>
-            ))}
+            {renderPageNumbers()}
             <li>
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === 5} // Adjust this according to your total pages
+                disabled={currentPage === totalPages} // Sesuaikan dengan total halaman
                 className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               >
                 Next
