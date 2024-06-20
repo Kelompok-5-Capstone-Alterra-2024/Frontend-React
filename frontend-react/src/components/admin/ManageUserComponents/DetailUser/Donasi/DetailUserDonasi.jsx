@@ -4,10 +4,11 @@ import PaginationDetailUserDonasi from "./PaginationDetailUserDonasi";
 const DetailUserDonasi = ({id}) => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const accessToken = sessionStorage.getItem('access_token');
 
   useEffect(() => {
-    getUserDonation();
+    getUserDonation(currentPage);
   }, [currentPage]);
 
   const getUserDonation = async (page) => {
@@ -26,6 +27,7 @@ const DetailUserDonasi = ({id}) => {
       const result = await response.json();
       if (result.status) {
         setData(result.data);
+        setTotalPages(result.totalPages);
       } else {
         console.error('Failed to fetch donations:', result.message);
       }
@@ -77,6 +79,7 @@ const DetailUserDonasi = ({id}) => {
           </thead>
         </table>
       </div>
+      <PaginationDetailUserDonasi currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
     );
   }
@@ -136,7 +139,7 @@ const DetailUserDonasi = ({id}) => {
           </tbody>
         </table>
       </div>
-      <PaginationDetailUserDonasi currentPage={currentPage} onPageChange={setCurrentPage}/>
+      <PaginationDetailUserDonasi currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
   );
 };
