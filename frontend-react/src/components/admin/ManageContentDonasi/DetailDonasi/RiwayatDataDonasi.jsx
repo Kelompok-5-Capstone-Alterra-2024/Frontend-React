@@ -4,10 +4,11 @@ import PaginationRiwayatDataDonasi from "./PaginationRiwayatDataDonasi";
 function RiwayatDataDonasi({id}) {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const accessToken = sessionStorage.getItem('access_token');
 
   useEffect(() => {
-    getDonationsByFundraisingId();
+    getDonationsByFundraisingId(currentPage);
   }, [currentPage]);
 
   const getDonationsByFundraisingId = async (page) => {
@@ -26,6 +27,7 @@ function RiwayatDataDonasi({id}) {
       const result = await response.json();
       if (result.success) {
         setData(result.data);
+        setTotalPages(result.totalPages);
       } else {
         console.error('Failed to fetch donations:', result.message);
       }
@@ -83,6 +85,7 @@ function RiwayatDataDonasi({id}) {
             </thead>
           </table>
       </div>
+      <PaginationRiwayatDataDonasi currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
     );
   }
@@ -154,7 +157,7 @@ function RiwayatDataDonasi({id}) {
             </tbody>
           </table>
         </div>
-      <PaginationRiwayatDataDonasi currentPage={currentPage} onPageChange={setCurrentPage}/>
+      <PaginationRiwayatDataDonasi currentPage={currentPage} onPageChange={setCurrentPage} totalPages={totalPages}/>
     </div>
   )
 }
