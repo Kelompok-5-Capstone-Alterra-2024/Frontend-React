@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import AddDonasi from "../../../../components/admin/ManageContentDonasi/TambahContentDonasi";
 import TabelDataDonasi from "../../../../components/admin/ManageContentDonasi/TabelDataDonasi";
 import PaginationDataDonasi from "../../../../components/admin/ManageContentDonasi/PaginationDataDonasi";
+import importCsv from "../../../../components/admin/ManageContentDonasi/ImportCsv";
 import up from '../../../../assets/images/arrowUpBlue.svg';
+import ImportCsv from '../../../../components/admin/ManageContentDonasi/ImportCsv';
 
 function Donasi() {
   const [data, setData] = useState([]);
@@ -48,14 +50,8 @@ function Donasi() {
           <button className="px-4 py-2 bg-sky-500 text-gray-50 text-sm font-semibold rounded-lg" onClick={openModal}>
             Tambah Content Donasi
           </button>
-        <div className="flex-grow"></div>
-        <div className="flex space-x-4 items-center">
-          <label className="px-4 py-2 bg-sky-500 text-gray-50 text-sm font-semibold rounded-lg cursor-pointer ml-auto">
-            Import CSV
-            <input type="file" accept=".csv" className="hidden" />
-          </label>
-        </div>
-        <AddDonasi isOpen={isModalOpen} onClose={closeModal} />
+          <ImportCsv/>
+          <AddDonasi isOpen={isModalOpen} onClose={closeModal} />
       </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
