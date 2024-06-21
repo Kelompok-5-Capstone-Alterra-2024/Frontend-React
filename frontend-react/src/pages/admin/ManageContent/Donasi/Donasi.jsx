@@ -45,9 +45,18 @@ function Donasi() {
     <div className="min-h-screen bg-neutral-50 flex flex-col p-4">
       <div className="w-full flex gap-4 items-center mb-6">
         <div className="text-black text-2xl font-bold">Manage Content Donasi</div>
-          <button className="px-4 py-2 bg-sky-500 text-gray-50 text-sm font-semibold rounded-lg" onClick={openModal}>Tambah Content Donasi</button>
-          <AddDonasi isOpen={isModalOpen} onClose={closeModal} />
+          <button className="px-4 py-2 bg-sky-500 text-gray-50 text-sm font-semibold rounded-lg" onClick={openModal}>
+            Tambah Content Donasi
+          </button>
+        <div className="flex-grow"></div>
+        <div className="flex space-x-4 items-center">
+          <label className="px-4 py-2 bg-sky-500 text-gray-50 text-sm font-semibold rounded-lg cursor-pointer ml-auto">
+            Import CSV
+            <input type="file" accept=".csv" className="hidden" />
+          </label>
         </div>
+        <AddDonasi isOpen={isModalOpen} onClose={closeModal} />
+      </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           {
