@@ -150,7 +150,7 @@ function Sidebar() {
                         </div>
                         <div className="h-[41px] rounded-[10px] flex items-center gap-5">
                             <img className="w-5 h-5 ml-5" src={dataWarehouse} />
-                            <Link to="https://lookerstudio.google.com" target='_blank'>
+                            <Link to="https://lookerstudio.google.com/u/0/reporting/8da455e5-8b91-4181-9e76-da91f2a7beb8/page/75q3D" target='_blank'>
                                 <div className="text-base font-medium leading-tight text-stone-400">
                                     Data Warehouse
                                 </div>
