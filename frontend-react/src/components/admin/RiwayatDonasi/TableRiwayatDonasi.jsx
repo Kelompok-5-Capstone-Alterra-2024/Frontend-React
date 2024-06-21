@@ -14,7 +14,7 @@ const TableRiwayatDonasi = ({data, setData}) => {
 
   const handleModalSubmit = (amount) => {
     const updatedData = data.map(d =>
-      d.id === currentItem.id ? { ...d, amount: parseInt(amount, 10), status: "success" } : d
+      d.id === currentItem.id ? { ...d, amount: parseInt(amount, 10), status: "sukses" } : d
     );
     setData(updatedData); // Use setData to update the data state in the parent component
     setShowModal(false);
@@ -113,7 +113,7 @@ const TableRiwayatDonasi = ({data, setData}) => {
             <th scope="col" className="px-6 py-3">Donasi</th>
             <th scope="col" className="px-6 py-3">Bukti Transfer</th>
             <th scope="col" className="px-6 py-3">Tanggal</th>
-            <th scope="col" className="px-6 py-3">Aksi</th>
+            <th scope="col" className="px-6 py-3">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -133,7 +133,7 @@ const TableRiwayatDonasi = ({data, setData}) => {
               </td>
               <td className="px-6 py-4">{item.created_at}</td>
               <td className="px-6 py-4">
-                {item.status === "success" ? (
+                {item.status === "sukses" ? (
                   <button className="rounded-xl px-2 py-1 text-white bg-success-main">
                     Success
                   </button>
