@@ -190,7 +190,7 @@ function DetailUser() {
                       />
                     </div>
                     <div className="flex flex-col">
-                      <label htmlFor="no" className="block text-gray-700 text-sm font-normal">Nama Telefon</label>
+                      <label htmlFor="no" className="block text-gray-700 text-sm font-normal">Nomor Telepon</label>
                       <input
                         type="text"
                         id="no"
